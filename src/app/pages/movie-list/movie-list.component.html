@@ -1,0 +1,7 @@
+
+<div *ngFor="let movie of movies$ | async" class="movie">
+  <div (mousedown)="selectMovie(movie)" class="row">
+      <img id="lefty"  class="img-rounded img-responsive" [src]="'https://image.tmdb.org/t/p/w185/' + movie.poster_path" onError="this.src='/assets/img/movies/no-found.jpg'">
+  </div>
+</div>
+

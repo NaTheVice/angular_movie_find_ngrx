@@ -49,7 +49,7 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   public selectMovie(movie: Movie): void {
     this.store.dispatch(new moviesActions.SelectMovie(movie));
-    this.router.navigate([`movies/${movie.id}`]);
+    
   }
 
   public onFocus(): void {

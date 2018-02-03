@@ -1,3 +1,4 @@
+<div>
 <input [(ngModel)]="query" (keyup)="queryChanged()" (focus)="onFocus()" (blur)="onBlur()"/>
 <i class="material-icons">search</i>
 <div class="search-result" *ngIf="cursorInsideInput && query?.length > 0">
@@ -5,3 +6,5 @@
     {{movie.title}}
   </div>
 </div>
+</div>
+

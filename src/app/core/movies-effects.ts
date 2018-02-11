@@ -27,13 +27,13 @@ export class MoviesEffects {
     .switchMap((loadMoviesAction: LoadMovies) => {
       let getMoviesStream: Observable<Movie[]>;
       if (this.nextPageToLoad < 3) {
-        const fisrtPage = this.moviesService.getMovies(1);
-        const secondPage = this.moviesService.getMovies(2);
-        const thirdPage = this.moviesService.getMovies(3);
+        const fisrtPage = this.moviesService.getNewestMovies(1);
+        const secondPage = this.moviesService.getNewestMovies(2);
+        const thirdPage = this.moviesService.getNewestMovies(3);
         getMoviesStream = fisrtPage.concat(secondPage).concat(thirdPage);
         this.nextPageToLoad = 3;
       } else {
-        getMoviesStream = this.moviesService.getMovies(this.nextPageToLoad);
+        getMoviesStream = this.moviesService.getNewestMovies(this.nextPageToLoad);
       }
 
       return getMoviesStream

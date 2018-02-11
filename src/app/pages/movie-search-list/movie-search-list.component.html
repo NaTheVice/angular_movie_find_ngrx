@@ -1,0 +1,17 @@
+
+<!--
+<div class="container">
+  <div id="masonry">
+    <div *ngFor="let movie of movies$ | async" [class.item]="true" [class.active]="isActive">
+      <img (mousedown)="selectMovie(movie)" (click)= "isActive = !isActive" [src]="'https://image.tmdb.org/t/p/' + this.postersize + movie.poster_path" onError="this.src='/assets/img/movies/no-found.jpg'"/>
+    </div>
+  </div>
+</div>
+-->
+<div id="wrapper" >
+  <div class="gallery">
+    <a *ngFor="let movie of movies$ | async" class="gallery-item" href="#" [style.background-image]="'url('+'https://image.tmdb.org/t/p/w185' + movie.poster_path+')'" >
+      <img [src]="'https://image.tmdb.org/t/p/' + this.postersize + movie.poster_path" onError="this.src='/assets/img/movies/no-found.jpg'"/>
+    </a>
+  </div>
+</div>

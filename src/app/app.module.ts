@@ -17,6 +17,8 @@ import { MovieListComponent } from './pages/movie-list/movie-list.component';
 import { CommonModule } from '@angular/common';
 import { MovieDetailsComponent } from './pages/movie-details/movie-details.component';
 import { MoviesComponent } from './pages/movies/movies.component';
+import { NavbarComponent } from './pages/navbar/navbar.component';
+import { MovieSearchListComponent } from './pages/movie-search-list/movie-search-list.component';
 
 
 @NgModule({
@@ -26,7 +28,9 @@ import { MoviesComponent } from './pages/movies/movies.component';
     SearchComponent,
     MovieListComponent,
     MovieDetailsComponent,
-    MoviesComponent
+    MoviesComponent,
+    NavbarComponent,
+    MovieSearchListComponent
   ],
   imports: [
     StoreModule.forRoot({ movies: reducer }),
@@ -38,16 +42,28 @@ import { MoviesComponent } from './pages/movies/movies.component';
     BrowserModule,
     RouterModule.forRoot([
       {
-        path: '',
+        path: 'home',
         component: HomeComponent
-      },
+      },    
       {
         path: 'movies',
         component: MoviesComponent
       },
       {
+        path: 'profile',
+        component: HomeComponent
+      },
+      {
+        path: 'register',
+        component: MoviesComponent
+      },
+      {
+        path: 'login',
+        component: MoviesComponent
+      },
+      {
         path: '**',
-        redirectTo: '',
+        redirectTo: 'home',
         pathMatch: 'full'
       }
     ])

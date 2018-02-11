@@ -10,11 +10,11 @@ import * as moviesReducers from '../../core/movies.reducer';
 import * as moviesActions from '../../core/movies-actions';
 
 @Component({
-  selector: 'app-movie-list',
-  templateUrl: './movie-list.component.html',
-  styleUrls: ['./movie-list.component.css']
+  selector: 'app-movie-search-list',
+  templateUrl: './movie-search-list.component.html',
+  styleUrls: ['./movie-search-list.component.scss']
 })
-export class MovieListComponent implements OnInit {
+export class MovieSearchListComponent implements OnInit {
 
   public movies$: Observable<Movie[]>;
   public fetchMoreMovies: () => void;
@@ -22,23 +22,21 @@ export class MovieListComponent implements OnInit {
   private moviesSubscription: Subscription;
 
   constructor(private store: Store<moviesReducers.State>) { 
-    this.movies$ = store.select(moviesReducers.getMoviesListState);
-    //this.movies$ = store.select(moviesReducers.getSearchMoviesListState);
-    this.fetchMoreMovies = this.loadMoviesPage.bind(this);
+    //this.movies$ = store.select(moviesReducers.getMoviesListState);
+    this.movies$ = store.select(moviesReducers.getSearchMoviesListState);
+  
   }
 
   get postersize(): string { return this.postersizes[Math.floor(Math.random()*this.postersizes.length)] }
 
   public ngOnInit() {
-    this.loadMoviesPage();
+    
   }
 
-  public loadMoviesPage() {
-    this.store.dispatch(new moviesActions.LoadMovies());
-  }
 
   public selectMovie(movie: Movie): void {
     this.store.dispatch(new moviesActions.SelectMovie(movie));
     
   }
 }
+

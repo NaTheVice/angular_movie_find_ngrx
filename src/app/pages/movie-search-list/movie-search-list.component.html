@@ -1,4 +1,3 @@
-
 <!--
 <div class="container">
   <div id="masonry">
@@ -7,7 +6,7 @@
     </div>
   </div>
 </div>
--->
+
 <div id="wrapper" >
   <div class="gallery">
     <a *ngFor="let movie of movies$ | async" class="gallery-item" href="#" [style.background-image]="'url('+'https://image.tmdb.org/t/p/w185' + movie.poster_path+')'" >
@@ -15,3 +14,88 @@
     </a>
   </div>
 </div>
+-->
+<!--
+<div class="container">
+  <div id="masonry">
+    <div *ngFor="let movie of movies$ | async" [class.item]="true" [class.active]="isActive">
+      <img (mousedown)="selectMovie(movie)" (click)= "isActive = !isActive" [src]="'https://image.tmdb.org/t/p/' + this.postersize + movie.poster_path" onError="this.src='/assets/img/movies/no-found.jpg'"/>
+    </div>
+  </div>
+</div>
+
+<div id="wrapper" >
+  <div class="gallery">
+    <a *ngFor="let movie of movies$ | async" class="gallery-item" href="#" [style.background-image]="'url('+'https://image.tmdb.org/t/p/w185' + movie.poster_path+')'" >
+      <img [src]="'https://image.tmdb.org/t/p/' + this.postersize + movie.poster_path" onError="this.src='/assets/img/movies/no-found.jpg'"/>
+    </a>
+  </div>
+</div>
+-->
+<div class="row">
+  <div *ngFor="let movie of movies$ | async" class="item block col-sm-6 col-md-4 col-lg-3 mt-4">
+    <div class="thumbs-wrapper">
+      <div class="thumbs">
+
+        <img (click) = "selectMovie(movie)" [src]="'https://image.tmdb.org/t/p/w185' + movie.poster_path" onError="this.src='/assets/img/movies/no-found.jpg'" />
+        <!--<img src="images/thumbs/2.jpg"/>-->
+      </div>
+      <div class="thumbs-nav">
+        <span class="thumbs-nav-next" style="display: inline;">Next</span>
+        <span class="thumbs-nav-prev" style="display: none;">Previous</span>
+      </div>
+    </div>
+    <h2 class="title">{{movie.title}}</h2>
+    <p *ngIf="movie.genre_ids[0] ; else elseBlock" class="subline">{{getGenre(movie.genre_ids[0])}}
+      <span *ngIf="movie.genre_ids[1]" class="fancy">&</span> {{getGenre(movie.genre_ids[1])}}</p>
+      <ng-template #elseBlock><p class="subline">No genre definded</p></ng-template>
+    <div class="intro">
+      <p>
+        {{movie.overview}}
+      </p>
+      <a (click)="movieSelected = true" class="more_link">View more</a>
+    </div>
+    <div class="project-descr">
+      <p></p>
+    </div>
+
+    <div (click)="movieSelected = false" *ngIf="movieSelected" class="overlay">
+      <div class="box container">
+        <a class="overlay-close">Close</a>
+        <div class="row">
+          <div class="col-md-6">
+            <h2>{{selection$.title}}</h2>
+            <br>
+            <img [src]="'https://image.tmdb.org/t/p/w185' + movie.poster_path" onError="this.src='/assets/img/movies/no-found.jpg'" />
+            <br>
+            <p>vote count : {{movie.vote_count}}</p>
+            <br>
+            <p>vote average : {{movie.vote_average}}</p>
+            <br>
+            <p>popularity : {{movie.popularity}}</p>
+            <br>
+            <p>release date : {{movie.release_date}}</p>
+          </div>
+          <div class="col-md-6">
+             
+              <br>
+              <img [src]="'https://image.tmdb.org/t/p/w500' + movie.backdrop_path" onError="this.src='/assets/img/movies/no-found.jpg'" />
+              <br>
+              <h2>Story:</h2>
+              <p>{{movie.overview}}</p>
+              <br>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+</div>
+
+
+
+
+

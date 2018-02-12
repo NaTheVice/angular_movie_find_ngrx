@@ -7,13 +7,13 @@ import 'rxjs/add/operator/map';
 import { MOVIE_DISCOVER_DB_URL, MOVIE_SEARCH_DB_URL, NEWEST_MOVIES } from './api-urls';
 import { Movie } from './movie.model';
 
-var heute = new Date().toISOString().slice(0,10);
-    var monatVorher = new Date(
+const heute = new Date().toISOString().slice(0, 10);
+    const monatVorher = new Date(
     new Date().getFullYear(),
-    new Date().getMonth() - 1, 
+    new Date().getMonth() - 1,
     new Date().getDate()
     );
-    var vorher = new Date(monatVorher).toISOString().slice(0,10);
+    const vorher = new Date(monatVorher).toISOString().slice(0, 10);
 
 @Injectable()
 export class MoviesService {
@@ -38,8 +38,7 @@ export class MoviesService {
   }
 
   public getNewestMovies(pageNumber: number): Observable<Movie[]> {
-    
-    return this.http.get(`${NEWEST_MOVIES}`+vorher+`&primary_release_date.lte=`+heute+`&page=${pageNumber}`)
+    return this.http.get(`${NEWEST_MOVIES}` + vorher + `&primary_release_date.lte=` + heute + `&page=${pageNumber}`)
     .map(this.extractData);
   }
 

@@ -1,10 +1,10 @@
 <div>
-<input [(ngModel)]="query" (keyup)="queryChanged()" (focus)="onFocus()" (blur)="onBlur()"/>
-<i class="material-icons">search</i>
-<div class="search-result" *ngIf="cursorInsideInput && query?.length > 0">
-  <div *ngFor="let movie of movies$ | async" class="movie" (mousedown)="selectMovie(movie)">
-    {{movie.title}}
-  </div>
-</div>
+    <input [(ngModel)]="query" (keyup)="queryChanged()" (focus)="onFocus()" (blur)="onBlur()"/>
+    <i class="material-icons">search</i>
+    <div class="search-result" *ngIf="cursorInsideInput && query?.length > 0">
+      <div *ngFor="let movie of movies$ | async" class="movie" (mousedown)="selectMovie(movie)">
+        {{movie.title}}
+      </div>
+    </div>
 </div>
 

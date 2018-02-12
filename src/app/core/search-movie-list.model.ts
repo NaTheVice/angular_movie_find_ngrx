@@ -1,4 +1,4 @@
-import {genres} from './all-movie-genres.model';
+
 import {Movie} from './movie.model';
 
 export class SearchMovieList {

@@ -18,16 +18,16 @@ export class MovieListComponent implements OnInit {
 
   public movies$: Observable<Movie[]>;
   public fetchMoreMovies: () => void;
-  public postersizes = ["w92","w154","w185","w342","w500","w780","original"];
+  public postersizes = ['w92', 'w154', 'w185', 'w342', 'w500', 'w780', 'original'];
   private moviesSubscription: Subscription;
 
-  constructor(private store: Store<moviesReducers.State>) { 
+  constructor(private store: Store<moviesReducers.State>) {
     this.movies$ = store.select(moviesReducers.getMoviesListState);
-    //this.movies$ = store.select(moviesReducers.getSearchMoviesListState);
+    // this.movies$ = store.select(moviesReducers.getSearchMoviesListState);
     this.fetchMoreMovies = this.loadMoviesPage.bind(this);
   }
 
-  get postersize(): string { return this.postersizes[Math.floor(Math.random()*this.postersizes.length)] }
+  get postersize(): string { return this.postersizes[Math.floor(Math.random() * this.postersizes.length)]; }
 
   public ngOnInit() {
     this.loadMoviesPage();
@@ -39,6 +39,5 @@ export class MovieListComponent implements OnInit {
 
   public selectMovie(movie: Movie): void {
     this.store.dispatch(new moviesActions.SelectMovie(movie));
-    
   }
 }

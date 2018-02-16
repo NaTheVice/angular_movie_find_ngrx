@@ -14,6 +14,7 @@ export interface Movie {
         adult: boolean;
         overview: string;
         release_date: string;
+        credits: Array<any>;
 
   }
 

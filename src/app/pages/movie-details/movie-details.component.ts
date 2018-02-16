@@ -5,7 +5,7 @@ import { Subscription } from 'rxjs/Rx';
 
 import * as moviesReducers from '../../core/movies.reducer';
 import { Movie } from '../../core/movie.model';
-import { POSTER_URL } from '../../core/api-urls';
+import { POSTER_URL} from '../../core/api-urls';
 
 @Component({
   selector: 'app-movie-details',
@@ -18,8 +18,9 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
 
   private movieSubscription: Subscription;
   private posterUrl: string;
+  private movie_credits: string;
 
-  constructor(private store: Store<moviesReducers.State>, private router: Router) { 
+  constructor(private store: Store<moviesReducers.State>, private router: Router) {
     this.posterUrl = POSTER_URL;
   }
 

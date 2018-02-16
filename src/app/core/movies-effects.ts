@@ -11,7 +11,7 @@ import { Observable } from 'rxjs/Observable';
 import { defer } from 'rxjs/observable/defer';
 import { of } from 'rxjs/observable/of';
 
-import { LoadMovies, SearchMovies } from './movies-actions';
+import { LoadMovies, SearchMovies, SelectMovie } from './movies-actions';
 import { MoviesService } from './movie-service';
 import { Movie } from './movie.model';
 import * as moviesActions from './movies-actions';
@@ -66,6 +66,25 @@ export class MoviesEffects {
         return Observable.of(new moviesActions.SearchingSuccess([]));
       }
     });
+
+    @Effect()
+    setCredits$: Observable<Action> = this.actions$
+      .ofType(moviesActions.SELECT_MOVIE)
+      .switchMap((selectMovie: SelectMovie) => {
+        if (selectMovie.payload) {
+          console.log('selectMovie in effect');
+          return this.moviesService.getMovieCredits(selectMovie.payload.id)
+            .map((credits) => {
+              selectMovie.payload.credits = credits;
+              console.log(selectMovie.payload);
+              return new moviesActions.SetMovieCredits(selectMovie.payload);
+            })
+            .catch(error => {
+             console.log('error in search-movie-effect' + error);
+              return of(new moviesActions.SearchingFails(error));
+            });
+        }
+      });
 
   constructor(private actions$: Actions,
     private moviesService: MoviesService,

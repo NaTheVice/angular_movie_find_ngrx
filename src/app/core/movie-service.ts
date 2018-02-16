@@ -4,7 +4,7 @@ import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 
-import { MOVIE_DISCOVER_DB_URL, MOVIE_SEARCH_DB_URL, NEWEST_MOVIES } from './api-urls';
+import { MOVIE_DISCOVER_DB_URL, MOVIE_SEARCH_DB_URL, NEWEST_MOVIES, API_KEY } from './api-urls';
 import { Movie } from './movie.model';
 
 const heute = new Date().toISOString().slice(0, 10);
@@ -37,9 +37,19 @@ export class MoviesService {
     return body && body.results ? body.results : [];
   }
 
+  private extractCastArray(res: Response): Array<any> {
+    const body = res.json();
+    return body.cast ? body.cast : [];
+  }
+
   public getNewestMovies(pageNumber: number): Observable<Movie[]> {
     return this.http.get(`${NEWEST_MOVIES}` + vorher + `&primary_release_date.lte=` + heute + `&page=${pageNumber}`)
     .map(this.extractData);
+  }
+
+  public getMovieCredits(id) {
+    return this.http.get(`https://api.themoviedb.org/3/movie/` + id + `/credits?api_key=${API_KEY}`)
+    .map(this.extractCastArray);
   }
 
 }

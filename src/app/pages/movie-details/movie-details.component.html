@@ -1,10 +1,27 @@
+<div class="row justify-content-center">
+  <div class="col-lg-7">
+  <img class="detail_cover_img" *ngIf="movie" src="{{posterUrl}}/{{movie?.poster_path}}" alt="{{movie?.title}} poster" align="left" />
+</div>
+  <div class="col-lg-5">
+      <h2 class="title">{{movie?.title}}</h2>
+    <br>
+    <p>
+      {{movie?.overview}}
+    </p>
+    <br>
+    <p>vote count : {{movie?.vote_count}}</p>
+    <br>
+    <p>vote average : {{movie?.vote_average}}</p>
+    <br>
+    <p>popularity : {{movie?.popularity}}</p>
+    <br>
+    <p>release date : {{movie?.release_date}}</p>
+    <br>
+    <p *ngIf="movie.credits.lenght >= 0">release date : {{movie?.credits[0].name}}</p>
+    <br>
+    <img [src]="'https://image.tmdb.org/t/p/w342' + movie?.backdrop_path" onError="this.src='/assets/img/movies/no-found.jpg'"/>
+    
+  </div>
 
-<img *ngIf="movie" src="{{posterUrl}}/{{movie?.poster_path}}" alt="{{movie?.title}} poster" align="left"/>
-<h3>
-  {{movie?.title}}
-</h3>
-<p>
-  {{movie?.overview}}
-</p>
-
-
+    
+</div>

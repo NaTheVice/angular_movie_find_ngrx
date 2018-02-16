@@ -37,6 +37,13 @@ export function reducer(
       };
     }
 
+    case moviesActions.SET_MOVIE_CREDITS: {
+      return {
+        ...state,
+        selectedMovie: action.payload
+      };
+    }
+
     case moviesActions.LOADING_SUCCESS: {
       return {
         ...state,

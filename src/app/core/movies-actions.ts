@@ -4,6 +4,7 @@ import {Movie} from './movie.model';
 export const GET_MOVIE = 'GET_MOVIE';
 export const SEARCH_MOVIES = 'SEARCH_MOVIES';
 export const LOAD_MOVIES = 'LOAD_MOVIES';
+export const SET_MOVIE_CREDITS = 'SET_MOVIE_CREDITS';
 export const GET_MOVIE_GENRE = 'GET_MOVIE_GENRE';
 export const GET_ALL_GENRES = 'GET_ALL_GENRES';
 export const SET_MOVIE_LIST = 'SET_MOVIES_LIST';
@@ -27,6 +28,11 @@ export class SearchMovies implements Action {
 
 export class LoadMovies implements Action {
     readonly type = LOAD_MOVIES;
+}
+
+export class SetMovieCredits implements Action {
+    readonly type = SET_MOVIE_CREDITS;
+    constructor(public payload: Movie) {}
 }
 
 export class GetMovieGenre implements Action {
@@ -91,6 +97,7 @@ export type Actions =
 | LoadingSuccess
 | LoadingFails
 | SearchingSuccess
-| SearchingFails;
+| SearchingFails
+| SetMovieCredits;
 
 

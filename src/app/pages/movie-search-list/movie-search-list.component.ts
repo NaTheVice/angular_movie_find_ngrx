@@ -16,6 +16,7 @@ import { genres } from '../../core/all-movie-genres.model';
   styleUrls: ['./movie-search-list.component.scss']
 })
 export class MovieSearchListComponent implements OnInit {
+  public movieSelected = false;
   public selection$;
   public movies$: Observable<Movie[]>;
   public fetchMoreMovies: () => void;
@@ -57,8 +58,7 @@ export class MovieSearchListComponent implements OnInit {
   }
 
   public selectMovie(movie: Movie): void {
-    console.log(movie.title);
     this.store.dispatch(new moviesActions.SelectMovie(movie));
-    console.log(this.selection$.title);
+    this.movieSelected = true;
   }
 }

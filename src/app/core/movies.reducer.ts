@@ -12,6 +12,8 @@ export interface State {
   searching: boolean;
   searchMovies: Movie[];
   selectedMovie: Movie;
+  creditsLoaded: boolean;
+  readyToSetMovies: boolean;
 }
 
 const initialState: State = {
@@ -22,7 +24,9 @@ const initialState: State = {
   searched: false,
   searching: false,
   searchMovies: [],
-  selectedMovie: null
+  selectedMovie: null,
+  creditsLoaded: false,
+  readyToSetMovies: false
 };
 
 export function reducer(
@@ -37,10 +41,24 @@ export function reducer(
       };
     }
 
+    case moviesActions.READY_TO_SET_MOVIES: {
+      return {
+        ...state,
+        readyToSetMovies:  action.payload
+      };
+    }
+
+    case moviesActions.LOAD_MOVIE_CREDITS: {
+      return {
+        ...state,
+        creditsLoaded: true
+      };
+    }
+
     case moviesActions.SET_MOVIE_CREDITS: {
       return {
         ...state,
-        selectedMovie: action.payload
+        searchMovies: [ ...action.payload ]
       };
     }
 
@@ -62,6 +80,7 @@ export function reducer(
     }
 
     case moviesActions.SEARCH_MOVIES: {
+      console.log("search_movies")
       return {
         ...state,
         query: action.payload,
@@ -70,6 +89,7 @@ export function reducer(
     }
 
     case moviesActions.SEARCHING_SUCCESS: {
+      console.log("succes empfangen")
       return {
         ...state,
         searched: true,

@@ -11,7 +11,7 @@ import { Observable } from 'rxjs/Observable';
 import { defer } from 'rxjs/observable/defer';
 import { of } from 'rxjs/observable/of';
 
-import { LoadMovies, SearchMovies, SelectMovie } from './movies-actions';
+import { LoadMovies, SearchMovies, SelectMovie, LoadMovieCredits } from './movies-actions';
 import { MoviesService } from './movie-service';
 import { Movie } from './movie.model';
 import * as moviesActions from './movies-actions';
@@ -55,7 +55,10 @@ export class MoviesEffects {
         console.log('searchMovieAction in effect');
         return this.moviesService.searchMovies(searchMoviesAction.payload)
           .map((movies: Movie[]) => {
-            return new moviesActions.SearchingSuccess(movies);
+            //console.log("movies"+JSON.stringify(movies))
+            this.moviesService.getMoviesWithCredits(movies)
+            //return new moviesActions.ReadyToSetMovies(true);
+            return new moviesActions.SearchingSuccess([]);
           })
           .catch(error => {
            console.log('error in search-movie-effect' + error);
@@ -67,17 +70,19 @@ export class MoviesEffects {
       }
     });
 
+
+
     @Effect()
     setCredits$: Observable<Action> = this.actions$
-      .ofType(moviesActions.SELECT_MOVIE)
-      .switchMap((selectMovie: SelectMovie) => {
-        if (selectMovie.payload) {
+      .ofType(moviesActions.LOAD_MOVIE_CREDITS)
+      .switchMap((loadMovieCredits: LoadMovieCredits) => {
+        if (loadMovieCredits.payload) {
           console.log('selectMovie in effect');
-          return this.moviesService.getMovieCredits(selectMovie.payload.id)
+          return this.moviesService.getMovieCredits(loadMovieCredits.payload.id)
             .map((credits) => {
-              selectMovie.payload.credits = credits;
-              console.log(selectMovie.payload);
-              return new moviesActions.SetMovieCredits(selectMovie.payload);
+              loadMovieCredits.payload.credits = credits;
+              console.log(loadMovieCredits.payload);
+              return new moviesActions.SelectMovie (loadMovieCredits.payload);
             })
             .catch(error => {
              console.log('error in search-movie-effect' + error);

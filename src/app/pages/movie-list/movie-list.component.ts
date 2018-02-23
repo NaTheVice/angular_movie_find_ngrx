@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Subscription } from 'rxjs/Subscription';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 
@@ -23,7 +23,6 @@ export class MovieListComponent implements OnInit {
 
   constructor(private store: Store<moviesReducers.State>) {
     this.movies$ = store.select(moviesReducers.getMoviesListState);
-    // this.movies$ = store.select(moviesReducers.getSearchMoviesListState);
     this.fetchMoreMovies = this.loadMoviesPage.bind(this);
   }
 
@@ -38,8 +37,7 @@ export class MovieListComponent implements OnInit {
   }
 
   public selectMovie(movie: Movie): void {
-    this.store.dispatch(new moviesActions.LoadMovieCredits(movie));
-    //this.store.dispatch(new moviesActions.SelectMovie(movie));
+    this.store.dispatch(new moviesActions.SelectMovie(movie));
     this.movieSelected = true;
   }
 }

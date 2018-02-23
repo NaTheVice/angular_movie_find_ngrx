@@ -32,10 +32,8 @@ export class MovieSearchListComponent implements OnInit {
   private moviesSubscription: Subscription;
 
   constructor(private store: Store<moviesReducers.State>) {
-    // this.movies$ = store.select(moviesReducers.getMoviesListState);
     this.movies$ = store.select(moviesReducers.getSearchMoviesListState);
     this.selection$ = store.select(moviesReducers.getSelectedMovie);
-    console.log(genres.find(id => id.id === 16));
   }
 
   get postersize(): string {
@@ -58,7 +56,6 @@ export class MovieSearchListComponent implements OnInit {
   }
 
   public selectMovie(movie: Movie): void {
-    //this.store.dispatch(new moviesActions.LoadMovieCredits(movie));
     this.store.dispatch(new moviesActions.SelectMovie(movie));
     this.movieSelected = true;
   }

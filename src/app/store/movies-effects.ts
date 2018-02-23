@@ -1,4 +1,3 @@
-
 import { Router } from '@angular/router/router';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
@@ -11,7 +10,7 @@ import { Observable } from 'rxjs/Observable';
 import { defer } from 'rxjs/observable/defer';
 import { of } from 'rxjs/observable/of';
 
-import { LoadMovies, SearchMovies, SelectMovie } from './movies-actions';
+import { LoadMovies, SearchMovies, SelectMovie, LoadMovieCredits, LoadingSuccess } from './movies-actions';
 import { MoviesService } from '../services/movie-service';
 import { Movie } from '../models/movie.model';
 import * as moviesActions from './movies-actions';
@@ -29,9 +28,9 @@ export class MoviesEffects {
       if (this.nextPageToLoad < 3) {
         const fisrtPage = this.moviesService.getNewestMovies(1);
         const secondPage = this.moviesService.getNewestMovies(2);
-        const thirdPage = this.moviesService.getNewestMovies(3);
-        getMoviesStream = fisrtPage.concat(secondPage).concat(thirdPage);
-        this.nextPageToLoad = 3;
+        //const thirdPage = this.moviesService.getNewestMovies(3);
+        getMoviesStream = fisrtPage.concat(secondPage);
+        this.nextPageToLoad = 2;
       } else {
         getMoviesStream = this.moviesService.getNewestMovies(this.nextPageToLoad);
       }
@@ -39,7 +38,8 @@ export class MoviesEffects {
       return getMoviesStream
         .map((movies: Movie[]) => {
           this.nextPageToLoad++;
-          return new moviesActions.LoadingSuccess(movies);
+          this.moviesService.getMoviesWithCredits(movies, true);
+          return new moviesActions.LoadingSuccess([]);
         })
         .catch(error => {
           console.log('error in get-moviesStream-effect' + error);
@@ -55,9 +55,7 @@ export class MoviesEffects {
         console.log('searchMovieAction in effect');
         return this.moviesService.searchMovies(searchMoviesAction.payload)
           .map((movies: Movie[]) => {
-            //console.log("movies"+JSON.stringify(movies))
-            this.moviesService.getMoviesWithCredits(movies)
-            //return new moviesActions.ReadyToSetMovies(true);
+            this.moviesService.getMoviesWithCredits(movies);
             return new moviesActions.SearchingSuccess([]);
           })
           .catch(error => {
@@ -69,27 +67,6 @@ export class MoviesEffects {
         return Observable.of(new moviesActions.SearchingSuccess([]));
       }
     });
-
-
-
-    @Effect()
-    setCredits$: Observable<Action> = this.actions$
-      .ofType(moviesActions.LOAD_MOVIE_CREDITS)
-      .switchMap((loadMovieCredits: LoadMovieCredits) => {
-        if (loadMovieCredits.payload) {
-          console.log('selectMovie in effect');
-          return this.moviesService.getMovieCredits(loadMovieCredits.payload.id)
-            .map((credits) => {
-              loadMovieCredits.payload.credits = credits;
-              console.log(loadMovieCredits.payload);
-              return new moviesActions.SelectMovie (loadMovieCredits.payload);
-            })
-            .catch(error => {
-             console.log('error in search-movie-effect' + error);
-              return of(new moviesActions.SearchingFails(error));
-            });
-        }
-      });
 
   constructor(private actions$: Actions,
     private moviesService: MoviesService,

@@ -80,7 +80,6 @@ export function reducer(
     }
 
     case moviesActions.SEARCH_MOVIES: {
-      console.log("search_movies")
       return {
         ...state,
         query: action.payload,
@@ -89,7 +88,6 @@ export function reducer(
     }
 
     case moviesActions.SEARCHING_SUCCESS: {
-      console.log("succes empfangen")
       return {
         ...state,
         searched: true,

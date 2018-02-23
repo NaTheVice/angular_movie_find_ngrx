@@ -71,7 +71,7 @@ export class MoviesService {
       .map(this.extractCastArray);
   }
 
-  public getMoviesWithCredits(movies) {
+  public getMoviesWithCredits(movies, loading?) {
     let count = 1;
     movies.forEach(element => {
       console.log(element.id);
@@ -87,10 +87,18 @@ export class MoviesService {
           if (count === movies.length) {
             this.movies = movies;
             // console.log("this movies " +JSON.stringify(this.movies));
+            if (loading) {
+              this.store.dispatch({
+                type: 'LOADING_SUCCESS',
+                payload: movies
+              });
+            }
+          if (!loading) {
            this.store.dispatch({
               type: 'SEARCHING_SUCCESS',
               payload: movies
             });
+          }
             // return of(new moviesActions.SearchingSuccess(movies));
           }
         });

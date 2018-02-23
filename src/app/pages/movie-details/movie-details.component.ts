@@ -1,11 +1,11 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { Subscription } from 'rxjs/Rx';
+import { Subscription } from 'rxjs/Subscription';
 
-import * as moviesReducers from '../../core/movies.reducer';
-import { Movie } from '../../core/movie.model';
-import { POSTER_URL} from '../../core/api-urls';
+import * as moviesReducers from '../../store/movies.reducer';
+import { Movie } from '../../models/movie.model';
+import { POSTER_URL} from '../../models/api';
 
 @Component({
   selector: 'app-movie-details',

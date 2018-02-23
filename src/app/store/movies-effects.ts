@@ -12,8 +12,8 @@ import { defer } from 'rxjs/observable/defer';
 import { of } from 'rxjs/observable/of';
 
 import { LoadMovies, SearchMovies, SelectMovie } from './movies-actions';
-import { MoviesService } from './movie-service';
-import { Movie } from './movie.model';
+import { MoviesService } from '../services/movie-service';
+import { Movie } from '../models/movie.model';
 import * as moviesActions from './movies-actions';
 
 @Injectable()

@@ -1,5 +1,5 @@
 import {Action} from '@ngrx/store';
-import {Movie} from './movie.model';
+import {Movie} from '../models/movie.model';
 
 export const GET_MOVIE = 'GET_MOVIE';
 export const SEARCH_MOVIES = 'SEARCH_MOVIES';

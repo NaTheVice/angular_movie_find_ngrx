@@ -6,10 +6,10 @@ import { Observable } from 'rxjs/Observable';
 import { Subject, Subscription } from 'rxjs/Rx';
 
 
-import { Movie } from '../../core/movie.model';
+import { Movie } from '../../models/movie.model';
 
-import * as moviesReducers from '../../core/movies.reducer';
-import * as moviesActions from '../../core/movies-actions';
+import * as moviesReducers from '../../store/movies.reducer';
+import * as moviesActions from '../../store/movies-actions';
 
 @Component({
   selector: 'app-search',
@@ -49,7 +49,6 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   public selectMovie(movie: Movie): void {
     this.store.dispatch(new moviesActions.SelectMovie(movie));
-    
   }
 
   public onFocus(): void {

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, DoCheck } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -6,25 +6,25 @@ import { Router } from '@angular/router';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
-export class NavbarComponent implements OnInit {
-  clicked = "home";
-  public href: string = "";
-  url: string = "asdf";
+export class NavbarComponent implements OnInit, DoCheck {
+  clicked = 'home';
+  public href: String = '';
+  url: String = 'asdf';
 
-  constructor(private router : Router) { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
- 
+
   }
 
-  ngDoCheck(){
+  ngDoCheck() {
     this.href = this.router.url;
-    this.clicked = this.href.replace('/',"");
+    this.clicked = this.href.replace('/', '');
   }
 
-  selectMenuItem(name:string){
+  selectMenuItem(name: string) {
     this.clicked = name;
-    console.log(name)
+    console.log(name);
   }
 
 }

@@ -4,8 +4,8 @@ import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 
-import { MOVIE_DISCOVER_DB_URL, MOVIE_SEARCH_DB_URL, NEWEST_MOVIES, API_KEY } from './api-urls';
-import { Movie } from './movie.model';
+import { MOVIE_DISCOVER_DB_URL, MOVIE_SEARCH_DB_URL, NEWEST_MOVIES, API_KEY } from '../models/api';
+import { Movie } from '../models/movie.model';
 
 const heute = new Date().toISOString().slice(0, 10);
     const monatVorher = new Date(

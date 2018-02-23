@@ -1,5 +1,5 @@
 import { createSelector, createFeatureSelector } from '@ngrx/store';
-import { Movie } from './movie.model';
+import { Movie } from '../models/movie.model';
 
 import * as moviesActions from './movies-actions';
 

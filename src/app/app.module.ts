@@ -3,9 +3,9 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { StoreModule, combineReducers } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
-import { reducer} from './core/movies.reducer';
-import { MoviesEffects } from './core/movies-effects';
-import { MoviesService } from './core/movie-service';
+import { reducer} from './store/movies.reducer';
+import { MoviesEffects } from './store/movies-effects';
+import { MoviesService } from './services/movie-service';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -44,7 +44,7 @@ import { MovieSearchListComponent } from './pages/movie-search-list/movie-search
       {
         path: 'home',
         component: HomeComponent
-      },    
+      },
       {
         path: 'movies',
         component: MoviesComponent

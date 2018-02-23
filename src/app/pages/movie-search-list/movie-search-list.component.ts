@@ -58,6 +58,7 @@ export class MovieSearchListComponent implements OnInit {
   }
 
   public selectMovie(movie: Movie): void {
+    //this.store.dispatch(new moviesActions.LoadMovieCredits(movie));
     this.store.dispatch(new moviesActions.SelectMovie(movie));
     this.movieSelected = true;
   }

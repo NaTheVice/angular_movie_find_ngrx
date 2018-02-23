@@ -15,7 +15,7 @@ import * as moviesActions from '../../store/movies-actions';
   styleUrls: ['./movie-list.component.css']
 })
 export class MovieListComponent implements OnInit {
-
+  public movieSelected = false;
   public movies$: Observable<Movie[]>;
   public fetchMoreMovies: () => void;
   public postersizes = ['w92', 'w154', 'w185', 'w342', 'w500', 'w780', 'original'];
@@ -38,6 +38,8 @@ export class MovieListComponent implements OnInit {
   }
 
   public selectMovie(movie: Movie): void {
-    this.store.dispatch(new moviesActions.SelectMovie(movie));
+    this.store.dispatch(new moviesActions.LoadMovieCredits(movie));
+    //this.store.dispatch(new moviesActions.SelectMovie(movie));
+    this.movieSelected = true;
   }
 }

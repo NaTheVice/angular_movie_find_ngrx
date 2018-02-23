@@ -2,7 +2,7 @@
 <div class="row">
   <div *ngFor="let movie of movies$ | async" class="col-sm-6 col-md-4 col-lg-3 mt-4">
     <div class="card card-inverse card-info">
-      <img class="card-img-top" [src]="'https://image.tmdb.org/t/p/w342'+ movie.poster_path" onError="this.src='/assets/img/movies/no-found.jpg'">
+      <img  (click)="selectMovie(movie)" class="card-img-top" [src]="'https://image.tmdb.org/t/p/w342'+ movie.poster_path" onError="this.src='/assets/img/movies/no-found.jpg'">
       <div class="card-block">
         <figure class="profile profile-inline">
           <img [src]="'https://image.tmdb.org/t/p/w92' + movie.poster_path" onError="this.src='/assets/img/movies/no-found.jpg'">
@@ -14,10 +14,17 @@
       </div>
       <div class="card-footer">
         <small>Vote: {{movie.popularity}}</small>
-        <button class="btn btn-info float-right btn-sm">More</button>
+        <button  (click)="selectMovie(movie)" class="btn btn-info float-right btn-sm">More</button>
       </div>
     </div>
   </div>
-
+  
 </div>
+
+<div (click)="movieSelected = false" *ngIf="movieSelected" class="overlay">
+    <div class="box container">
+      <a class="overlay-close">Close</a>
+      <app-movie-details></app-movie-details>
+    </div>
+  </div>
 

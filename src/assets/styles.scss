@@ -6,3 +6,42 @@
 body {
   font-family: 'Open Sans', sans-serif;
 }
+
+.overlay {
+  background: rgba(0, 0, 0, 0.75);
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  height: 100%;
+  padding: 60px 15px 15px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 9999999;
+}
+
+.overlay .box {
+  background: #fff;
+  -webkit-box-shadow: 0 0 20px rgba(0, 0, 0, 0.75);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.75);
+  overflow: hidden;
+  padding: 20px 20px 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  width: 90%;
+  max-width: 1200px;
+}
+
+.overlay-close {
+  float: right;
+}
+
+@media(max-width: 1200px) {
+  .overlay .col-lg-6 {
+    max-width: 51%;
+  }
+}

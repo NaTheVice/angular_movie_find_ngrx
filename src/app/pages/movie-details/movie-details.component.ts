@@ -6,6 +6,7 @@ import { Subscription } from 'rxjs/Subscription';
 import * as moviesReducers from '../../store/movies.reducer';
 import { Movie } from '../../models/movie.model';
 import { POSTER_URL} from '../../models/api';
+import * as moviesActions from '../../store/movies-actions';
 
 @Component({
   selector: 'app-movie-details',
@@ -15,7 +16,7 @@ import { POSTER_URL} from '../../models/api';
 export class MovieDetailsComponent implements OnInit, OnDestroy {
 
   public movie: Movie;
-
+  public movieSelected = false;
   private movieSubscription: Subscription;
   private posterUrl: string;
   private movie_credits: string;
@@ -30,6 +31,7 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
         this.movie = null;
       } else {
         this.movie = movie;
+        this.movieSelected = true;
       }
     });
   }
@@ -38,4 +40,8 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
     this.movieSubscription.unsubscribe();
   }
 
+  public unSelectMovie(): void {
+    this.store.dispatch(new moviesActions.SelectMovie(null));
+    this.movieSelected = false;
+  }
 }

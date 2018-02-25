@@ -1,7 +1,7 @@
-import { createSelector, createFeatureSelector } from '@ngrx/store';
-import { Movie } from '../models/movie.model';
+import { createSelector, createFeatureSelector } from "@ngrx/store";
+import { Movie } from "../models/movie.model";
 
-import * as moviesActions from './movies-actions';
+import * as moviesActions from "./movies-actions";
 
 export interface State {
   loaded: boolean;
@@ -20,7 +20,7 @@ const initialState: State = {
   loaded: false,
   loading: false,
   movies: [],
-  query: '',
+  query: "",
   searched: false,
   searching: false,
   searchMovies: [],
@@ -31,8 +31,7 @@ const initialState: State = {
 
 export function reducer(
   state = initialState,
-  action: moviesActions.Actions
-): State {
+  action: moviesActions.Actions): State {
   switch (action.type) {
     case moviesActions.LOAD_MOVIES: {
       return {
@@ -44,7 +43,7 @@ export function reducer(
     case moviesActions.READY_TO_SET_MOVIES: {
       return {
         ...state,
-        readyToSetMovies:  action.payload
+        readyToSetMovies: action.payload
       };
     }
 
@@ -58,7 +57,7 @@ export function reducer(
     case moviesActions.SET_MOVIE_CREDITS: {
       return {
         ...state,
-        searchMovies: [ ...action.payload ]
+        searchMovies: [...action.payload]
       };
     }
 
@@ -67,7 +66,7 @@ export function reducer(
         ...state,
         loaded: true,
         loading: false,
-        movies: [ ...state.movies, ...action.payload ]
+        movies: [...state.movies, ...action.payload]
       };
     }
 
@@ -92,7 +91,7 @@ export function reducer(
         ...state,
         searched: true,
         searching: false,
-        searchMovies: [ ...action.payload ]
+        searchMovies: [...action.payload]
       };
     }
 
@@ -100,7 +99,7 @@ export function reducer(
       return {
         ...state,
         searched: false,
-        searching: false,
+        searching: false
       };
     }
 
@@ -111,18 +110,26 @@ export function reducer(
           isSelected: false
         };
       });
-      const selectedMovie = newMoviesArray.find((movie: Movie) => {
-        return movie.id === action.payload.id;
-      });
-      if (selectedMovie) {
-        selectedMovie.isSelected = true;
-      }
+      if (action.payload) {
+        const selectedMovie = newMoviesArray.find((movie: Movie) => {
+          return movie.id === action.payload.id;
+        });
+        if (selectedMovie) {
+          selectedMovie.isSelected = true;
+        }
 
-      return {
-        ...state,
-        movies: newMoviesArray,
-        selectedMovie: action.payload
-      };
+        return {
+          ...state,
+          movies: newMoviesArray,
+          selectedMovie: action.payload
+        };
+      } else {
+        return {
+          ...state,
+          movies: newMoviesArray,
+          selectedMovie: null
+        };
+      }
     }
 
     default: {
@@ -131,7 +138,7 @@ export function reducer(
   }
 }
 
-export const getMoviesState = createFeatureSelector<State>('movies');
+export const getMoviesState = createFeatureSelector<State>("movies");
 export const getMoviesListState = createSelector(
   getMoviesState,
   (state: State) => state.movies

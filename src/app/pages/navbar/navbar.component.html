@@ -1,9 +1,9 @@
-<div class="row justify-content-center">
+<div class="row justify-content-center nav_row">
   <nav class="menu menu--bagot">
 
-    <ul class="menu__list">
-      <li class="menu__item" [class.menu__item--current]="clicked === 'home'">
-        <a routerLink="/home" class="menu__link">Home</a>
+    <ul class="menu__list container">
+      <li class="menu__item" [class.menu__item--current]="clicked === 'news'">
+        <a routerLink="/news" class="menu__link">News</a>
       </li>
       <li class="menu__item" [class.menu__item--current]="clicked === 'movies'">
         <a class="menu__link" routerLink="/movies">Movies</a>
@@ -17,7 +17,10 @@
       <li class="menu__item" [class.menu__item--current]="clicked === 'login'">
         <a class="menu__link"  routerLink="/login">Log in</a>
       </li>
-
+      <li >
+        <a class=""><app-search></app-search></a>
+      </li>
     </ul>
+
   </nav>
 </div>

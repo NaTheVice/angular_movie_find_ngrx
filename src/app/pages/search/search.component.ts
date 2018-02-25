@@ -43,7 +43,6 @@ export class SearchComponent implements OnInit, OnDestroy {
   }
 
   public queryChanged(): void {
-    console.log('hello from querychanged');
     this.searchTermStream.next(this.query);
   }
 

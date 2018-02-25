@@ -10,7 +10,7 @@ import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './core/app.component';
-import { HomeComponent } from './pages/home/home.component';
+import { NewsComponent } from './pages/news/news.component';
 import { SearchComponent } from './pages/search/search.component';
 import { FormsModule} from '@angular/forms';
 import { MovieListComponent } from './pages/movie-list/movie-list.component';
@@ -24,7 +24,7 @@ import { MovieSearchListComponent } from './pages/movie-search-list/movie-search
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
+    NewsComponent,
     SearchComponent,
     MovieListComponent,
     MovieDetailsComponent,
@@ -42,8 +42,8 @@ import { MovieSearchListComponent } from './pages/movie-search-list/movie-search
     BrowserModule,
     RouterModule.forRoot([
       {
-        path: 'home',
-        component: HomeComponent
+        path: 'news',
+        component: NewsComponent
       },
       {
         path: 'movies',
@@ -51,7 +51,7 @@ import { MovieSearchListComponent } from './pages/movie-search-list/movie-search
       },
       {
         path: 'profile',
-        component: HomeComponent
+        component: NewsComponent
       },
       {
         path: 'register',
@@ -63,7 +63,7 @@ import { MovieSearchListComponent } from './pages/movie-search-list/movie-search
       },
       {
         path: '**',
-        redirectTo: 'home',
+        redirectTo: 'news',
         pathMatch: 'full'
       }
     ])

@@ -26,6 +26,7 @@ export class MoviesService {
   constructor(private http: Http, private httpClient: HttpClient, private store: Store<moviesReducers.State>) {}
 
   public getMovies(pageNumber: number): Observable<Movie[]> {
+
     return this.http
       .get(`${MOVIE_DISCOVER_DB_URL}&page=${pageNumber}`)
       .map(this.extractData);
@@ -45,8 +46,14 @@ export class MoviesService {
 
   private extractCastArray(res: Response): Array<any> {
     const body = res.json();
-    console.log('huuhuhuhuuh');
     return body.cast ? body.cast : [];
+  }
+
+  public getOverviewInGerman(id) {
+    return this.httpClient
+        .get<any>(
+          `https://api.themoviedb.org/3/movie/` + id + `?api_key=${API_KEY}&language=de`
+        );
   }
 
   public getNewestMovies(pageNumber: number): Observable<Movie[]> {
@@ -74,7 +81,6 @@ export class MoviesService {
   public getMoviesWithCredits(movies, loading?) {
     let count = 1;
     movies.forEach(element => {
-      console.log(element.id);
       this.httpClient
         .get<any>(
           `https://api.themoviedb.org/3/movie/` +
@@ -86,7 +92,6 @@ export class MoviesService {
           count++;
           if (count === movies.length) {
             this.movies = movies;
-            // console.log("this movies " +JSON.stringify(this.movies));
             if (loading) {
               this.store.dispatch({
                 type: 'LOADING_SUCCESS',
@@ -99,7 +104,6 @@ export class MoviesService {
               payload: movies
             });
           }
-            // return of(new moviesActions.SearchingSuccess(movies));
           }
         });
     });

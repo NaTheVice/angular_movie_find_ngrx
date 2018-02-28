@@ -1,0 +1,31 @@
+@import "~assets/variables.scss";
+
+p {
+    margin-left: 0.5rem;
+}
+h2{
+    font-size: 15px;
+    text-transform: uppercase;
+    background: $background;
+    color: $default-color ;
+    padding: 2px 5px;
+    margin-top: 3px;
+  }
+  .detail_cover_img{
+      max-height:97.5%
+  }
+
+  .video_link{
+    color: $default-color;
+    text-decoration: none;
+    margin-left: 5px;
+    font-size: 1.2em;
+    background: black;
+    padding: 5px;
+  }
+
+  .video_btn{
+      float: left;
+      margin-left: 10px;
+      margin-top: 10px;
+  }

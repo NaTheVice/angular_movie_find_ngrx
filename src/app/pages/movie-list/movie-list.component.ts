@@ -12,7 +12,7 @@ import * as moviesActions from '../../store/movies-actions';
 @Component({
   selector: 'app-movie-list',
   templateUrl: './movie-list.component.html',
-  styleUrls: ['./movie-list.component.css']
+  styleUrls: ['./movie-list.component.scss']
 })
 export class MovieListComponent implements OnInit {
   public movieSelected = false;
@@ -20,8 +20,11 @@ export class MovieListComponent implements OnInit {
   public fetchMoreMovies: () => void;
   public postersizes = ['w92', 'w154', 'w185', 'w342', 'w500', 'w780', 'original'];
   private moviesSubscription: Subscription;
+  public sichtbar = [];
+  public language_id;
+  public overview;
 
-  constructor(private store: Store<moviesReducers.State>) {
+  constructor(private store: Store<moviesReducers.State>, public movieService: MoviesService) {
     this.movies$ = store.select(moviesReducers.getMoviesListState);
     this.fetchMoreMovies = this.loadMoviesPage.bind(this);
   }
@@ -39,5 +42,12 @@ export class MovieListComponent implements OnInit {
   public selectMovie(movie: Movie): void {
     this.store.dispatch(new moviesActions.SelectMovie(movie));
     this.movieSelected = true;
+  }
+
+  public getOverviewInGerman(id) {
+    this.movieService.getOverviewInGerman(id).subscribe(obj => {
+    this.overview = obj.overview;
+    this.language_id = id;
+    });
   }
 }

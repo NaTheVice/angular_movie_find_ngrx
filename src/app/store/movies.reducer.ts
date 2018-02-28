@@ -1,7 +1,7 @@
-import { createSelector, createFeatureSelector } from "@ngrx/store";
-import { Movie } from "../models/movie.model";
+import { createSelector, createFeatureSelector } from '@ngrx/store';
+import { Movie } from '../models/movie.model';
 
-import * as moviesActions from "./movies-actions";
+import * as moviesActions from './movies-actions';
 
 export interface State {
   loaded: boolean;
@@ -20,7 +20,7 @@ const initialState: State = {
   loaded: false,
   loading: false,
   movies: [],
-  query: "",
+  query: '',
   searched: false,
   searching: false,
   searchMovies: [],
@@ -138,7 +138,7 @@ export function reducer(
   }
 }
 
-export const getMoviesState = createFeatureSelector<State>("movies");
+export const getMoviesState = createFeatureSelector<State>('movies');
 export const getMoviesListState = createSelector(
   getMoviesState,
   (state: State) => state.movies

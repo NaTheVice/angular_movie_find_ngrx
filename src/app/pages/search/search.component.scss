@@ -1,11 +1,11 @@
+@import "~assets/variables.scss";
 
   .search-result {
-    background: white;
     padding: 5px;
     font-size: 1.05em;
     z-index: 1;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    color: $highlight-color;
+    font-weight: bold;
   }
   
   .movie {
@@ -15,29 +15,35 @@
     cursor: pointer;
     white-space: nowrap;
     overflow:hidden !important;
-    text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+       text-overflow: ellipsis;
   }
   
   .movie:hover {
-    background: #ccc;
+    background: $highlight-color;
+    color: $default-color;
   }
 
   .morphsearch {
     width: 200px;
     min-height: 30px;
-    background: #f1f1f1;
+    background: $background-light;
     position: absolute;
     z-index: 10000;
     top: 26px;
     right: 50px;
     -webkit-transform-origin: 100% 0;
-    transform-origin: 100% 0;
+    -ms-transform-origin: 100% 0;
+        transform-origin: 100% 0;
     -webkit-transition-property: min-height, width, top, right;
+    -o-transition-property: min-height, width, top, right;
     transition-property: min-height, width, top, right;
     -webkit-transition-duration: 0.5s;
-    transition-duration: 0.5s;
+    -o-transition-duration: 0.5s;
+       transition-duration: 0.5s;
     -webkit-transition-timing-function: cubic-bezier(0.7,0,0.3,1);
-    transition-timing-function: cubic-bezier(0.7,0,0.3,1);
+    -o-transition-timing-function: cubic-bezier(0.7,0,0.3,1);
+       transition-timing-function: cubic-bezier(0.7,0,0.3,1);
   }
   
   .morphsearch.open {
@@ -53,11 +59,16 @@
     margin: 0 auto;
     position: relative;
     -webkit-transition-property: width, height, -webkit-transform;
+    transition-property: width, height, -webkit-transform;
+    -o-transition-property: width, height, transform;
     transition-property: width, height, transform;
+    transition-property: width, height, transform, -webkit-transform;
     -webkit-transition-duration: 0.5s;
-    transition-duration: 0.5s;
+    -o-transition-duration: 0.5s;
+       transition-duration: 0.5s;
     -webkit-transition-timing-function: cubic-bezier(0.7,0,0.3,1);
-    transition-timing-function: cubic-bezier(0.7,0,0.3,1);
+    -o-transition-timing-function: cubic-bezier(0.7,0,0.3,1);
+       transition-timing-function: cubic-bezier(0.7,0,0.3,1);
   }
   
   .morphsearch.open .morphsearch-form {
@@ -75,8 +86,9 @@
     border: none;
     background: transparent;
     font-size: 1.05em;
-    color: #ec5a62;
+    color: $contrast-color;
     -webkit-transition: font-size 0.5s cubic-bezier(0.7,0,0.3,1);
+    -o-transition: font-size 0.5s cubic-bezier(0.7,0,0.3,1);
     transition: font-size 0.5s cubic-bezier(0.7,0,0.3,1);
   }
   
@@ -87,6 +99,7 @@
   .morphsearch.hideInput .morphsearch-input {
     color: transparent;
     -webkit-transition: color 0.3s;
+    -o-transition: color 0.3s;
     transition: color 0.3s;
   }
   
@@ -96,19 +109,19 @@
   
   /* placeholder */
   .morphsearch-input::-webkit-input-placeholder {
-    color: #c2c2c2;
+    color: $dark-color;
   }
   
   .morphsearch-input:-moz-placeholder {
-    color: #c2c2c2;
+    color: $dark-color;
   }
   
   .morphsearch-input::-moz-placeholder {
-    color: #c2c2c2;
+    color: $dark-color;
   }
   
   .morphsearch-input:-ms-input-placeholder {
-    color: #c2c2c2;
+    color: $dark-color;
   }
   
   /* hide placeholder when active in Chrome */
@@ -138,7 +151,9 @@
     background-size: 100%;
     border: none;
     pointer-events: none;
-    transform-origin: 50% 50%;
+    -webkit-transform-origin: 50% 50%;
+        -ms-transform-origin: 50% 50%;
+            transform-origin: 50% 50%;
     opacity: 0;
     -webkit-transform: translate3d(-30px,-50%,0) scale3d(0,0,1);
     transform: translate3d(-30px,-50%,0) scale3d(0,0,1);
@@ -150,20 +165,23 @@
     -webkit-transform: translate3d(-30px,-50%,0) scale3d(1,1,1);
     transform: translate3d(-30px,-50%,0) scale3d(1,1,1);
     -webkit-transition: opacity 0.3s, -webkit-transform 0.3s;
+    transition: opacity 0.3s, -webkit-transform 0.3s;
+    -o-transition: opacity 0.3s, transform 0.3s;
     transition: opacity 0.3s, transform 0.3s;
+    transition: opacity 0.3s, transform 0.3s, -webkit-transform 0.3s;
     -webkit-transition-delay: 0.5s;
-    transition-delay: 0.5s;
+    -o-transition-delay: 0.5s;
+       transition-delay: 0.5s;
   }
   
   
   .morphsearch-content {
-    color: #333;
+    color: $default-color;
     margin-top: 1.5em;
     width: 100%;
     height: 0;
     overflow: hidden;
     padding: 0 5%;
-    background: #f1f1f1;
     position: absolute;
     pointer-events: none;
     opacity: 0;
@@ -175,6 +193,7 @@
     overflow: visible; /* this breaks the transition of the children in FF: https://bugzilla.mozilla.org/show_bug.cgi?id=625289 */
     pointer-events: auto;
     -webkit-transition: opacity 0.3s 0.5s;
+    -o-transition: opacity 0.3s 0.5s;
     transition: opacity 0.3s 0.5s;
   }
 
@@ -190,9 +209,11 @@
     opacity: 0;
     pointer-events: none;
     -webkit-transition: opacity 0.5s;
+    -o-transition: opacity 0.5s;
     transition: opacity 0.5s;
     -webkit-transition-timing-function: cubic-bezier(0.7,0,0.3,1);
-    transition-timing-function: cubic-bezier(0.7,0,0.3,1);
+    -o-transition-timing-function: cubic-bezier(0.7,0,0.3,1);
+       transition-timing-function: cubic-bezier(0.7,0,0.3,1);
   }
   
   .morphsearch.open ~ .overlay {

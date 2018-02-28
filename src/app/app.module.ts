@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import { StoreModule, combineReducers } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { reducer} from './store/movies.reducer';
+import { YoutubeService} from './services/youtube-service';
 import { MoviesEffects } from './store/movies-effects';
 import { MoviesService } from './services/movie-service';
 import { HttpModule } from '@angular/http';
@@ -19,7 +20,7 @@ import { MovieDetailsComponent } from './pages/movie-details/movie-details.compo
 import { MoviesComponent } from './pages/movies/movies.component';
 import { NavbarComponent } from './pages/navbar/navbar.component';
 import { MovieSearchListComponent } from './pages/movie-search-list/movie-search-list.component';
-
+import { SafeUrlPipe } from './pipe/safe_url_pipe';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { MovieSearchListComponent } from './pages/movie-search-list/movie-search
     MovieDetailsComponent,
     MoviesComponent,
     NavbarComponent,
-    MovieSearchListComponent
+    MovieSearchListComponent,
+    SafeUrlPipe
   ],
   imports: [
     StoreModule.forRoot({ movies: reducer }),
@@ -68,7 +70,7 @@ import { MovieSearchListComponent } from './pages/movie-search-list/movie-search
       }
     ])
   ],
-  providers: [MoviesService],
+  providers: [MoviesService, YoutubeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

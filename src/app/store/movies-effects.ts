@@ -27,10 +27,10 @@ export class MoviesEffects {
       let getMoviesStream: Observable<Movie[]>;
       if (this.nextPageToLoad < 3) {
         const fisrtPage = this.moviesService.getNewestMovies(1);
-        const secondPage = this.moviesService.getNewestMovies(2);
+        //const secondPage = this.moviesService.getNewestMovies(2);
         //const thirdPage = this.moviesService.getNewestMovies(3);
-        getMoviesStream = fisrtPage.concat(secondPage);
-        this.nextPageToLoad = 2;
+        getMoviesStream = fisrtPage;
+        this.nextPageToLoad = 1;
       } else {
         getMoviesStream = this.moviesService.getNewestMovies(this.nextPageToLoad);
       }

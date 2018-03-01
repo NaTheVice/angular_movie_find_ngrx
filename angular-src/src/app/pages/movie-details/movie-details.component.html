@@ -1,0 +1,49 @@
+<div *ngIf="movieSelected" class="overlay">
+  <div class="box container">
+    <a (click)="unSelectMovie()" class="overlay-close"><i class="fa fa-times-circle fa-3x"></i></a>
+    <div class="row justify-content-center">
+      <div class="col-xs-12 col-sm-12 col-lg-7 col-md-12">
+        <img class="detail_cover_img img-fluid" *ngIf="movie" src="{{posterUrl}}/{{movie?.poster_path}}" alt="{{movie?.title}} poster" align="left"
+        />
+      </div>
+      <div class="col-xs-12 col-sm-12 col-lg-5 col-md-12">
+        <h2 class="title">{{movie?.title}}</h2>
+        <br>
+        <p>release date : {{movie?.release_date}}</p>
+        <br>
+        <p>
+          {{movie?.overview}}
+        </p>
+        <button *ngIf="video_embeded.length <= 35" (click)="getVideoLink()" class="video_btn btn btn-info float-right btn-sm">find on youtube:</button>
+        <br>  
+        <a *ngIf="video_embeded.length >= 35" class="video_link" [target]="'_blank'" href="http://movie-blog.org/index.php?s={{movie.title}}&cat=0 | safe_url">MOVIE.BLOG?</a>
+        <br>
+        <br>
+        <div class='embed-container'>
+        <iframe *ngIf="video_embeded.length >= 35" width="560" height="315" [src]="video_embeded | safe_url" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-lg-5">
+            <p>Actors :</p>
+            <br>
+            <div *ngFor="let actor of movie.credits; let i= index">
+              <p *ngIf="i<=10">{{actor.name}}</p>
+            </div>
+          </div>
+          <div class="col-lg-7 ">
+            <p>Character :</p>
+            <br>
+            <div *ngFor="let actor of movie.credits; let i= index">
+              <p *ngIf="i<=10">{{actor.character}}</p>
+            </div>
+          </div>
+        </div>
+        <br>
+        <p>vote count : {{movie?.vote_count}} / vote average : {{movie?.vote_average}} / popularity : {{movie?.popularity}}</p>
+      </div>
+
+
+    </div>
+  </div>
+</div>

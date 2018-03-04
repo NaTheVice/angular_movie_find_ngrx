@@ -34,7 +34,7 @@ export class SearchComponent implements OnInit, OnDestroy {
       .debounceTime(400)
       .distinctUntilChanged()
       .subscribe(query => {
-        this.store.dispatch(new moviesActions.SearchMovies(query));
+        this.store.dispatch(new moviesActions.SearchMovies(query, 1));
       });
   }
 
@@ -58,8 +58,8 @@ export class SearchComponent implements OnInit, OnDestroy {
     this.cursorInsideInput = false;
   }
 
-  public goToMovies() {
-    this.router.navigate(['movies']);
+  public goToSearch() {
+    this.router.navigate(['search']);
   }
 
 }

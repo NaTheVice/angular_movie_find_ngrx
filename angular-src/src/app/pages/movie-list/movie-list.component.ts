@@ -9,6 +9,7 @@ import { Movie } from '../../models/movie.model';
 import * as moviesReducers from '../../store/movies.reducer';
 import * as moviesActions from '../../store/movies-actions';
 import { getTotalPages } from '../../store/movies.reducer';
+import { genres } from '../../models/all-movie-genres.model';
 
 @Component({
   selector: 'app-movie-list',
@@ -29,7 +30,7 @@ export class MovieListComponent implements OnInit {
   public p = 1;
   public totalPages;
   public loading;
-  
+
   constructor(private store: Store<moviesReducers.State>, public movieService: MoviesService) {
     this.movies$ = store.select(moviesReducers.getMoviesListState);
     this.fetchMoreMovies = this.loadMoviesPage.bind(this);
@@ -79,6 +80,17 @@ export class MovieListComponent implements OnInit {
     this.loading = true;
     this.p = page;
     this.loadMoviesPage(page);
+  }
+
+  public getGenre(id) {
+    const genre = genres.find(x => x.id === id);
+    if (genre !== undefined) {
+      return genre.name;
+    }
+    if (id !== undefined) {
+      const genrename = 'Genre: ' + id;
+      return genrename;
+    }
   }
 
 }

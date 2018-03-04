@@ -1,5 +1,9 @@
 @import "~assets/variables.scss";
 
+.nav_row{
+  margin-bottom: 3em;
+}
+
 .menu {
 	line-height: 1;
 	margin: 0 auto 3em;
@@ -48,7 +52,7 @@
 .menu--bagot .menu__link {
   position: relative;
   min-width: 7rem;
-  height: 50px;
+  height: 3.125em;
   padding: 1em 1.5em;
   text-align: center;
   opacity: 0.7;
@@ -78,16 +82,16 @@
 }
 
 .menu--bagot .menu__item::before {
-  border-width: 2px 0 0;
-  -webkit-transform: translateY(calc(100% - 2px));
-  -ms-transform: translateY(calc(100% - 2px));
-      transform: translateY(calc(100% - 2px));
+  border-width: 0.125em 0 0;
+  -webkit-transform: translateY(calc(100% - 0.125em));
+  -ms-transform: translateY(calc(100% - 0.125em));
+      transform: translateY(calc(100% - 0.125em));
 }
 
 .menu--bagot .menu__item::after {
-  right: -2px;
-  left: -2px; /* for border-collapse */
-  border-width: 0 2px;
+  right: -0.125em;
+  left: -0.125em; /* for border-collapse */
+  border-width: 0 0.125em;
   -webkit-transform: scale(1, 0);
   -ms-transform: scale(1, 0);
       transform: scale(1, 0);
@@ -125,8 +129,8 @@
   background-color: $background;
 }
  .nav_row{
-  border-bottom:  2px solid $highlight-color;
-  height: 66px;
+  border-bottom:  0.125em solid $highlight-color;
+  height: 4.125em;
 }
 
 
@@ -150,7 +154,7 @@ input {
         flex: 1;
 background: transparent;
 height: 100%;
-margin-left: 13px;
+margin-left: 10.1875em;
 border: 0;
 font-size: 1em;
 color: $default-color;
@@ -160,7 +164,7 @@ input:focus {
   outline: none;
 }
 
-@media (max-width: 992px) {
+@media (max-width: 62em) {
   .menu--bagot .menu__link{
   padding: 0;
   padding-top: 17%;
@@ -170,9 +174,35 @@ input:focus {
   }
  }
 
- @media (max-width: 768px) {
+ @media (max-width: 48em) {
   #search_link{
     display:none
   }
  }
+
+ @media screen and(max-width: 74.9375em){
+  .menu--bagot .menu__link{
+    font-size: 1em;
+ }
+}
+
+ @media screen and (min-width: 75em) {
+ .menu--bagot .menu__link{
+  position: relative;
+  min-width: 10rem;
+  height: 2.68em;
+  padding: 0.8em 1.8em;
+  text-align: center;
+  opacity: 0.7;
+  color: ghostwhite;
+  -webkit-transition: opacity 0.3s;
+  transition: opacity 0.3s;
+  text-decoration: none;
+  font-size: 1.4em;
+  text-transform: uppercase;
+ }
+ .nav_row{
+   height: 4.75em;
+ }
  
+}

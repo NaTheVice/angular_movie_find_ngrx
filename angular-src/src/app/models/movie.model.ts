@@ -15,6 +15,10 @@ export interface Movie {
         overview: string;
         release_date: string;
         credits: Array<any>;
+        name: string;
+        first_air_date: string;
+        media_type: string;
+        known_for: Array<any>;
 
   }
 

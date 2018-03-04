@@ -7,9 +7,11 @@
         />
       </div>
       <div class="col-xs-12 col-sm-12 col-lg-5 col-md-12">
-        <h2 class="title">{{movie?.title}}</h2>
+        <h2 *ngIf="movie.name" class="title">{{movie?.name}}</h2>
+        <h2 *ngIf="movie.title" class="title">{{movie?.title}}</h2>
         <br>
-        <p>release date : {{movie?.release_date}}</p>
+        <p *ngIf="movie.title">release date : {{movie?.release_date}}</p>
+        <p *ngIf="movie.name">serie starts : {{movie?.first_air_date}}</p>
         <br>
         <p>
           {{movie?.overview}}
@@ -23,6 +25,7 @@
         <iframe *ngIf="video_embeded.length >= 35" width="560" height="315" [src]="video_embeded | safe_url" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
         </div>
         <br>
+        <!--
         <div class="row">
           <div class="col-lg-5">
             <p>Actors :</p>
@@ -39,8 +42,10 @@
             </div>
           </div>
         </div>
+      
         <br>
         <p>vote count : {{movie?.vote_count}} / vote average : {{movie?.vote_average}} / popularity : {{movie?.popularity}}</p>
+        -->
       </div>
 
 

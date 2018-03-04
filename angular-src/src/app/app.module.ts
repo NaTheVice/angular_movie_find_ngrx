@@ -10,14 +10,14 @@ import { MoviesService } from './services/movie-service';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 
-import { AppComponent } from './core/app.component';
+import { AppComponent } from './app.component';
 import { NewsComponent } from './pages/news/news.component';
 import { SearchComponent } from './pages/search/search.component';
 import { FormsModule} from '@angular/forms';
 import { MovieListComponent } from './pages/movie-list/movie-list.component';
 import { CommonModule } from '@angular/common';
 import { MovieDetailsComponent } from './pages/movie-details/movie-details.component';
-import { MoviesComponent } from './pages/movies/movies.component';
+import { SerieComponent } from './pages/serie/serie.component';
 import { NavbarComponent } from './pages/navbar/navbar.component';
 import { MovieSearchListComponent } from './pages/movie-search-list/movie-search-list.component';
 import { SafeUrlPipe } from './pipe/safe_url_pipe';
@@ -30,7 +30,7 @@ import {NgxPaginationModule} from 'ngx-pagination';
     SearchComponent,
     MovieListComponent,
     MovieDetailsComponent,
-    MoviesComponent,
+    SerieComponent,
     NavbarComponent,
     MovieSearchListComponent,
     SafeUrlPipe
@@ -45,28 +45,32 @@ import {NgxPaginationModule} from 'ngx-pagination';
     BrowserModule,
     RouterModule.forRoot([
       {
-        path: 'news',
+        path: 'movies',
         component: NewsComponent
       },
       {
-        path: 'movies',
-        component: MoviesComponent
+        path: 'Serie',
+        component: SerieComponent
       },
       {
         path: 'profile',
         component: NewsComponent
       },
       {
+        path: 'search',
+        component: MovieSearchListComponent
+      },
+      {
         path: 'register',
-        component: MoviesComponent
+        component: SerieComponent
       },
       {
         path: 'login',
-        component: MoviesComponent
+        component: SerieComponent
       },
       {
         path: '**',
-        redirectTo: 'news',
+        redirectTo: 'movies',
         pathMatch: 'full'
       }
     ])

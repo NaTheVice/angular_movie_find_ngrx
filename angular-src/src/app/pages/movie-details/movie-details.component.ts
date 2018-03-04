@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, AfterViewInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs/Subscription';
@@ -14,7 +14,7 @@ import {YoutubeService} from '../../services/youtube-service';
   templateUrl: './movie-details.component.html',
   styleUrls: ['./movie-details.component.scss']
 })
-export class MovieDetailsComponent implements OnInit, OnDestroy {
+export class MovieDetailsComponent implements OnInit {
 
   public movie: Movie;
   public movieSelected = false;
@@ -24,6 +24,7 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
   public video;
   public video_url;
   public video_embeded = '';
+  public year = '';
 
   constructor(private store: Store<moviesReducers.State>,
               private router: Router,
@@ -38,17 +39,18 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
       } else {
         this.movie = movie;
         this.movieSelected = true;
-        this.searchVideos(movie.title);
+        if (movie.name) {
+          this.year = new Date().getFullYear().toString();
+          const query = movie.name + ' ' + this.year + ' german';
+          this.searchVideos(query);
+        } else {
+          this.year = this.movie.release_date.slice(0, 5);
+          const query = movie.title + this.year + 'trailer german';
+          this.searchVideos(query);
+        }
+
       }
     });
-  }
-
-  public AfterViewInit() {
-    this.getVideoLink();
-  }
-
-  public ngOnDestroy() {
-    this.movieSubscription.unsubscribe();
   }
 
   public unSelectMovie(): void {
@@ -58,7 +60,6 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
   }
 
   public searchVideos(query) {
-    query = query + 'trailer';
     if (query !== '') {
         this.tubeService.searchYouTube(query);
     }

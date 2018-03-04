@@ -1,9 +1,12 @@
 import {Action} from '@ngrx/store';
 import {Movie} from '../models/movie.model';
+import {Serie} from '../models/serie.model';
 
 export const GET_MOVIE = 'GET_MOVIE';
 export const SEARCH_MOVIES = 'SEARCH_MOVIES';
+export const SEARCH_SERIE = 'SEARCH_SERIE';
 export const LOAD_MOVIES = 'LOAD_MOVIES';
+export const LOAD_SERIE = 'LOAD_SERIE';
 export const LOAD_MOVIE_CREDITS = 'LOAD_MOVIE_CREDITS';
 export const SET_MOVIE_CREDITS = 'SET_MOVIE_CREDITS';
 export const GET_MOVIE_GENRE = 'GET_MOVIE_GENRE';
@@ -14,10 +17,15 @@ export const SELECT_MOVIE = 'SELECT_MOVIE';
 export const SELECT_GENRE = 'SELECT_GENRE';
 export const LOADING_SUCCESS = 'LOADING_SUCCESS';
 export const LOADING_FAILS = 'LOADING_FAILS';
+export const LOADING_SUCCESS_SERIE = 'LOADING_SUCCESS_SERIE';
+export const LOADING_FAILS_SERIE = 'LOADING_FAILS_SERIE';
 export const SEARCHING_SUCCESS = 'SEARCHING_SUCCESS';
 export const SEARCHING_FAILS = 'SEARCHING_FAILS';
 export const READY_TO_SET_MOVIES = 'READY_TO_SET_MOVIES';
 export const SET_TOTAL_PAGES_NEWS = 'SET_TOTAL_PAGES_NEWS';
+export const SET_TOTAL_PAGES_SERIE = 'SET_TOTAL_PAGES_SERIE';
+export const SET_TOTAL_PAGES_SEARCH = 'SET_TOTAL_PAGES_SEARCH';
+
 
 export class GetMovie implements Action {
     readonly type = GET_MOVIE;
@@ -30,13 +38,35 @@ export class SetTotalPagesNews implements Action {
     }
 }
 
+export class SetTotalPagesSerie implements Action {
+    readonly type = SET_TOTAL_PAGES_SERIE;
+    constructor(public payload: number) {
+    }
+}
+
+export class SetTotalPagesSearch implements Action {
+    readonly type = SET_TOTAL_PAGES_SEARCH;
+    constructor(public payload: number) {
+    }
+}
 export class SearchMovies implements Action {
     readonly type = SEARCH_MOVIES;
+    constructor(public payload: string, public page: number) {}
+}
+
+export class SearchSerie implements Action {
+    readonly type = SEARCH_SERIE;
     constructor(public payload: string) {}
 }
 
 export class LoadMovies implements Action {
     readonly type = LOAD_MOVIES;
+    constructor(public payload: number) {
+    }
+}
+
+export class LoadSerie implements Action {
+    readonly type = LOAD_SERIE;
     constructor(public payload: number) {
     }
 }
@@ -91,8 +121,18 @@ export class LoadingSuccess implements Action {
     constructor(public payload: Movie[]) {}
 }
 
+export class LoadingSuccessSerie implements Action {
+    readonly type = LOADING_SUCCESS_SERIE;
+    constructor(public payload: Serie[]) {}
+}
+
 export class LoadingFails implements Action {
     readonly type = LOADING_FAILS;
+    constructor(public payload: any) {}
+}
+
+export class LoadingFailsSerie implements Action {
+    readonly type = LOADING_FAILS_SERIE;
     constructor(public payload: any) {}
 }
 
@@ -111,6 +151,7 @@ export type Actions =
 | GetMovie
 | SearchMovies
 | LoadMovies
+| LoadSerie
 | GetMovieGenre
 | GetAllGenres
 | SetMovieList
@@ -118,12 +159,16 @@ export type Actions =
 | SelectMovie
 | SelectGenre
 | LoadingSuccess
+| LoadingSuccessSerie
 | LoadingFails
+| LoadingFailsSerie
 | SearchingSuccess
 | SearchingFails
 | SetMovieCredits
 | LoadMovieCredits
 | SetTotalPagesNews
+| SetTotalPagesSerie
+| SetTotalPagesSearch
 | ReadyToSetMovies;
 
 

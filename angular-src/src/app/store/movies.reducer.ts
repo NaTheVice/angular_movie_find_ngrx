@@ -1,6 +1,6 @@
 import { createSelector, createFeatureSelector } from '@ngrx/store';
 import { Movie } from '../models/movie.model';
-
+import { Serie } from '../models/serie.model';
 import * as moviesActions from './movies-actions';
 
 export interface State {
@@ -15,6 +15,9 @@ export interface State {
   creditsLoaded: boolean;
   readyToSetMovies: boolean;
   totalPages: number;
+  totalPagesSerie: number;
+  totalPagesSearch: number;
+  serie: Serie[];
 }
 
 const initialState: State = {
@@ -28,7 +31,10 @@ const initialState: State = {
   selectedMovie: null,
   creditsLoaded: false,
   readyToSetMovies: false,
-  totalPages: 0
+  totalPages: 0,
+  totalPagesSerie: 0,
+  totalPagesSearch: 0,
+  serie: []
 };
 
 export function reducer(
@@ -41,7 +47,12 @@ export function reducer(
         loading: true
       };
     }
-
+    case moviesActions.LOAD_SERIE: {
+      return {
+        ...state,
+        loading: true
+      };
+    }
     case moviesActions.READY_TO_SET_MOVIES: {
       return {
         ...state,
@@ -62,7 +73,18 @@ export function reducer(
         totalPages: action.payload
       };
     }
-
+    case moviesActions.SET_TOTAL_PAGES_SERIE: {
+      return {
+        ...state,
+        totalPagesSerie: action.payload
+      };
+    }
+    case moviesActions.SET_TOTAL_PAGES_SEARCH: {
+      return {
+        ...state,
+        totalPagesSearch: action.payload
+      };
+    }
     case moviesActions.SET_MOVIE_CREDITS: {
       return {
         ...state,
@@ -78,8 +100,23 @@ export function reducer(
         movies: [...action.payload]
       };
     }
+    case moviesActions.LOADING_SUCCESS_SERIE: {
+      return {
+        ...state,
+        loaded: true,
+        loading: false,
+        serie: [...action.payload]
+      };
+    }
 
     case moviesActions.LOADING_FAILS: {
+      return {
+        ...state,
+        loaded: false,
+        loading: false
+      };
+    }
+    case moviesActions.LOADING_FAILS_SERIE: {
       return {
         ...state,
         loaded: false,
@@ -152,6 +189,10 @@ export const getMoviesListState = createSelector(
   getMoviesState,
   (state: State) => state.movies
 );
+export const getSerieListState = createSelector(
+  getMoviesState,
+  (state: State) => state.serie
+);
 export const getSearchMoviesListState = createSelector(
   getMoviesState,
   (state: State) => state.searchMovies
@@ -164,4 +205,16 @@ export const getSelectedMovie = createSelector(
 export const getTotalPages = createSelector(
   getMoviesState,
   (state: State) => state.totalPages
+);
+export const getTotalPagesSerie = createSelector(
+  getMoviesState,
+  (state: State) => state.totalPagesSerie
+);
+export const getTotalPagesSearch = createSelector(
+  getMoviesState,
+  (state: State) => state.totalPagesSearch
+);
+export const getSearchQuery = createSelector(
+  getMoviesState,
+  (state: State) => state.query
 );

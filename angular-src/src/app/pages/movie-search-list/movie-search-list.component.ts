@@ -15,9 +15,8 @@ import { genres } from '../../models/all-movie-genres.model';
   templateUrl: './movie-search-list.component.html',
   styleUrls: ['./movie-search-list.component.scss']
 })
-export class MovieSearchListComponent implements OnInit {
+export class MovieSearchListComponent {
   public movieSelected = false;
-  public selection$;
   public movies$: Observable<Movie[]>;
   public fetchMoreMovies: () => void;
   public postersizes = [
@@ -29,20 +28,56 @@ export class MovieSearchListComponent implements OnInit {
     'w780',
     'original'
   ];
-  private moviesSubscription: Subscription;
+  public sichtbar = [];
+  public language_id;
+  public overview;
+  private movieSubscription: Subscription;
+  private pagesSubscription: Subscription;
+  private querySubscription: Subscription;
+  public p = 1;
+  public totalPages;
+  public loading;
+  public query;
 
-  constructor(private store: Store<moviesReducers.State>) {
+  constructor(private store: Store<moviesReducers.State>, public movieService: MoviesService) {
     this.movies$ = store.select(moviesReducers.getSearchMoviesListState);
-    this.selection$ = store.select(moviesReducers.getSelectedMovie);
+    this.querySubscription = this.store.select(moviesReducers.getSearchQuery).subscribe(query => {
+      if (!query) {
+        this.query = '';
+      } else {
+        this.query = query;
+      }
+    });
+    this.pagesSubscription = this.store.select(moviesReducers.getTotalPagesSearch).subscribe(pages => {
+      if (!pages) {
+        this.totalPages = 0;
+      } else {
+        this.totalPages = pages;
+      }
+    });
   }
 
-  get postersize(): string {
-    return this.postersizes[
-      Math.floor(Math.random() * this.postersizes.length)
-    ];
+  public loadMoviesPage(page: number) {
+    this.store.dispatch(new moviesActions.SearchMovies(this.query, page));
   }
 
-  public ngOnInit() {}
+  public selectMovie(movie: Movie): void {
+    this.store.dispatch(new moviesActions.SelectMovie(movie));
+    this.movieSelected = true;
+  }
+
+  public getOverviewInGerman(id) {
+    this.movieService.getOverviewInGerman(id).subscribe(obj => {
+    this.overview = obj.overview;
+    this.language_id = id;
+    });
+  }
+
+  public getPage(page: number) {
+    this.loading = true;
+    this.p = page;
+    this.loadMoviesPage(page);
+  }
 
   public getGenre(id) {
     const genre = genres.find(x => x.id === id);
@@ -55,7 +90,4 @@ export class MovieSearchListComponent implements OnInit {
     }
   }
 
-  public selectMovie(movie: Movie): void {
-    this.store.dispatch(new moviesActions.SelectMovie(movie));
-  }
 }

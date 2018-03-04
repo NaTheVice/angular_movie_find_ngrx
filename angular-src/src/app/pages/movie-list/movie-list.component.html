@@ -14,15 +14,19 @@
         </div>
       </div>
       <div class="card-footer">
-        <small class="footer_vote">Vote: {{movie.popularity}}</small>
-        <button (click)="selectMovie(movie)" class="btn btn-info float-right btn-sm">More</button>
-        <button (click)="getOverviewInGerman(movie.id)" class="btn float-right btn-info btn-sm">deu</button>
+          <small *ngIf="movie.genre_ids[0] ; else elseBlock" class="footer_vote">{{getGenre(movie?.genre_ids[0])}}
+            <span *ngIf="movie.genre_ids[1]" class="fancy">&</span> {{getGenre(movie?.genre_ids[1])}}</small>
+          <ng-template #elseBlock>
+            <small class="footer_vote">No genre definded</small>
+          </ng-template>
+        <button (click)="selectMovie(movie)" class="btn btn-info float-right btn-sm">>></button>
+        <button (click)="getOverviewInGerman(movie.id)" class="btn float-right btn-info btn-sm">ger</button>
       </div>
     </div>
   </div>
   
 </div>
-<div class="paginate col-md-12 justify-content-center">
+<div *ngIf="totalPages>0" class="paginate col-md-12 justify-content-center">
 <pagination-controls class="my-pagination" (pageChange)="getPage($event)"></pagination-controls>
 </div>
 </div>

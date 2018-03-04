@@ -2,14 +2,14 @@
   <nav class="menu menu--bagot">
 
     <ul class="menu__list container">
-      <li class="menu__item" [class.menu__item--current]="clicked === 'news'">
-        <a routerLink="/news" class="menu__link">News</a>
-      </li>
       <li class="menu__item" [class.menu__item--current]="clicked === 'movies'">
-        <a class="menu__link" routerLink="/movies">Movies</a>
+        <a routerLink="/news" class="menu__link">Movies</a>
       </li>
-      <li class="menu__item" [class.menu__item--current]="clicked === 'profile'">
-        <a class="menu__link"  routerLink="/profile">Profile</a>
+      <li class="menu__item" [class.menu__item--current]="clicked === 'Serie'">
+        <a class="menu__link" routerLink="/Serie">Serie</a>
+      </li>
+      <li class="menu__item" [class.menu__item--current]="clicked === 'search'">
+        <a class="menu__link"  routerLink="/search">Search</a>
       </li>
       <li class="menu__item" [class.menu__item--current]="clicked === 'register'">
         <a  class="menu__link"  routerLink="/register">Register</a>

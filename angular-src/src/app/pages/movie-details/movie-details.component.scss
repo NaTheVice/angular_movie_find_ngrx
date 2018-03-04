@@ -4,12 +4,11 @@ p {
     margin-left: 0.5rem;
 }
 h2{
-    font-size: 15px;
     text-transform: uppercase;
     background: $background;
     color: $default-color ;
-    padding: 2px 5px;
-    margin-top: 3px;
+    padding: 0.125em 0.3125em;
+    margin-top: 0.1875em;
   }
   .detail_cover_img{
       max-height:97.5%
@@ -18,22 +17,22 @@ h2{
   .video_link{
     color: $default-color;
     text-decoration: none;
-    margin-left: 5px;
+    margin-left: 0.3125em;
     font-size: 1.2em;
     background: black;
-    padding: 5px;
+    padding: 0.3125em;
   }
 
   .video_btn{
       float: left;
-      margin-left: 10px;
-      margin-top: 10px;
+      margin-left: 0.625em;
+      margin-top: 0.625em;
   }
 
 .embed-container { 
       position: relative; 
       padding-bottom: 56.25%; 
-      padding-top: 30px; 
+      padding-top: 1.875em; 
       height: 0; 
       overflow: hidden; 
       max-width: 100%; 
@@ -46,15 +45,21 @@ h2{
      width: 100%; 
      height: 100%; 
 }
+button {
+    color: $default-color;
+    background: $highlight-color;
+    color: $black;
+    cursor: pointer;
+    }
 
-@media(max-width: 575px) {
+@media(max-width: 35.9375em) {
     
     .box p{
-      font-size: 22px;
+      font-size: 1.375em;
     }
     .box button{
-        height: 40px;
-        width: 150px;
-        font-size: 18px;
+        height: 2.5em;
+        width: 9.375em;
+        font-size: 1.125em;
     }
   }

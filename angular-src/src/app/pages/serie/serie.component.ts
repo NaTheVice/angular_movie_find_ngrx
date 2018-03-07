@@ -38,11 +38,6 @@ export class SerieComponent implements OnInit {
         this.totalPages = pages;
       }
     });
-
-    this.loadSeriePage(1);
-   }
-
-  ngOnInit() {
     this.movieSubscription = this.store.select(moviesReducers.getSelectedMovie).subscribe((movie: Movie) => {
       if (!movie) {
         this.movieSelected = false;
@@ -50,6 +45,11 @@ export class SerieComponent implements OnInit {
         this.movieSelected = true;
       }
     });
+
+    this.loadSeriePage(1);
+   }
+
+  ngOnInit() {
   }
 
   public loadSeriePage(page: number) {

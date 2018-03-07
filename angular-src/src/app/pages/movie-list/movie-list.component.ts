@@ -50,6 +50,13 @@ export class MovieListComponent implements OnInit {
   get postersize(): string { return this.postersizes[Math.floor(Math.random() * this.postersizes.length)]; }
 
   public ngOnInit() {
+    this.pagesSubscription = this.store.select(moviesReducers.getTotalPagesSearch).subscribe(pages => {
+      if (!pages) {
+        this.totalPages = 0;
+      } else {
+        this.totalPages = pages;
+      }
+    });
     this.movieSubscription = this.store.select(moviesReducers.getSelectedMovie).subscribe((movie: Movie) => {
       if (!movie) {
         this.movieSelected = false;

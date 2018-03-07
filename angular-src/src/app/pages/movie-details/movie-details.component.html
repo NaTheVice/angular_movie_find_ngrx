@@ -1,8 +1,9 @@
 <div *ngIf="movieSelected" class="overlay">
   <div class="box container">
-    <a (click)="unSelectMovie()" class="overlay-close"><i class="fa fa-times-circle fa-3x"></i></a>
+  
     <div class="row justify-content-center">
-      <div class="col-xs-12 col-sm-12 col-lg-7 col-md-12">
+      <div class="detail_pic col-xs-12 col-sm-12 col-lg-7 col-md-12">
+          <a (click)="unSelectMovie()" class="overlay-close"><i class="fa fa-times-circle fa-3x"></i></a>
         <img class="detail_cover_img img-fluid" *ngIf="movie" src="{{posterUrl}}/{{movie?.poster_path}}" alt="{{movie?.title}} poster" align="left"
         />
       </div>

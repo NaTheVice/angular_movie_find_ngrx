@@ -1,8 +1,10 @@
 <div  class="row">
-  <div *ngFor="let movie of movies$ | async | paginate: { itemsPerPage: 20, currentPage: p, totalItems: totalPages} ; let i = index;" class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-3 mt-4">
+  <div *ngFor="let movie of movies$ | async | paginate: { itemsPerPage: 20, currentPage: p, totalItems: totalPages} ; let i = index;" class="movies col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 mt-4">
     <div class="card card-inverse card-info">
-      <img (mouseover)="sichtbar[i] =!sichtbar[i]" (click)="selectMovie(movie)" class="card-img-top" [src]="'https://image.tmdb.org/t/p/w500'+ movie.poster_path" onError="this.src='/assets/img/movies/no-found.jpg'">
+      <img class="img-fluid" (mouseover)="sichtbar[i] =!sichtbar[i]" (click)="selectMovie(movie)" class="card-img-top" [src]="'https://image.tmdb.org/t/p/w342'+ movie.poster_path" onError="this.src='/assets/img/movies/no-found.jpg'">
       <div (mouseleave)="sichtbar[i] =!sichtbar[i]" [hidden]="!sichtbar[i]" class="card-img-overlay">
+          <button (click)="getOverviewInGerman(movie.id)" class="btn float-right btn-info btn-sm btn-ger">ger</button>
+          <button (click)="selectMovie(movie)" class="btn btn-info float-right btn-sm btn-more">>></button>
       <div class="card-block">
         <h4 class="card-title">{{movie.title}}</h4>
         
@@ -19,8 +21,9 @@
           <ng-template #elseBlock>
             <small class="footer_vote">No genre definded</small>
           </ng-template>
-        <button (click)="selectMovie(movie)" class="btn btn-info float-right btn-sm">>></button>
-        <button (click)="getOverviewInGerman(movie.id)" class="btn float-right btn-info btn-sm">ger</button>
+          <button (click)="getOverviewInGerman(movie.id)" class="btn float-right btn-info btn-sm btn-ger">ger</button>
+        <button (click)="selectMovie(movie)" class="btn btn-info float-right btn-sm btn-more">>></button>
+       
       </div>
     </div>
   </div>

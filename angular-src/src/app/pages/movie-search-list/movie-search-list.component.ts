@@ -42,8 +42,9 @@ export class MovieSearchListComponent {
   constructor(private store: Store<moviesReducers.State>, public movieService: MoviesService) {
     this.movies$ = store.select(moviesReducers.getSearchMoviesListState);
     this.querySubscription = this.store.select(moviesReducers.getSearchQuery).subscribe(query => {
-      if (!query) {
+      if (!(query.length > 0)) {
         this.query = '';
+        this.totalPages = 0;
       } else {
         this.query = query;
       }
@@ -53,6 +54,13 @@ export class MovieSearchListComponent {
         this.totalPages = 0;
       } else {
         this.totalPages = pages;
+      }
+    });
+    this.movieSubscription = this.store.select(moviesReducers.getSelectedMovie).subscribe((movie: Movie) => {
+      if (!movie) {
+        this.movieSelected = false;
+      } else {
+        this.movieSelected = true;
       }
     });
   }

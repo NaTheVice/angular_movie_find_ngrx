@@ -11,6 +11,10 @@ import { Movie } from '../models/movie.model';
 import { Serie } from '../models/serie.model';
 import * as moviesReducers from '../store/movies.reducer';
 
+import { ApolloModule, Apollo } from 'apollo-angular';
+import { HttpLinkModule, HttpLink } from 'apollo-angular-link-http';
+import { InMemoryCache } from 'apollo-cache-inmemory';
+import gql from 'graphql-tag';
 
 const heute = new Date().toISOString().slice(0, 10);
 const monat3Vorher = new Date(
@@ -29,10 +33,14 @@ const vorher12 = new Date(monat12Vorher).toISOString().slice(0, 10);
 @Injectable()
 export class MoviesService {
 
-  constructor( private httpClient: HttpClient, private store: Store<moviesReducers.State>) {}
+  constructor(  private httpClient: HttpClient,
+                private store: Store<moviesReducers.State>,
+                private apollo: Apollo,
+                private httpLink: HttpLink) {
+
+  }
 
   public getMovies(pageNumber: number): Observable<Movie[]> {
-
     return this.httpClient
       .get<any>(`${MOVIE_DISCOVER_DB_URL}&page=${pageNumber}`)
       .map(movies => {
@@ -66,6 +74,7 @@ export class MoviesService {
   }
 
   public getNewestMovies(pageNumber: number): Observable<Movie[]> {
+    this.apollo.query({query: gql`{movies{id poster_path overview}}`}).subscribe(result => console.log('result from apollo request: ', result));
     return this.httpClient
       .get<any>(
         `${NEWEST_MOVIES}` +

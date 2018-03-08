@@ -23,6 +23,10 @@ import { MovieSearchListComponent } from './pages/movie-search-list/movie-search
 import { SafeUrlPipe } from './pipe/safe_url_pipe';
 import {NgxPaginationModule} from 'ngx-pagination';
 
+import { ApolloModule, Apollo } from 'apollo-angular';
+import { HttpLinkModule, HttpLink } from 'apollo-angular-link-http';
+import { InMemoryCache } from 'apollo-cache-inmemory';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,6 +47,8 @@ import {NgxPaginationModule} from 'ngx-pagination';
     FormsModule,
     HttpClientModule,
     BrowserModule,
+    ApolloModule,
+    HttpLinkModule,
     RouterModule.forRoot([
       {
         path: 'movies',
@@ -78,4 +84,15 @@ import {NgxPaginationModule} from 'ngx-pagination';
   providers: [MoviesService, YoutubeService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor(apollo: Apollo,
+    httpLink: HttpLink) {
+    apollo.create({
+      // By default, this client will send queries to the
+      // `/graphql` endpoint on the same host
+      link: httpLink.create({ uri: 'http://localhost:8080/graphql' }),
+      cache: new InMemoryCache()
+    });
+  }
+
+}

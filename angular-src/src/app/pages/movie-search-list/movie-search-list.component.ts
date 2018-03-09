@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
@@ -15,7 +15,7 @@ import { genres } from '../../models/all-movie-genres.model';
   templateUrl: './movie-search-list.component.html',
   styleUrls: ['./movie-search-list.component.scss']
 })
-export class MovieSearchListComponent {
+export class MovieSearchListComponent implements OnInit {
   public movieSelected = false;
   public movies$: Observable<Movie[]>;
   public fetchMoreMovies: () => void;
@@ -39,35 +39,48 @@ export class MovieSearchListComponent {
   public loading;
   public query;
 
-  constructor(private store: Store<moviesReducers.State>, public movieService: MoviesService) {
+  constructor(
+    private store: Store<moviesReducers.State>,
+    public movieService: MoviesService
+  ) {
     this.movies$ = store.select(moviesReducers.getSearchMoviesListState);
-    this.querySubscription = this.store.select(moviesReducers.getSearchQuery).subscribe(query => {
-      if (!(query.length > 0)) {
-        this.query = '';
-        this.totalPages = 0;
-      } else {
-        this.query = query;
-      }
-    });
-    this.pagesSubscription = this.store.select(moviesReducers.getTotalPagesSearch).subscribe(pages => {
-      if (!pages) {
-        this.totalPages = 0;
-      } else {
-        this.totalPages = pages;
-      }
-    });
-    this.movieSubscription = this.store.select(moviesReducers.getSelectedMovie).subscribe((movie: Movie) => {
-      if (!movie) {
-        this.movieSelected = false;
-      } else {
-        this.movieSelected = true;
-      }
-    });
+  }
+
+  public ngOnInit() {
+    this.querySubscription = this.store
+      .select(moviesReducers.getSearchQuery)
+      .subscribe(query => {
+        if (!(query.length > 0)) {
+          this.query = '';
+          this.totalPages = 0;
+        } else {
+          this.query = query;
+        }
+      });
+    this.pagesSubscription = this.store
+      .select(moviesReducers.getTotalPagesSearch)
+      .subscribe(pages => {
+        if (!pages) {
+          this.totalPages = 0;
+        } else {
+          this.totalPages = pages;
+        }
+      });
+    this.movieSubscription = this.store
+      .select(moviesReducers.getSelectedMovie)
+      .subscribe((movie: Movie) => {
+        if (!movie) {
+          this.movieSelected = false;
+        } else {
+          this.movieSelected = true;
+        }
+      });
   }
 
   public loadMoviesPage(page: number) {
     this.store.dispatch(new moviesActions.SearchMovies(this.query, page));
   }
+
 
   public selectMovie(movie: Movie): void {
     this.store.dispatch(new moviesActions.SelectMovie(movie));
@@ -76,8 +89,8 @@ export class MovieSearchListComponent {
 
   public getOverviewInGerman(id) {
     this.movieService.getOverviewInGerman(id).subscribe(obj => {
-    this.overview = obj.overview;
-    this.language_id = id;
+      this.overview = obj.overview;
+      this.language_id = id;
     });
   }
 
@@ -97,5 +110,4 @@ export class MovieSearchListComponent {
       return genrename;
     }
   }
-
 }

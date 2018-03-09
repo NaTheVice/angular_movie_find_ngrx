@@ -1,6 +1,6 @@
 <div id="morphsearch" class="morphsearch" (click)="open=!open" (blur)="open=!open" [ngClass]="{'open': open}">
     <form class="morphsearch-form">
-        <input  name="search_input" [(ngModel)]="query" autocomplete="off" (keydown)="goToSearch()" (keyup)="queryChanged()" (focus)="onFocus()"  class="morphsearch-input" style="font-family: FontAwesome;" type="search" placeholder="&#xF002;"/>
+        <input  name="search_input" [(ngModel)]="query" autocomplete="off" (keydown)="goToSearch()" (keyup)="queryChanged()" (focus)="onFocus()"  class="morphsearch-input" style="font-family: FontAwesome;" type="search" placeholder="&#xF002; Search..."/>
         <button class="morphsearch-submit" type="submit"><i class="fa fa-times-circle fa-2x"></i>
 
         </button>

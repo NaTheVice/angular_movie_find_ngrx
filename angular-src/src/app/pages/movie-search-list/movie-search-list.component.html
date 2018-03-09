@@ -57,75 +57,80 @@
   </div>
 -->
 
-<div  class="row">
-    <div *ngFor="let movie of movies$ | async | paginate: { itemsPerPage: 20, currentPage: p, totalItems: totalPages} ; let i = index;" class="movies col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-3 mt-4">
-      <div *ngIf="movie.media_type==='person'">
-        <div *ngFor="let movie2 of movie.known_for">
-          
-      <div class="card card-inverse card-info">
-        <img (mouseover)="sichtbar[i] =!sichtbar[i]" (click)="selectMovie(movie2)" class="card-img-top" [src]="'https://image.tmdb.org/t/p/w500'+ movie2.poster_path" onError="this.src='/assets/img/movies/no-found.jpg'">
-        <div (mouseleave)="sichtbar[i] =!sichtbar[i]" [hidden]="!sichtbar[i]" class="card-img-overlay">
-        <div class="card-block">
-            <h4 *ngIf="movie2.name" class="card-title">{{movie2.name}}</h4>
-            <h4 *ngIf="movie2.title" class="card-title">{{movie2.title}}</h4>
-          
-          <div *ngIf="language_id !== movie.id" class="card-text">
-            {{movie.overview}}
+<div class="row">
+  <div *ngFor="let movie of movies$ | async | paginate: { itemsPerPage: 20, currentPage: p, totalItems: totalPages} ; let i = index;"
+    class="movies col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-3 mt-4">
+    <div *ngIf="movie.media_type==='person'">
+      <div *ngFor="let movie2 of movie.known_for">
+
+        <div class="card card-inverse card-info">
+          <img (mouseover)="sichtbar[i] =!sichtbar[i]" (click)="selectMovie(movie2)" class="card-img-top" [src]="'https://image.tmdb.org/t/p/w500'+ movie2.poster_path"
+            onError="this.src='/assets/img/movies/no-found.jpg'">
+          <div (mouseleave)="sichtbar[i] =!sichtbar[i]" [hidden]="!sichtbar[i]" class="card-img-overlay">
+            <button (click)="getOverviewInGerman(movie.id)" class="btn float-right btn-info btn-sm btn-ger">ger</button>
+            <button (click)="selectMovie(movie)" class="btn btn-info float-right btn-sm btn-more">>></button>
+            <div class="card-block">
+              <h4 *ngIf="movie2.name" class="card-title">{{movie2.name}}</h4>
+              <h4 *ngIf="movie2.title" class="card-title">{{movie2.title}}</h4>
+
+              <div *ngIf="language_id !== movie.id" class="card-text">
+                {{movie.overview}}
+              </div>
+              <div *ngIf="language_id === movie.id" class="card-text">
+                {{overview}}
+              </div>
+            </div>
+            <div class="card-footer">
+              <small *ngIf="movie2.genre_ids[0] ; else elseBlock" class="footer_vote">{{getGenre(movie2.genre_ids[0])}}
+                <span *ngIf="movie2.genre_ids[1]" class="fancy">&</span> {{getGenre(movie2.genre_ids[1])}}</small>
+              <ng-template #elseBlock>
+                <small class="footer_vote">No genre definded</small>
+              </ng-template>
+              <button (click)="selectMovie(movie2)" class="btn btn-info float-right btn-sm">>></button>
+              <button (click)="getOverviewInGerman(movie2.id)" class="btn float-right btn-info btn-sm">ger</button>
+            </div>
           </div>
-          <div *ngIf="language_id === movie.id" class="card-text">
-              {{overview}}
-          </div>
-        </div>
-        <div class="card-footer">
-            <small *ngIf="movie2.genre_ids[0] ; else elseBlock" class="footer_vote">{{getGenre(movie2.genre_ids[0])}}
-              <span *ngIf="movie2.genre_ids[1]" class="fancy">&</span> {{getGenre(movie2.genre_ids[1])}}</small>
-            <ng-template #elseBlock>
-              <small class="footer_vote">No genre definded</small>
-            </ng-template>
-          <button (click)="selectMovie(movie2)" class="btn btn-info float-right btn-sm">>></button>
-          <button (click)="getOverviewInGerman(movie2.id)" class="btn float-right btn-info btn-sm">ger</button>
         </div>
       </div>
     </div>
-    </div>
-    </div>
-      
-      
-      
-      
-      <div *ngIf="movie.media_type!='person'" class="card card-inverse card-info">
-        <img (mouseover)="sichtbar[i] =!sichtbar[i]" (click)="selectMovie(movie)" class="card-img-top" [src]="'https://image.tmdb.org/t/p/w500'+ movie.poster_path" onError="this.src='/assets/img/movies/no-found.jpg'">
-        <div (mouseleave)="sichtbar[i] =!sichtbar[i]" [hidden]="!sichtbar[i]" class="card-img-overlay">
+
+
+
+
+    <div *ngIf="movie.media_type!='person'" class="card card-inverse card-info">
+      <img (mouseover)="sichtbar[i] =!sichtbar[i]" (click)="selectMovie(movie)" class="card-img-top" [src]="'https://image.tmdb.org/t/p/w500'+ movie.poster_path"
+        onError="this.src='/assets/img/movies/no-found.jpg'">
+      <div (mouseleave)="sichtbar[i] =!sichtbar[i]" [hidden]="!sichtbar[i]" class="card-img-overlay">
         <div class="card-block">
-            <h4 *ngIf="movie.name" class="card-title">{{movie?.name}}</h4>
-            <h4 *ngIf="movie.title" class="card-title">{{movie?.title}}</h4>
-          
+          <h4 *ngIf="movie.name" class="card-title">{{movie?.name}}</h4>
+          <h4 *ngIf="movie.title" class="card-title">{{movie?.title}}</h4>
+
           <div *ngIf="language_id !== movie.id" class="card-text">
             {{movie.overview}}
           </div>
           <div *ngIf="language_id === movie.id" class="card-text">
-              {{overview}}
+            {{overview}}
           </div>
         </div>
         <div class="card-footer">
-            <small *ngIf="movie.genre_ids[0] ; else elseBlock" class="footer_vote">{{getGenre(movie?.genre_ids[0])}}
-              <span *ngIf="movie.genre_ids[1]" class="fancy">&</span> {{getGenre(movie?.genre_ids[1])}}</small>
-            <ng-template #elseBlock>
-              <small class="footer_vote">No genre definded</small>
-            </ng-template>
+          <small *ngIf="movie.genre_ids[0] ; else elseBlock" class="footer_vote">{{getGenre(movie?.genre_ids[0])}}
+            <span *ngIf="movie.genre_ids[1]" class="fancy">&</span> {{getGenre(movie?.genre_ids[1])}}</small>
+          <ng-template #elseBlock>
+            <small class="footer_vote">No genre definded</small>
+          </ng-template>
           <button (click)="selectMovie(movie)" class="btn btn-info float-right btn-sm">>></button>
           <button (click)="getOverviewInGerman(movie.id)" class="btn float-right btn-info btn-sm">ger</button>
         </div>
       </div>
     </div>
-    
+
   </div>
   <div *ngIf="totalPages>0" class="paginate col-md-12 justify-content-center">
-  <pagination-controls class="my-pagination" (pageChange)="getPage($event)"></pagination-controls>
+    <pagination-controls class="my-pagination" (pageChange)="getPage($event)"></pagination-controls>
   </div>
-  </div>
-  
-  
-  <div class="details" *ngIf= "movieSelected">
-    <app-movie-details></app-movie-details>
-  </div>
+</div>
+
+
+<div class="details" *ngIf="movieSelected">
+  <app-movie-details></app-movie-details>
+</div>

@@ -16,7 +16,6 @@ import { genres } from '../../models/all-movie-genres.model';
   templateUrl: './serie.component.html',
   styleUrls: ['./serie.component.scss']
 })
-
 export class SerieComponent implements OnInit {
   public movies$: Observable<Serie[]>;
   private pagesSubscription: Subscription;
@@ -29,27 +28,33 @@ export class SerieComponent implements OnInit {
   public language_id;
   public overview;
 
-  constructor(private store: Store<moviesReducers.State>, public movieService: MoviesService) {
+  constructor(
+    private store: Store<moviesReducers.State>,
+    public movieService: MoviesService
+  ) {
     this.movies$ = store.select(moviesReducers.getSerieListState);
-    this.pagesSubscription = this.store.select(moviesReducers.getTotalPagesSerie).subscribe(pages => {
-      if (!pages) {
-        this.totalPages = 0;
-      } else {
-        this.totalPages = pages;
-      }
-    });
-    this.movieSubscription = this.store.select(moviesReducers.getSelectedMovie).subscribe((movie: Movie) => {
-      if (!movie) {
-        this.movieSelected = false;
-      } else {
-        this.movieSelected = true;
-      }
-    });
-
     this.loadSeriePage(1);
-   }
+  }
 
   ngOnInit() {
+    this.pagesSubscription = this.store
+      .select(moviesReducers.getTotalPagesSerie)
+      .subscribe(pages => {
+        if (!pages) {
+          this.totalPages = 0;
+        } else {
+          this.totalPages = pages;
+        }
+      });
+    this.movieSubscription = this.store
+      .select(moviesReducers.getSelectedMovie)
+      .subscribe((movie: Movie) => {
+        if (!movie) {
+          this.movieSelected = false;
+        } else {
+          this.movieSelected = true;
+        }
+      });
   }
 
   public loadSeriePage(page: number) {
@@ -63,8 +68,8 @@ export class SerieComponent implements OnInit {
 
   public getOverviewInGerman(id) {
     this.movieService.getSerieOverviewInGerman(id).subscribe(obj => {
-    this.overview = obj.overview;
-    this.language_id = id;
+      this.overview = obj.overview;
+      this.language_id = id;
     });
   }
 
@@ -84,5 +89,4 @@ export class SerieComponent implements OnInit {
       return genrename;
     }
   }
-
 }

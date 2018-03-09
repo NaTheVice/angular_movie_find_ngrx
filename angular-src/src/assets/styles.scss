@@ -83,7 +83,7 @@ button{
     color: $black;
     cursor: pointer;
     z-index: 2;
-    padding: 3px 10px;
+    padding: 3px 0.28571429rem;
 }
 
 button:hover{
@@ -93,7 +93,7 @@ button:hover{
 }
 
 
-/* Card Gallery*/
+/* Card Gallery for Movies*/
 
 h5 {
     font-size: 1.28571429em;
@@ -106,9 +106,29 @@ h5 {
     font-size: 1em;
     overflow: hidden;
     padding: 0;
-    border: none;
+    
     border-radius: 0.28571429rem;
-    box-shadow: 0 0.03125em 0.09375em 0 rgba(248, 248, 255, 0.5), 0 0 0 0.03125em rgba(248, 248, 255, 0.5);
+    -webkit-border-bottom-right-radius: 0.28571429rem;
+	-webkit-border-bottom-left-radius: 0.28571429rem;
+	-webkit-border-top-right-radius: 0.28571429rem;
+	-webkit-border-top-left-radius: 0.28571429rem;
+
+	-khtml-border-radius-bottomright: 0.28571429rem;
+	-khtml-border-radius-bottomleft: 0.28571429rem;
+	-khtml-border-radius-topright: 0.28571429rem;
+	-khtml-border-radius-topleft: 0.28571429rem;
+
+	-moz-border-radius-bottomright: 0.28571429rem;
+	-moz-border-radius-bottomleft: 0.28571429rem;
+	-moz-border-radius-topright: 0.28571429rem;
+	-moz-border-radius-topleft: 0.28571429rem;
+
+	border-bottom-right-radius: 0.28571429rem;
+	border-bottom-left-radius: 0.28571429rem;
+	border-top-right-radius: 0.28571429rem;
+	border-top-left-radius: 0.28571429rem;
+    -webkit-box-shadow: 0 0.03125em 0.09375em 0 rgba(219, 211, 48, 0.5), 0 0.03125em 0.09375em 0 rgba(219, 211, 48, 0.5);
+            box-shadow: 0 0.03125em 0.09375em 0 rgba(219, 211, 48, 0.5), 0 0.03125em 0.09375em 0 rgba(219, 211, 48, 0.5);
     margin-bottom: 1.5625em;
     background: $background-dark;
 }
@@ -129,10 +149,12 @@ h5 {
     left: 0;
     right: -17px;
     overflow-y: scroll;
-    padding: 0.625em;
+    padding: 1em;
 }
 
 .card-img-top {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
     width: 100%;
     height: auto;
@@ -162,10 +184,10 @@ h5 {
     margin-top: 0.5em;
     opacity: 0.85;
     color: $default-color;
-    hyphens: auto;
+    -webkit-hyphens: auto;
+        -ms-hyphens: auto;
+            hyphens: auto;
     text-align: justify;
-    word-break: break-all;
-    word-break: break-word; // Webkit-Browser
     display: table-cell;
     vertical-align: middle;
     font-size: 0.8em;
@@ -192,17 +214,17 @@ h5 {
     text-align: center;
 }
 
-.my-pagination /deep/ .ngx-pagination .current {
+.my-pagination .ngx-pagination .current {
     background: $highlight-color;
     color: $black;
 }
 
-.my-pagination /deep/ .ngx-pagination li a:hover {
+.my-pagination .ngx-pagination li a:hover {
     background: $highlight-color;
     color: $black;
 }
 
-.my-pagination /deep/ .ngx-pagination li a {
+.my-pagination .ngx-pagination li a {
     color: $default-color;
 }
 .card-img-overlay .btn-more{
@@ -213,7 +235,7 @@ h5 {
 .card-img-overlay .btn-ger{
     position: absolute;
     bottom: 3.7em;
-    right: 3.7em;
+    right: 2.8em;
 }
 
 .card-footer button {
@@ -223,6 +245,8 @@ h5 {
     width: 20%;
     display: none;
 }
+
+//Card Gallery end
 
 // Small devices (landscape phones, 34em and up)
 @media(max-width: 35.9375em) {
@@ -281,7 +305,8 @@ h5 {
    
     .movies.col-md-4 .card-img-top {
         height: 27.188em !important;
-        object-fit: cover;
+        -o-object-fit: cover;
+           object-fit: cover;
         width: 100% !important;
     }
     .container {

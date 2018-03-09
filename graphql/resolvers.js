@@ -13,7 +13,7 @@ const resolveFunctions = {
     }
   },
   Movie: {
-    poster(root) {
+    poster_path(root) {
       return `https://image.tmdb.org/t/p/w500${root.poster_path}`
     },
     cast(root, args) {

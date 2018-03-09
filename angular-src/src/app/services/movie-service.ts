@@ -74,7 +74,9 @@ export class MoviesService {
   }
 
   public getNewestMovies(pageNumber: number): Observable<Movie[]> {
-    this.apollo.query({query: gql`{movies{id poster_path overview}}`}).subscribe(result => console.log('result from apollo request: ', result));
+    this.apollo.query({query: gql`{movies{id poster_path overview}}`})
+    .subscribe(result => console.log('result from apollo request: ', result));
+
     return this.httpClient
       .get<any>(
         `${NEWEST_MOVIES}` +

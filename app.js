@@ -5,6 +5,7 @@ const cors = require('cors');
 const passport = require('passport');
 const mongoose = require('mongoose');
 const config = require('./config/database');
+var helmet = require('helmet');
 const { graphqlExpress, graphiqlExpress } = require('apollo-server-express');
 const schema = require('./graphql/schema');
 
@@ -22,6 +23,8 @@ mongoose.connection.on('error', (err) => {
 });
 
 const app = express();
+
+app.use(helmet());
 
 // verzeichnis für alle /users...Anfragen
 const users = require('./routes/users');

@@ -20,7 +20,15 @@ export class MovieListComponent implements OnInit {
   public movieSelected = false;
   public movies$: Observable<Movie[]>;
   public fetchMoreMovies: () => void;
-  public postersizes = ['w92', 'w154', 'w185', 'w342', 'w500', 'w780', 'original'];
+  public postersizes = [
+    'w92',
+    'w154',
+    'w185',
+    'w342',
+    'w500',
+    'w780',
+    'original'
+  ];
 
   public sichtbar = [];
   public language_id;
@@ -31,40 +39,40 @@ export class MovieListComponent implements OnInit {
   public totalPages;
   public loading;
 
-  constructor(private store: Store<moviesReducers.State>, public movieService: MoviesService) {
+  constructor(
+    private store: Store<moviesReducers.State>,
+    public movieService: MoviesService
+  ) {
     this.movies$ = store.select(moviesReducers.getMoviesListState);
     this.fetchMoreMovies = this.loadMoviesPage.bind(this);
-
-    this.pagesSubscription = this.store.select(moviesReducers.getTotalPages).subscribe(pages => {
-      if (!pages) {
-        this.totalPages = 0;
-      } else {
-        this.totalPages = pages;
-      }
-    });
-
     this.loadMoviesPage(1);
-
   }
 
-  get postersize(): string { return this.postersizes[Math.floor(Math.random() * this.postersizes.length)]; }
+  get postersize(): string {
+    return this.postersizes[
+      Math.floor(Math.random() * this.postersizes.length)
+    ];
+  }
 
   public ngOnInit() {
-    this.pagesSubscription = this.store.select(moviesReducers.getTotalPagesSearch).subscribe(pages => {
-      if (!pages) {
-        this.totalPages = 0;
-      } else {
-        this.totalPages = pages;
-      }
-    });
-    this.movieSubscription = this.store.select(moviesReducers.getSelectedMovie).subscribe((movie: Movie) => {
-      if (!movie) {
-        this.movieSelected = false;
-      } else {
-        this.movieSelected = true;
-      }
-    });
-
+    this.movieSubscription = this.store
+      .select(moviesReducers.getSelectedMovie)
+      .subscribe((movie: Movie) => {
+        if (!movie) {
+          this.movieSelected = false;
+        } else {
+          this.movieSelected = true;
+        }
+      });
+    this.pagesSubscription = this.store
+      .select(moviesReducers.getTotalPages)
+      .subscribe(pages => {
+        if (!pages) {
+          this.totalPages = 0;
+        } else {
+          this.totalPages = pages;
+        }
+      });
   }
 
   public loadMoviesPage(page: number) {
@@ -78,8 +86,8 @@ export class MovieListComponent implements OnInit {
 
   public getOverviewInGerman(id) {
     this.movieService.getOverviewInGerman(id).subscribe(obj => {
-    this.overview = obj.overview;
-    this.language_id = id;
+      this.overview = obj.overview;
+      this.language_id = id;
     });
   }
 
@@ -99,5 +107,4 @@ export class MovieListComponent implements OnInit {
       return genrename;
     }
   }
-
 }

@@ -7,6 +7,7 @@
 @import "~bootstrap/scss/root";
 @import "~bootstrap/scss/_card.scss";
 @import "~bootstrap/scss/_images.scss";
+@import "~bootstrap/scss/_forms";
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600,700');
 @import "~assets/variables.scss";
 body,
@@ -84,12 +85,81 @@ button{
     cursor: pointer;
     z-index: 2;
     padding: 3px 0.28571429rem;
+    border-radius: 0.28571429rem;
+    -webkit-border-bottom-right-radius: 0.28571429rem;
+	-webkit-border-bottom-left-radius: 0.28571429rem;
+	-webkit-border-top-right-radius: 0.28571429rem;
+	-webkit-border-top-left-radius: 0.28571429rem;
+
+	-khtml-border-radius-bottomright: 0.28571429rem;
+	-khtml-border-radius-bottomleft: 0.28571429rem;
+	-khtml-border-radius-topright: 0.28571429rem;
+	-khtml-border-radius-topleft: 0.28571429rem;
+
+	-moz-border-radius-bottomright: 0.28571429rem;
+	-moz-border-radius-bottomleft: 0.28571429rem;
+	-moz-border-radius-topright: 0.28571429rem;
+	-moz-border-radius-topleft: 0.28571429rem;
+
+	border-bottom-right-radius: 0.28571429rem;
+	border-bottom-left-radius: 0.28571429rem;
+	border-top-right-radius: 0.28571429rem;
+	border-top-left-radius: 0.28571429rem;
+    -webkit-transition: all 0.8s;
+	transition: all 0.8s;
 }
 
+
 button:hover{
+    /*
     text-shadow: -0.01ex 0 black, 0.01ex 0 black;
     background: $contrast-color;
     letter-spacing: 0px;
+    */
+    background: transparent;
+	border: 1px solid $highlight-color;
+	color: $highlight-color;
+
+}
+
+button.btn_reverse{
+    background: transparent;
+	border: 1px solid $highlight-color;
+	color: $highlight-color;
+}
+
+button.btn_reverse:hover{
+    border: 0.0625em solid rgba(0, 0, 0, 0.05);
+    margin-top: 0.1875em;
+    margin-left: 0.1875em;
+    color: $default-color;
+    background: $highlight-color;
+    color: $black;
+    cursor: pointer;
+    z-index: 2;
+    padding: 3px 0.28571429rem;
+    border-radius: 0.28571429rem;
+    -webkit-border-bottom-right-radius: 0.28571429rem;
+	-webkit-border-bottom-left-radius: 0.28571429rem;
+	-webkit-border-top-right-radius: 0.28571429rem;
+	-webkit-border-top-left-radius: 0.28571429rem;
+
+	-khtml-border-radius-bottomright: 0.28571429rem;
+	-khtml-border-radius-bottomleft: 0.28571429rem;
+	-khtml-border-radius-topright: 0.28571429rem;
+	-khtml-border-radius-topleft: 0.28571429rem;
+
+	-moz-border-radius-bottomright: 0.28571429rem;
+	-moz-border-radius-bottomleft: 0.28571429rem;
+	-moz-border-radius-topright: 0.28571429rem;
+	-moz-border-radius-topleft: 0.28571429rem;
+
+	border-bottom-right-radius: 0.28571429rem;
+	border-bottom-left-radius: 0.28571429rem;
+	border-top-right-radius: 0.28571429rem;
+	border-top-left-radius: 0.28571429rem;
+    -webkit-transition: all 0.8s;
+	transition: all 0.8s;
 }
 
 

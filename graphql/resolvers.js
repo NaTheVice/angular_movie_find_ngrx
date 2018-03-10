@@ -5,17 +5,19 @@ const { take, pick } = require('lodash')
 
 const resolveFunctions = {
   Query: {
-    movies() {
-      return movies.getList()
+    movies(root, args) {
+      return movies.getList(args.page)
     },
     movie(root, args) {
       return movies.get(args.id)
     }
   },
+  Movies:{
+    page(root){
+      return root.page
+    }
+  },
   Movie: {
-    poster_path(root) {
-      return `https://image.tmdb.org/t/p/w500${root.poster_path}`
-    },
     cast(root, args) {
       return credits.get(root.id)
         .then(({ cast }) => {

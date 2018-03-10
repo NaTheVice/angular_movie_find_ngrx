@@ -6,7 +6,7 @@ import * as moviesActions from '../store/movies-actions';
 import { of } from 'rxjs/observable/of';
 import { Store } from '@ngrx/store';
 
-import { MOVIE_DISCOVER_DB_URL, MOVIE_SEARCH_DB_URL, NEWEST_MOVIES, API_KEY, NEWEST_SERIE } from '../models/api';
+import { MOVIE_DISCOVER_DB_URL, MOVIE_SEARCH_DB_URL, NEWEST_MOVIES, API_KEY, NEWEST_SERIE, MOVIE_BY_PERSON_DISCOVER } from '../models/api';
 import { Movie } from '../models/movie.model';
 import { Serie } from '../models/serie.model';
 import * as moviesReducers from '../store/movies.reducer';
@@ -59,6 +59,19 @@ export class MoviesService {
       });
   }
 
+  public getPersonMovies(query, page) {
+    console.log('hello from searchMovie');
+    return this.httpClient
+      .get<any>(`${MOVIE_BY_PERSON_DISCOVER}${query}&page=` + page)
+      .subscribe(movies => {
+        this.store.dispatch(new moviesActions.SetTotalPagesSearch(movies.total_pages));
+        this.store.dispatch({
+          type: 'SEARCHING_SUCCESS',
+          payload: movies.results
+        });
+      });
+  }
+
   public getOverviewInGerman(id) {
     return this.httpClient
         .get<any>(
@@ -73,9 +86,20 @@ export class MoviesService {
         );
   }
 
+  public getNewestMoviesFromGraphql(page) {
+    this.apollo.query({query: gql`{movies(page:${page}){total_pages results{id title poster_path overview genre_ids release_date}}}`})
+    .subscribe((results: any) => {
+      const total = results.data.movies.total_pages;
+      this.store.dispatch(new moviesActions.SetTotalPagesNews(total));
+        this.store.dispatch({
+          type: 'LOADING_SUCCESS',
+          payload: results.data.movies.results
+        });
+    });
+
+  }
+
   public getNewestMovies(pageNumber: number): Observable<Movie[]> {
-    this.apollo.query({query: gql`{movies{id poster_path overview}}`})
-    .subscribe(result => console.log('result from apollo request: ', result));
 
     return this.httpClient
       .get<any>(

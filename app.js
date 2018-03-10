@@ -8,7 +8,7 @@ const config = require('./config/database');
 var helmet = require('helmet');
 const { graphqlExpress, graphiqlExpress } = require('apollo-server-express');
 const schema = require('./graphql/schema');
-
+/*
 // Connect To Database(da)tabase variable aus import
 mongoose.connect(config.database);
 
@@ -21,7 +21,7 @@ mongoose.connection.on('connected', () => {
 mongoose.connection.on('error', (err) => {
   console.log('Database error: '+err);
 });
-
+*/
 const app = express();
 
 app.use(helmet());

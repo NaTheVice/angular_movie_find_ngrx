@@ -8,11 +8,19 @@ const typeDefs = [`
     movies: [Movie]
   }
 
+  type Movies{
+    total_pages: String
+    page: Int
+    results: [Movie]
+  }
+
   type Movie {
     id: ID!
-    title: String
+    release_date: String
+    title: String!
     poster_path: String
     overview: String
+    genre_ids: [Int]
     cast(limit: Int): [Cast]
   }
 
@@ -33,7 +41,7 @@ const typeDefs = [`
     hello: String
     cinemas: [Cinema]
     cinema(id: ID!): Cinema
-    movies: [Movie]
+    movies(page: Int): Movies
     movie(id: ID!): Movie,
     actor(id: ID!): Actor
   }

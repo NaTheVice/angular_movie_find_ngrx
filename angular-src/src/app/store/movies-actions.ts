@@ -47,6 +47,7 @@ export class SetTotalPagesSerie implements Action {
 export class SetTotalPagesSearch implements Action {
     readonly type = SET_TOTAL_PAGES_SEARCH;
     constructor(public payload: number) {
+        console.log("payload", payload)
     }
 }
 export class SearchMovies implements Action {
@@ -118,7 +119,9 @@ export class SelectGenre implements Action {
 
 export class LoadingSuccess implements Action {
     readonly type = LOADING_SUCCESS;
-    constructor(public payload: Movie[]) {}
+    constructor(public payload: Movie[]) {
+        console.log("success: " , payload)
+    }
 }
 
 export class LoadingSuccessSerie implements Action {

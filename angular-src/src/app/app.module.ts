@@ -26,6 +26,8 @@ import {NgxPaginationModule} from 'ngx-pagination';
 import { ApolloModule, Apollo } from 'apollo-angular';
 import { HttpLinkModule, HttpLink } from 'apollo-angular-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
+import { LoginComponent } from './pages/login/login.component';
+import { PaginationModule } from 'ngx-pagination-bootstrap';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,8 @@ import { InMemoryCache } from 'apollo-cache-inmemory';
     SerieComponent,
     NavbarComponent,
     MovieSearchListComponent,
-    SafeUrlPipe
+    SafeUrlPipe,
+    LoginComponent
   ],
   imports: [
     StoreModule.forRoot({ movies: reducer }),
@@ -48,6 +51,7 @@ import { InMemoryCache } from 'apollo-cache-inmemory';
     HttpClientModule,
     BrowserModule,
     ApolloModule,
+    PaginationModule,
     HttpLinkModule,
     RouterModule.forRoot([
       {
@@ -72,7 +76,7 @@ import { InMemoryCache } from 'apollo-cache-inmemory';
       },
       {
         path: 'login',
-        component: SerieComponent
+        component: LoginComponent
       },
       {
         path: '**',

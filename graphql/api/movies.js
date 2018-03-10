@@ -3,9 +3,9 @@ const baseUrl = 'https://api.themoviedb.org/3/movie/popular?api_key=f81bd9740a1f
 
 
 module.exports = {
-  getList() {
-    return axios.get('https://api.themoviedb.org/3/movie/popular?api_key=f81bd9740a1f947cd670b275ccd1596c&language=de&page=1')
-      .then(body => body.data.results)
+  getList(page) {
+    return axios.get(`https://api.themoviedb.org/3/movie/now_playing?api_key=f81bd9740a1f947cd670b275ccd1596c&language=de&page=${page}`)
+      .then(body => body.data)
       .catch(error => {
         console.log(error);
       });

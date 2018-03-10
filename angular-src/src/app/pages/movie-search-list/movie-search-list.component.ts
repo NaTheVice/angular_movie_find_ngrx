@@ -29,7 +29,7 @@ export class MovieSearchListComponent implements OnInit {
     'original'
   ];
   public sichtbar = [];
-  public language_id;
+  public language_id = 0;
   public overview;
   private movieSubscription: Subscription;
   private pagesSubscription: Subscription;
@@ -38,12 +38,16 @@ export class MovieSearchListComponent implements OnInit {
   public totalPages;
   public loading;
   public query;
+  public person_id;
+  public totalPages$: Observable<number>;
+
 
   constructor(
     private store: Store<moviesReducers.State>,
     public movieService: MoviesService
   ) {
     this.movies$ = store.select(moviesReducers.getSearchMoviesListState);
+    this.totalPages$ = store.select(moviesReducers.getTotalPagesSearch);
   }
 
   public ngOnInit() {
@@ -61,8 +65,10 @@ export class MovieSearchListComponent implements OnInit {
       .select(moviesReducers.getTotalPagesSearch)
       .subscribe(pages => {
         if (!pages) {
+          console.log("pages 0");
           this.totalPages = 0;
         } else {
+          console.log("pages" , pages);
           this.totalPages = pages;
         }
       });
@@ -78,6 +84,7 @@ export class MovieSearchListComponent implements OnInit {
   }
 
   public loadMoviesPage(page: number) {
+
     this.store.dispatch(new moviesActions.SearchMovies(this.query, page));
   }
 
@@ -85,6 +92,12 @@ export class MovieSearchListComponent implements OnInit {
   public selectMovie(movie: Movie): void {
     this.store.dispatch(new moviesActions.SelectMovie(movie));
     this.movieSelected = true;
+  }
+
+  public searchPersonMovie(id , page): void {
+    this.person_id = id;
+    console.log(page)
+    this.movieService.getPersonMovies(id, page);
   }
 
   public getOverviewInGerman(id) {
@@ -97,7 +110,10 @@ export class MovieSearchListComponent implements OnInit {
   public getPage(page: number) {
     this.loading = true;
     this.p = page;
-    this.loadMoviesPage(page);
+    if (this.person_id) {
+      this.searchPersonMovie(this.person_id, page);
+    } else {this.loadMoviesPage(page); }
+
   }
 
   public getGenre(id) {

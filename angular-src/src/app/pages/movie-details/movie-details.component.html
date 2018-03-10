@@ -2,12 +2,12 @@
   <div class="box container">
   
     <div class="row justify-content-center">
-      <div class="detail_pic col-xs-12 col-sm-12 col-lg-7 col-md-12">
+      <div class="detail_pic col-xs-12 col-sm-12 col-lg-5 col-md-5 col-xl-5">
           <a (click)="unSelectMovie()" class="overlay-close"><i class="fa fa-times-circle fa-3x"></i></a>
-        <img class="detail_cover_img img-fluid" *ngIf="movie" src="{{posterUrl}}/{{movie?.poster_path}}" alt="{{movie?.title}} poster" align="left"
+        <img class="detail_cover_img img-fluid" *ngIf="movie" src="{{posterUrl}}/{{movie?.poster_path}}" onError="this.src='/assets/img/movies/no-found.jpg'" alt="{{movie?.title}} poster" align="left"
         />
       </div>
-      <div class="col-xs-12 col-sm-12 col-lg-5 col-md-12">
+      <div class="col-xs-12 col-sm-12 col-lg-7 col-md-7 col-xl-7">
         <h2 *ngIf="movie.name" class="title">{{movie?.name}}</h2>
         <h2 *ngIf="movie.title" class="title">{{movie?.title}}</h2>
         <br>
@@ -17,13 +17,15 @@
         <p>
           {{movie?.overview}}
         </p>
+      </div>
+      <div class="col-12">
         <button *ngIf="video_embeded.length <= 35" (click)="getVideoLink()" class="video_btn btn btn-info float-right btn-sm">find on youtube:</button>
         <br>  
         <a *ngIf="video_embeded.length >= 35" class="video_link" [target]="'_blank'" href="http://movie-blog.org/index.php?s={{movie.title}}&cat=0 | safe_url">MOVIE.BLOG?</a>
         <br>
         <br>
-        <div class='embed-container'>
-        <iframe *ngIf="video_embeded.length >= 35" width="560" height="315" [src]="video_embeded | safe_url" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        <div *ngIf="video_embeded.length >= 35" class='embed-container'>
+        <iframe  width="560" height="315" [src]="video_embeded | safe_url" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
         </div>
         <br>
         <!--

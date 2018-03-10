@@ -19,6 +19,7 @@ export interface Movie {
         first_air_date: string;
         media_type: string;
         known_for: Array<any>;
+        profile_path: string;
 
   }
 

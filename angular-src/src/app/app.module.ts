@@ -94,7 +94,7 @@ export class AppModule {
     apollo.create({
       // By default, this client will send queries to the
       // `/graphql` endpoint on the same host
-      link: httpLink.create({ uri: 'http://localhost:8080/graphql' }),
+      link: httpLink.create({ uri: '/graphql' }),
       cache: new InMemoryCache()
     });
   }

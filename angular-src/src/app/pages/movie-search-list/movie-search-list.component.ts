@@ -34,13 +34,13 @@ export class MovieSearchListComponent implements OnInit {
   private movieSubscription: Subscription;
   private pagesSubscription: Subscription;
   private querySubscription: Subscription;
+  private personSubscription: Subscription;
   public p = 1;
   public totalPages;
   public loading;
   public query;
   public person_id;
   public totalPages$: Observable<number>;
-
 
   constructor(
     private store: Store<moviesReducers.State>,
@@ -54,7 +54,7 @@ export class MovieSearchListComponent implements OnInit {
     this.querySubscription = this.store
       .select(moviesReducers.getSearchQuery)
       .subscribe(query => {
-        if (!(query.length > 0)) {
+        if (!(query.length > 0) || query === '') {
           this.query = '';
           this.totalPages = 0;
         } else {
@@ -65,11 +65,18 @@ export class MovieSearchListComponent implements OnInit {
       .select(moviesReducers.getTotalPagesSearch)
       .subscribe(pages => {
         if (!pages) {
-          console.log("pages 0");
           this.totalPages = 0;
         } else {
-          console.log("pages" , pages);
           this.totalPages = pages;
+        }
+      });
+      this.personSubscription = this.store
+      .select(moviesReducers.getPersonId)
+      .subscribe(person_id => {
+        if (!person_id) {
+          this.person_id = 0;
+        } else {
+          this.person_id = person_id;
         }
       });
     this.movieSubscription = this.store
@@ -84,19 +91,15 @@ export class MovieSearchListComponent implements OnInit {
   }
 
   public loadMoviesPage(page: number) {
-
     this.store.dispatch(new moviesActions.SearchMovies(this.query, page));
   }
-
 
   public selectMovie(movie: Movie): void {
     this.store.dispatch(new moviesActions.SelectMovie(movie));
     this.movieSelected = true;
   }
 
-  public searchPersonMovie(id , page): void {
-    this.person_id = id;
-    console.log(page)
+  public searchPersonMovie(id, page): void {
     this.movieService.getPersonMovies(id, page);
   }
 
@@ -110,10 +113,11 @@ export class MovieSearchListComponent implements OnInit {
   public getPage(page: number) {
     this.loading = true;
     this.p = page;
-    if (this.person_id) {
+    if (this.person_id !== 0) {
       this.searchPersonMovie(this.person_id, page);
-    } else {this.loadMoviesPage(page); }
-
+    } else {
+      this.loadMoviesPage(page);
+    }
   }
 
   public getGenre(id) {

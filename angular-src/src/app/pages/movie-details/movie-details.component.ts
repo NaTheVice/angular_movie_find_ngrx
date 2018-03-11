@@ -8,6 +8,7 @@ import { Movie } from '../../models/movie.model';
 import { POSTER_URL} from '../../models/api';
 import * as moviesActions from '../../store/movies-actions';
 import {YoutubeService} from '../../services/youtube-service';
+import { MoviesService } from '../../services/movie-service';
 
 @Component({
   selector: 'app-movie-details',
@@ -28,7 +29,8 @@ export class MovieDetailsComponent implements OnInit {
 
   constructor(private store: Store<moviesReducers.State>,
               private router: Router,
-              private tubeService: YoutubeService) {
+              private tubeService: YoutubeService,
+              private movieService: MoviesService) {
     this.posterUrl = POSTER_URL;
   }
 
@@ -51,6 +53,12 @@ export class MovieDetailsComponent implements OnInit {
 
       }
     });
+  }
+
+  public searchPersonMovie(id, page): void {
+    this.unSelectMovie();
+    this.router.navigate(['search']);
+    this.movieService.getPersonMovies(id, 1);
   }
 
   public unSelectMovie(): void {

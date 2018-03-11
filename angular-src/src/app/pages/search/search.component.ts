@@ -5,11 +5,11 @@ import { Observable } from 'rxjs/Observable';
 // tslint:disable-next-line:import-blacklist
 import { Subject, Subscription } from 'rxjs/Rx';
 
-
 import { Movie } from '../../models/movie.model';
 
 import * as moviesReducers from '../../store/movies.reducer';
 import * as moviesActions from '../../store/movies-actions';
+import { MoviesService } from '../../services/movie-service';
 
 @Component({
   selector: 'app-search',
@@ -17,7 +17,6 @@ import * as moviesActions from '../../store/movies-actions';
   styleUrls: ['./search.component.scss']
 })
 export class SearchComponent implements OnInit, OnDestroy {
-
   public query = '';
   public movies$: Observable<Movie[]>;
   public cursorInsideInput = false;
@@ -25,7 +24,11 @@ export class SearchComponent implements OnInit, OnDestroy {
   private searchTermStream = new Subject<string>();
   private searchSubscription: Subscription;
 
-  constructor(private store: Store<moviesReducers.State>, private router: Router) {
+  constructor(
+    private store: Store<moviesReducers.State>,
+    private router: Router,
+    private movieService: MoviesService
+  ) {
     this.movies$ = store.select(moviesReducers.getSearchMoviesListState);
   }
 
@@ -47,7 +50,12 @@ export class SearchComponent implements OnInit, OnDestroy {
   }
 
   public selectMovie(movie: Movie): void {
-    this.store.dispatch(new moviesActions.SelectMovie(movie));
+    if (movie.media_type !== 'person') {
+      this.store.dispatch(new moviesActions.SelectMovie(movie));
+    } else {
+      this.query = '';
+      this.movieService.getPersonMovies(movie.id, 1);
+    }
   }
 
   public onFocus(): void {
@@ -61,6 +69,4 @@ export class SearchComponent implements OnInit, OnDestroy {
   public goToSearch() {
     this.router.navigate(['search']);
   }
-
 }
-

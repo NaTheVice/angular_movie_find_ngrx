@@ -21,7 +21,7 @@ const typeDefs = [`
     poster_path: String
     overview: String
     genre_ids: [Int]
-    cast(limit: Int): [Cast]
+    cast(limit: Int): [Cast]!
   }
 
   type Cast {

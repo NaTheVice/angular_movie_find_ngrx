@@ -20,6 +20,7 @@ export interface Movie {
         media_type: string;
         known_for: Array<any>;
         profile_path: string;
+        cast: Array<any>;
 
   }
 

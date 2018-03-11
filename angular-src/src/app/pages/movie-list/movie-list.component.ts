@@ -76,7 +76,6 @@ export class MovieListComponent implements OnInit {
   }
 
   public loadMoviesPage(page: number) {
-    //this.store.dispatch(new moviesActions.LoadMovies(page));
     this.movieService.getNewestMoviesFromGraphql(page);
   }
 

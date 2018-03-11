@@ -18,6 +18,7 @@ export interface State {
   totalPagesSerie: number;
   totalPagesSearch: number;
   serie: Serie[];
+  person_id: number;
 }
 
 const initialState: State = {
@@ -34,7 +35,8 @@ const initialState: State = {
   totalPages: 0,
   totalPagesSerie: 0,
   totalPagesSearch: 0,
-  serie: []
+  serie: [],
+  person_id: 0
 };
 
 export function reducer(
@@ -51,6 +53,12 @@ export function reducer(
       return {
         ...state,
         loading: true
+      };
+    }
+    case moviesActions.SET_PERSON_ID: {
+      return {
+        ...state,
+        person_id: action.payload
       };
     }
     case moviesActions.READY_TO_SET_MOVIES: {
@@ -129,6 +137,13 @@ export function reducer(
         ...state,
         query: action.payload,
         searching: true
+      };
+    }
+
+    case moviesActions.CLEAR_QUERY: {
+      return {
+        ...state,
+        query: ''
       };
     }
 
@@ -217,4 +232,8 @@ export const getTotalPagesSearch = createSelector(
 export const getSearchQuery = createSelector(
   getMoviesState,
   (state: State) => state.query
+);
+export const getPersonId = createSelector(
+  getMoviesState,
+  (state: State) => state.person_id
 );

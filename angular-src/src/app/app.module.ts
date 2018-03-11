@@ -72,7 +72,7 @@ import { PaginationModule } from 'ngx-pagination-bootstrap';
       },
       {
         path: 'register',
-        component: SerieComponent
+        component: LoginComponent
       },
       {
         path: 'login',

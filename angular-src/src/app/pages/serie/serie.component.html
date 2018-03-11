@@ -7,8 +7,8 @@
       <div (mouseleave)="sichtbar[i] =!sichtbar[i]" [hidden]="!sichtbar[i]" class="card-img-overlay">
         <div class="card-block">
           <h4 *ngIf="movie.name" class="card-title">{{movie?.name}}
-              <button (click)="getOverviewInGerman(movie.id)" class="btn float-right btn-info btn-sm btn-ger">ger</button>
-              <button (click)="selectMovie(movie)" class="btn btn-info float-right btn-sm btn-more">>></button>
+            <button (click)="getOverviewInGerman(movie.id)" class="btn btn_reverse btn-info btn-sm">ger</button>
+            <button (click)="selectMovie(movie)" class="btn btn_reverse btn-info btn-sm ">>></button>
           </h4>
 
           <div *ngIf="language_id !== movie.id" class="card-text">
@@ -24,8 +24,8 @@
           <ng-template #elseBlock>
             <small class="footer_vote">No genre definded</small>
           </ng-template>
-          <button (click)="selectMovie(movie)" class="btn btn-info float-right btn-sm">>></button>
-          <button (click)="getOverviewInGerman(movie.id)" class="btn float-right btn-info btn-sm">ger</button>
+          <button (click)="selectMovie(movie)" class="btn btn-info float-right btn-sm btn_more">>></button>
+          <button (click)="getOverviewInGerman(movie.id)" class="btn float-right btn-info btn-sm btn-ger">ger</button>
         </div>
       </div>
     </div>

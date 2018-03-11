@@ -24,7 +24,6 @@ export class NavbarComponent implements OnInit, DoCheck {
 
   selectMenuItem(name: string) {
     this.clicked = name;
-    console.log(name);
   }
 
 }

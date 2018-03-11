@@ -10,7 +10,14 @@ import { Observable } from 'rxjs/Observable';
 import { defer } from 'rxjs/observable/defer';
 import { of } from 'rxjs/observable/of';
 
-import { LoadMovies, SearchMovies, SelectMovie, LoadMovieCredits, LoadingSuccess, LoadSerie } from './movies-actions';
+import {
+  LoadMovies,
+  SearchMovies,
+  SelectMovie,
+  LoadMovieCredits,
+  LoadingSuccess,
+  LoadSerie
+} from './movies-actions';
 import { MoviesService } from '../services/movie-service';
 import { Movie } from '../models/movie.model';
 import { Serie } from '../models/serie.model';
@@ -18,15 +25,15 @@ import * as moviesActions from './movies-actions';
 
 @Injectable()
 export class MoviesEffects {
-
-
   @Effect()
   loadMovies$: Observable<Action> = this.actions$
     .ofType(moviesActions.LOAD_MOVIES)
     .switchMap((loadMoviesAction: LoadMovies) => {
       let getMoviesStream: Observable<Movie[]>;
-      if (loadMoviesAction.payload ) {
-        const pages = this.moviesService.getNewestMovies(loadMoviesAction.payload);
+      if (loadMoviesAction.payload) {
+        const pages = this.moviesService.getNewestMovies(
+          loadMoviesAction.payload
+        );
         getMoviesStream = pages;
       }
       return getMoviesStream
@@ -40,19 +47,17 @@ export class MoviesEffects {
         });
     });
 
-    @Effect()
-    loadSerie$: Observable<Action> = this.actions$
+  @Effect()
+  loadSerie$: Observable<Action> = this.actions$
     .ofType(moviesActions.LOAD_SERIE)
     .switchMap((loadSerieAction: LoadSerie) => {
       let getSerieStream: Observable<Serie[]>;
-      if (loadSerieAction.payload ) {
+      if (loadSerieAction.payload) {
         const page = this.moviesService.getNewestSerie(loadSerieAction.payload);
         getSerieStream = page;
       }
       return getSerieStream
         .map((serie: Serie[]) => {
-          // this.moviesService.getMoviesWithCredits(movies, true);
-          console.log('serie' , serie);
           return new moviesActions.LoadingSuccessSerie(serie);
         })
         .catch(error => {
@@ -66,22 +71,23 @@ export class MoviesEffects {
     .ofType(moviesActions.SEARCH_MOVIES)
     .switchMap((searchMoviesAction: SearchMovies) => {
       if (searchMoviesAction.payload) {
-        return this.moviesService.searchMovies(searchMoviesAction.payload, 1)
+        return this.moviesService
+          .searchMovies(searchMoviesAction.payload, 1)
           .map((movies: Movie[]) => {
             // this.moviesService.getMoviesWithCredits(movies);
             return new moviesActions.SearchingSuccess(movies);
           })
           .catch(error => {
-           console.log('error in search-movie-effect' + error);
+            console.log('error in search-movie-effect' + error);
             return of(new moviesActions.SearchingFails(error));
           });
       } else {
-        console.log('search movies is empty');
         return Observable.of(new moviesActions.SearchingSuccess([]));
       }
     });
 
-  constructor(private actions$: Actions,
-    private moviesService: MoviesService,
-    ) {}
+  constructor(
+    private actions$: Actions,
+    private moviesService: MoviesService
+  ) {}
 }

@@ -1,3 +1,4 @@
+var compression = require('compression')
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
@@ -23,7 +24,7 @@ mongoose.connection.on('error', (err) => {
 });
 */
 const app = express();
-
+app.use(compression())
 app.use(helmet());
 
 // verzeichnis für alle /users...Anfragen

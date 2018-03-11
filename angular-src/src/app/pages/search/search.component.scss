@@ -24,7 +24,7 @@
 
 .morphsearch {
     overflow: hidden;
-    padding: 5px;
+    padding: 0.313em;
     min-height: 1.875em;
     background: $background-light;
     position: absolute;
@@ -151,8 +151,8 @@ input[type="search"] {
 .morphsearch-submit {
     position: absolute;
     border: none;
-    right: 5px;
-    top: 20px;
+    right: 0.313em;
+    top: 1.250em;
     background: transparent;
     -webkit-transform-origin: 50% 50%;
     transform-origin: 50% 50%;

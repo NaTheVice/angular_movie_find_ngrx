@@ -20,7 +20,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   public query = '';
   public movies$: Observable<Movie[]>;
   public cursorInsideInput = false;
-  public open;
+  public open = false;
   private searchTermStream = new Subject<string>();
   private searchSubscription: Subscription;
 
@@ -64,6 +64,7 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   public onBlur(): void {
     this.cursorInsideInput = false;
+    this.open = false;
   }
 
   public goToSearch() {

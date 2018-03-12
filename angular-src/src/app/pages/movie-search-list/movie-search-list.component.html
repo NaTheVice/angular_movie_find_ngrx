@@ -1,6 +1,6 @@
 <div class="row">
   <div *ngFor="let movie of movies$ | async | paginate: { itemsPerPage: 1, currentPage: p, totalItems: totalPages} ; let i = index;"
-    class="movies col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-3 mt-4">
+    class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-3 mt-4">
 
 
     <div class="card card-inverse card-info">
@@ -11,12 +11,10 @@
       <div (mouseleave)="sichtbar[i] =!sichtbar[i]" [hidden]="!sichtbar[i]" class="card-img-overlay">
         <div class="card-block">
           <h4 *ngIf="movie.name" class="card-title">{{movie?.name}}
-            <button *ngIf="movie.media_type !='person'" (click)="getOverviewInGerman(movie.id)" class="btn btn_reverse btn-info btn-sm ">ger</button>
-            <button *ngIf="movie.media_type !='person'" (click)="selectMovie(movie)" class="btn btn_reverse btn-info btn-sm ">>></button>
+            <button *ngIf="movie.media_type !='person'" (click)="getOverviewInGerman(movie.id)" class="btn btn_reverse btn-info btn-sm ">GER</button>
           </h4>
           <h4 *ngIf="movie.title" class="card-title">{{movie?.title}}
-            <button (click)="getOverviewInGerman(movie.id)" class="btn btn_reverse btn-info btn-sm ">ger</button>
-            <button (click)="selectMovie(movie)" class="btn btn_reverse btn-info btn-sm ">>></button>
+            <button (click)="getOverviewInGerman(movie.id)" class="btn btn_reverse btn-info btn-sm ">GER</button>
           </h4>
           <div *ngIf="language_id !== movie.id" class="card-text">
             {{movie.overview}}
@@ -32,8 +30,8 @@
           <ng-template #elseBlock>
             <small class="footer_vote">No genre definded</small>
           </ng-template>
-          <button (click)="selectMovie(movie)" class="btn btn-info float-right btn-sm btn_more">>></button>
-          <button (click)="getOverviewInGerman(movie.id)" class="btn float-right btn-info btn-sm btn-ger">ger</button>
+          <button (click)="selectMovie(movie)" class="btn btn-info float-right btn-sm btn-more">>></button>
+          <button (click)="getOverviewInGerman(movie.id)" class="btn float-right btn-info btn-sm btn-ger">GER</button>
         </div>
       </div>
     </div>

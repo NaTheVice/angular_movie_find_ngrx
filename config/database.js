@@ -1,5 +1,5 @@
 module.exports = {
  
-  database: 'mongodb://USERNAME:PASSWORD@YOURDB.mlab.com:13619/YOUR_APP_NAME',
+  database: 'mongodb://<dbuser>:<dbpassword>@ds111299.mlab.com:11299/mongo-movies',
   secret: 'yoursecret'
 }

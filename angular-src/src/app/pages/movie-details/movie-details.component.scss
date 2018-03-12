@@ -10,20 +10,32 @@
     left: 0;
     width: 100%;
     z-index: 9999999;
-    overflow-y: scroll;
 }
 
 .overlay .box {
     background: $background-light;
-    -webkit-box-shadow: 0 0 1.250em rgba(0, 0, 0, 0.75);
-    box-shadow: 0 0 1.250em rgba(0, 0, 0, 0.75);
     overflow-y: scroll;
     padding: 1.250em 1.250em 0;
+    height: 100%;
 }
 
 .overlay .box::-webkit-scrollbar {
     width: 0 !important;
 }
+
+.overlay::-webkit-scrollbar {
+    display: none;
+  }
+.overlay .box::-webkit-scrollbar {
+    display: none;
+    
+  }
+
+  .no-scroll::-webkit-scrollbar {display:none;} /* Safari */
+  .no-scroll::-moz-scrollbars {display:none; overflow:hidden;}
+  .no-scroll::-o-scrollbar {display:none;} /* opera */
+  .no-scroll::-google-ms-scrollbar {display:none;}
+  .no-scroll::-khtml-scrollbar {display:none;} 
 
 .overlay-close {
     position: absolute;
@@ -93,8 +105,10 @@ h2 {
 
 .rounded {
     border-radius: 50%;
-    object-fit: cover;
-    object-position: center;
+    -o-object-fit: cover;
+       object-fit: cover;
+    -o-object-position: center;
+       object-position: center;
 }
 
 .cast_row{
@@ -118,7 +132,7 @@ h2 {
 
 @media(max-width: 35.9375em) {
     .box p {
-        font-size: 1.375em;
+        font-size: 1.2em;
     }
     .box button {
         height: 2.5em;

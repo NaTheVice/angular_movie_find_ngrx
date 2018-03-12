@@ -85,7 +85,7 @@ export class SerieComponent implements OnInit {
       return genre.name;
     }
     if (id !== undefined) {
-      const genrename = 'Genre: ' + id;
+      const genrename = 'Serie';
       return genrename;
     }
   }

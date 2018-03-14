@@ -15,6 +15,7 @@
 .overlay .box {
     background: $background-light;
     overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
     overflow-x: hidden;
     padding: 1.250em 1.250em 0;
     height: 100%;

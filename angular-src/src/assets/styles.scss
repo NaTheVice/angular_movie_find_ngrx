@@ -307,6 +307,12 @@ h5 {
     display: none;
 }
 
+.movie_row{
+    overflow-y: scroll;
+   -webkit-overflow-scrolling: touch;
+   height:100%;
+}
+
 //Card Gallery end
 
 // Small devices (landscape phones, 34em and up)

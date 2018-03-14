@@ -16,6 +16,7 @@ const typeDefs = [`
 
   type Movie {
     id: ID!
+    credit_id: Int
     release_date: String
     title: String!
     poster_path: String

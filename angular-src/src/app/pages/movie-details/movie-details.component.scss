@@ -15,6 +15,7 @@
 .overlay .box {
     background: $background-light;
     overflow-y: scroll;
+    overflow-x: hidden;
     padding: 1.250em 1.250em 0;
     height: 100%;
 }
@@ -43,7 +44,13 @@
     top: 0.125em;
 }
 
-.overlay-close i {
+.detail_close{
+    left: -45px;
+}
+.detail_circle{
+    color: $black;
+}
+.detail_x{
     color: $highlight-color;
 }
 
@@ -138,5 +145,8 @@ h2 {
         height: 2.5em;
         width: 9.375em;
         font-size: 1.125em;
+    }
+    .overlay{
+        padding:0;
     }
 }

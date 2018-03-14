@@ -10,10 +10,6 @@
 @import "~bootstrap/scss/images";
 @import "~bootstrap/scss/forms";
 
-
-
-
-
 @import "~assets/variables.scss";
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600,700');
 
@@ -25,6 +21,8 @@ html {
     line-height: $line-height;
     color: $default-color;
     height: 100%;
+    overflow:auto;
+    overflow-x: hidden;
 }
 
 input[type=text]::-ms-clear {

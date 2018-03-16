@@ -22,9 +22,13 @@ import { MoviesService } from '../services/movie-service';
 import { Movie } from '../models/movie.model';
 import { Serie } from '../models/serie.model';
 import * as moviesActions from './movies-actions';
+import { map, switchMap } from 'rxjs/operators';
+import { catchError } from 'rxjs/operators/catchError';
 
 @Injectable()
 export class MoviesEffects {
+  constructor(private moviesService: MoviesService, private actions$: Actions) {}
+
   @Effect()
   loadMovies$: Observable<Action> = this.actions$
     .ofType(moviesActions.LOAD_MOVIES)
@@ -48,23 +52,15 @@ export class MoviesEffects {
     });
 
   @Effect()
-  loadSerie$: Observable<Action> = this.actions$
-    .ofType(moviesActions.LOAD_SERIE)
-    .switchMap((loadSerieAction: LoadSerie) => {
-      let getSerieStream: Observable<Serie[]>;
-      if (loadSerieAction.payload) {
-        const page = this.moviesService.getNewestSerie(loadSerieAction.payload);
-        getSerieStream = page;
-      }
-      return getSerieStream
-        .map((serie: Serie[]) => {
-          return new moviesActions.LoadingSuccessSerie(serie);
-        })
-        .catch(error => {
-          console.log('error in get-moviesStream-effect' + error);
-          return of(new moviesActions.LoadingFailsSerie(error));
-        });
-    });
+  loadSerie$: Observable<Action> = this.actions$.ofType(moviesActions.LOAD_SERIE)
+    .pipe(switchMap(() => {
+      return this.moviesService.getNewestSerie(1).pipe(
+        map(series => new moviesActions.LoadingSuccessSerie(series)),
+        catchError(error =>  of(new moviesActions.LoadingFailsSerie(error)))
+      );
+    })
+  );
+
 
   @Effect()
   searchMovies$: Observable<Action> = this.actions$
@@ -86,8 +82,4 @@ export class MoviesEffects {
       }
     });
 
-  constructor(
-    private actions$: Actions,
-    private moviesService: MoviesService
-  ) {}
 }

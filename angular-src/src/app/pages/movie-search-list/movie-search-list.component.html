@@ -4,9 +4,9 @@
 
 
     <div class="card card-inverse card-info">
-      <img *ngIf="movie.media_type !='person'" (mouseover)="sichtbar[i] =!sichtbar[i]" (click)="selectMovie(movie)" class="card-img-top"
+      <img *ngIf="movie.media_type !='person'" (mouseover)="sichtbar[i] =!sichtbar[i]" (click)="sichtbar[i] =!sichtbar[i]" class="card-img-top"
         [src]="'https://image.tmdb.org/t/p/w500'+ movie.poster_path" onError="this.src='/assets/img/movies/no-found.jpg'">
-      <img *ngIf="movie.media_type ==='person'" (mouseover)="sichtbar[i] =!sichtbar[i]" (click)="selectMovie(movie)" class="card-img-top"
+      <img *ngIf="movie.media_type ==='person'" (mouseover)="sichtbar[i] =!sichtbar[i]" (click)="sichtbar[i] =!sichtbar[i]" class="card-img-top"
         [src]="'https://image.tmdb.org/t/p/w500'+ movie.profile_path" onError="this.src='/assets/img/movies/no-found.jpg'">
       <div (mouseleave)="sichtbar[i] =!sichtbar[i]" [hidden]="!sichtbar[i]" class="card-img-overlay">
         <div class="card-block">

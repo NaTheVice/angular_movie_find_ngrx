@@ -1,0 +1,11 @@
+.search_page_search{
+    display:none;
+}
+@media screen and(max-width: 35.9375em) {
+    .search_page_search{
+        display: inline;
+        position: relative;
+        left: 15px;
+        top: -65px;
+    }
+}

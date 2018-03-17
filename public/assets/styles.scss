@@ -23,6 +23,7 @@ html {
     height: 100%;
     overflow:auto;
     overflow-x: hidden;
+    -ms-overflow-style:none;
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
 }
@@ -179,6 +180,7 @@ h5 {
 .card {
     font-size: 1em;
     overflow: hidden;
+    -ms-overflow-style:none;
     padding: 0.15em;
     
     border-radius: 0.28571429rem;
@@ -221,11 +223,11 @@ h5 {
     top: 0;
     bottom: 0;
     left: 0;
-    right: -1.063em;
+    right: -1.35em;
     overflow-y: scroll;
-    padding-left: 6%;
-    padding-top: 6%;
-    padding-right: 9.5%;
+    padding-left: 1em;
+    padding-top: 1em;
+    padding-right: 2em;
     -webkit-overflow-scrolling: touch;
 }
 
@@ -355,7 +357,10 @@ h5 {
 
     .container {
         max-width: 85% !important;
-
+    }
+    .card-text{
+        font-size: 0.6em;
+        line-height: 1.5em;
     }
 }
 
@@ -375,6 +380,10 @@ h5 {
     }
     .card-footer{
         font-size: 0.6em;
+    }
+    .card-text{
+        font-size: 0.6em;
+        line-height: 1.5em;
     }
 }
 
@@ -399,4 +408,5 @@ h5 {
         height: 23.906em !important;
     }
 }
+
 

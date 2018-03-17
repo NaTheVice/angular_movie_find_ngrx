@@ -24,6 +24,7 @@
 
 .morphsearch {
     overflow: hidden;
+    -ms-overflow-style: none;
     padding: 0.313em;
     min-height: 1.875em;
     background: $background-light;
@@ -42,7 +43,7 @@
 }
 
 .morphsearch.open {
-    width: 50vh;
+    width: 35vw;
     min-height: 100vh;
     top: 0;
     right: 0;
@@ -127,6 +128,7 @@
     height: 2.5em;
     text-indent: 6.25em;
     overflow: hidden;
+    -ms-overflow-style:none;
     right: 0;
     top: 50%;
     content: "\f087"; 
@@ -185,6 +187,7 @@ input[type="search"] {
     width: 100%;
     height: 0;
     overflow: hidden;
+    -ms-overflow-style:none;
     padding: 0 5%;
     position: absolute;
     pointer-events: none;
@@ -195,7 +198,6 @@ input[type="search"] {
     opacity: 1;
     height: auto;
     overflow: visible;
-    /* this breaks the transition of the children in FF: https://bugzilla.mozilla.org/show_bug.cgi?id=625289 */
     pointer-events: auto;
     -webkit-transition: opacity 0.3s 0.5s;
     transition: opacity 0.3s 0.5s;
@@ -250,6 +252,9 @@ input.search::placeholder{ font-family:"Font Awesome 5 Free", "Open Sans"; font-
     .morphsearch {
         width: 10%;
     }
+    .morphsearch.open {
+        width: 50vw;
+    }
     .morphsearch-input{
         padding-left: 0.6em;
     }
@@ -273,7 +278,7 @@ input.search::placeholder{ font-family:"Font Awesome 5 Free", "Open Sans"; font-
     .morphsearch {
         min-height: 2.25em;
         top: 1.5625em;
-        width: 10vh;
+        width: 10vw;
     }
     .morphsearch-input {
         font-size: 1em;
@@ -288,11 +293,14 @@ input.search::placeholder{ font-family:"Font Awesome 5 Free", "Open Sans"; font-
     .search_box i{
         font-size: 4rem;
     }
-}
 
-@media (max-width: 39em) {
-    .morphsearch {
-        display: none;
+    @media screen and(max-width: 35.9375em) {
+        .morphsearch{
+            width: 10em;
+        }
+        .morphsearch.open{
+            width: 100vw;
+        }
     }
     
 }

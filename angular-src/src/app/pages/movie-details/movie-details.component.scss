@@ -4,7 +4,6 @@
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
     height: 100%;
-    padding: 3.750em 0.938em 0.938em;
     position: fixed;
     top: 0;
     left: 0;
@@ -14,11 +13,23 @@
 
 .overlay .box {
     background: $background-light;
-    overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
     overflow-x: hidden;
+    -ms-overflow-style: none;
     padding: 1.250em 1.250em 0;
     height: 100%;
+}
+
+.overlay .box .box_content{
+
+    overflow-y: scroll;
+    height: 100%;
+    right: -1.35em;
+    width: 106%;
+    padding: 0.625em;
+    padding-right: 0.625em;
+    padding-right: 3.750em;
+    overflow-x: hidden;
 }
 
 .overlay .box::-webkit-scrollbar {
@@ -34,7 +45,7 @@
   }
 
   .no-scroll::-webkit-scrollbar {display:none;} /* Safari */
-  .no-scroll::-moz-scrollbars {display:none; overflow:hidden;}
+  .no-scroll::-moz-scrollbars {display:none; overflow:hidden; background: black}
   .no-scroll::-o-scrollbar {display:none;} /* opera */
   .no-scroll::-google-ms-scrollbar {display:none;}
   .no-scroll::-khtml-scrollbar {display:none;} 
@@ -46,7 +57,7 @@
 }
 
 .detail_close{
-    left: -45px;
+    left: -2.813rem;
 }
 .detail_circle{
     color: $black;

@@ -138,6 +138,16 @@ h2 {
             box-shadow: 0 0.03125em 0.09375em 0 rgba(219, 211, 48, 0.5), 0 0.03125em 0.09375em 0 rgba(219, 211, 48, 0.5);    
 }
 
+@media screen and (max-width: 62em){
+    .box.container {
+        max-width: 100% !important;
+    }
+
+    .overlay{
+        padding:0 !important;
+    }
+}
+
 @media(max-width: 35.9375em) {
     .box p {
         font-size: 1.2em;

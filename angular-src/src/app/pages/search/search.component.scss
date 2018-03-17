@@ -232,9 +232,7 @@ input.search::placeholder{ font-family:"Font Awesome 5 Free", "Open Sans"; font-
 
 
 @media screen and (max-width: 53.125em) {
-    .morphsearch-input {
-        padding: 0 25% 0 0.625em;
-    }
+   
     .morphsearch.open .morphsearch-input {
         font-size: 2em;
     }
@@ -251,6 +249,9 @@ input.search::placeholder{ font-family:"Font Awesome 5 Free", "Open Sans"; font-
 @media screen and (max-width: 65.625em) {
     .morphsearch {
         width: 10%;
+    }
+    .morphsearch-input{
+        padding-left: 0.6em;
     }
    
  

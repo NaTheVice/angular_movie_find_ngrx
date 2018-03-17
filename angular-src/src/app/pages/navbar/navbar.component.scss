@@ -86,8 +86,7 @@
 }
 
 .menu--bagot .menu__item::after {
-    right: -0.125em;
-    left: -0.125em;
+
     /* for border-collapse */
     border-width: 0 0.125em;
     -webkit-transform: scale(1, 0);

@@ -53,8 +53,8 @@ export class MoviesEffects {
 
   @Effect()
   loadSerie$: Observable<Action> = this.actions$.ofType(moviesActions.LOAD_SERIE)
-    .pipe(switchMap(() => {
-      return this.moviesService.getNewestSerie(1).pipe(
+    .pipe(switchMap((laodSerieAction: LoadSerie) => {
+      return this.moviesService.getNewestSerie(laodSerieAction.payload).pipe(
         map(series => new moviesActions.LoadingSuccessSerie(series)),
         catchError(error =>  of(new moviesActions.LoadingFailsSerie(error)))
       );
@@ -68,7 +68,7 @@ export class MoviesEffects {
     .switchMap((searchMoviesAction: SearchMovies) => {
       if (searchMoviesAction.payload) {
         return this.moviesService
-          .searchMovies(searchMoviesAction.payload, 1)
+          .searchMovies(searchMoviesAction.payload, searchMoviesAction.page )
           .map((movies: Movie[]) => {
             // this.moviesService.getMoviesWithCredits(movies);
             return new moviesActions.SearchingSuccess(movies);

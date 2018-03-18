@@ -16,18 +16,18 @@
     -webkit-overflow-scrolling: touch;
     overflow-x: hidden;
     -ms-overflow-style: none;
-    padding: 1.250em 1.250em 0;
+    padding: 1.250rem 1.250rem 0;
     height: 100%;
 }
 
 .overlay .box .box_content {
     overflow-y: scroll;
     height: 100%;
-    right: -1.35em;
+    right: -1.35rem;
     width: 106%;
-    padding: 0.625em;
-    padding-right: 0.625em;
-    padding-right: 3.750em;
+    padding: 0.625rem;
+    padding-right: 0.625rem;
+    padding-right: 3.750rem;
     overflow-x: hidden;
 }
 
@@ -73,8 +73,9 @@
 
 .overlay-close {
     position: absolute;
-    left: 1.250em;
-    top: 0.125em;
+    left: 3.8rem;
+    top: 0.4rem;
+    z-index: 9999;
 }
 
 .detail_close {
@@ -90,7 +91,7 @@
 }
 
 .detail_pic {
-    padding-right: 0.188em;
+    padding-right: 0.188rem;
 }
 
 p {
@@ -101,8 +102,8 @@ h2 {
     text-transform: uppercase;
     background: $background;
     color: $default-color;
-    padding: 0.125em 0.3125em;
-    margin-top: 0.1875em;
+    padding: 0.125em 0.3125rem;
+    margin-top: 0.1875rem;
 }
 
 .detail_cover_img {
@@ -112,23 +113,23 @@ h2 {
 .video_link {
     color: $default-color;
     text-decoration: none;
-    margin-left: 0.3125em;
-    font-size: 1.2em;
+    margin-left: 0.3125rem;
+    font-size: 1.2rem;
     background: black;
-    padding: 0.3125em;
+    padding: 0.3125rem;
 }
 
 .video_btn {
     float: left;
-    margin-left: 0.625em;
-    margin-top: 0.625em;
-    font-size: 1.2em;
+    margin-left: 0.625rem;
+    margin-top: 0.625rem;
+    font-size: 1.2rem;
 }
 
 .embed-container {
     position: relative;
     padding-bottom: 56.25%;
-    padding-top: 1.875em;
+    padding-top: 1.875rem;
     height: 0;
     overflow: hidden;
     max-width: 100%;
@@ -155,7 +156,7 @@ h2 {
 
 .cast_row {
     text-align: center;
-    font-size: 0.7em;
+    font-size: 0.7rem;
 }
 
 .actor_pic {
@@ -165,17 +166,17 @@ h2 {
 .actor_col:hover {
     cursor: pointer;
     text-shadow: -0.01ex 0 $default-color, 0.01ex 0 $default-color;
-    letter-spacing: 0px;
+    letter-spacing: 0;
 }
 
 .actor_pic:hover {
     text-shadow: -0.01ex 0 $default-color, 0.01ex 0 $default-color;
-    letter-spacing: 0px;
-    -webkit-box-shadow: 0 0.03125em 0.09375em 0 rgba(219, 211, 48, 0.5), 0 0.03125em 0.09375em 0 rgba(219, 211, 48, 0.5);
-    box-shadow: 0 0.03125em 0.09375em 0 rgba(219, 211, 48, 0.5), 0 0.03125em 0.09375em 0 rgba(219, 211, 48, 0.5);
+    letter-spacing: 0;
+    -webkit-box-shadow: 0 0.03125rem 0.09375rem 0 rgba(219, 211, 48, 0.5), 0 0.03125rem 0.09375rem 0 rgba(219, 211, 48, 0.5);
+    box-shadow: 0 0.03125rem 0.09375rem 0 rgba(219, 211, 48, 0.5), 0 0.03125rem 0.09375rem 0 rgba(219, 211, 48, 0.5);
 }
 
-@media screen and (max-width: 62em) {
+@media screen and (max-width: 62rem) {
     .box.container {
         max-width: 100% !important;
     }
@@ -184,21 +185,20 @@ h2 {
     }
 }
 
-@media(max-width: 35.9375em) {
+@media(max-width: 35.9375rem) {
     .box p {
-        font-size: 1.2em;
+        font-size: 0.9rem;
     }
     .box button {
-        height: 2.5em;
-        width: 9.375em;
-        font-size: 1.125em;
+      
+        font-size: 1.125rem;
     }
     .overlay {
         padding: 0;
     }
     .overlay .box .box_content {
         padding: 0;
-        padding-right: 1.3em;
+        padding-right: 1.3rem;
     }
     .detail_overview {
         -webkit-hyphens: auto;
@@ -207,8 +207,7 @@ h2 {
         text-align: justify;
         display: table-cell;
         vertical-align: middle;
-        font-size: 0.8em;
-        line-height: 1.7;
+        font-size: 0.8rem;
     }
     .detail_close {
         left: 1rem;

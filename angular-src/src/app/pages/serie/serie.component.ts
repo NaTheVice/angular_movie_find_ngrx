@@ -66,10 +66,11 @@ export class SerieComponent implements OnInit {
     this.movieSelected = true;
   }
 
-  public getOverviewInGerman(id) {
+  public getOverviewInGerman(id, i) {
     this.movieService.getSerieOverviewInGerman(id).subscribe(obj => {
       this.overview = obj.overview;
       this.language_id = id;
+      this.sichtbar[i] = true;
     });
   }
 

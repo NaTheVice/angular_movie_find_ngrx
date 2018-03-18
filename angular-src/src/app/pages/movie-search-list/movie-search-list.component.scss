@@ -1,11 +1,15 @@
 .search_page_search{
     display:none;
 }
-@media screen and(max-width: 35.9375em) {
+@media screen and(max-width: 35.9375rem) {
     .search_page_search{
+        display: block;
+        position: absolute;
+        right: -3.125rem;
+        top: 3.125rem;
+    }
+
+    .btn_person{
         display: inline;
-        position: relative;
-        left: 15px;
-        top: -65px;
     }
 }

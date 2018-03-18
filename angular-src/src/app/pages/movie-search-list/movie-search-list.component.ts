@@ -103,10 +103,11 @@ export class MovieSearchListComponent implements OnInit {
     this.movieService.getPersonMovies(id, page);
   }
 
-  public getOverviewInGerman(id) {
+  public getOverviewInGerman(id, i) {
     this.movieService.getOverviewInGerman(id).subscribe(obj => {
       this.overview = obj.overview;
       this.language_id = id;
+      this.sichtbar[i] = true;
     });
   }
 

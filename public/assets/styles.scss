@@ -85,7 +85,7 @@ a:focus {
 }
 
 button{
-    border: 0.0625em solid rgba(0, 0, 0, 0.05);
+    border: 0.0625rem solid rgba(0, 0, 0, 0.05);
     color: $default-color;
     background: $highlight-color;
     color: $black;
@@ -137,7 +137,7 @@ button.btn_reverse{
 }
 
 button.btn_reverse:hover{
-    border: 0.0625em solid rgba(0, 0, 0, 0.05);
+    border: 0.0625rem solid rgba(0, 0, 0, 0.05);
     color: $default-color;
     background: $highlight-color;
     color: $black;
@@ -171,17 +171,16 @@ button.btn_reverse:hover{
 /* Card Gallery for Movies*/
 
 h5 {
-    font-size: 1.28571429em;
+    font-size: 1.28571429rem;
     font-weight: 700;
-    line-height: 1.2857em;
     margin: 0;
 }
 
 .card {
-    font-size: 1em;
+    font-size: 1rem;
     overflow: hidden;
     -ms-overflow-style:none;
-    padding: 0.15em;
+    padding: 0.15rem;
     
     border-radius: 0.28571429rem;
     -webkit-border-bottom-right-radius: 0.28571429rem;
@@ -203,31 +202,23 @@ h5 {
 	border-bottom-left-radius: 0.28571429rem;
 	border-top-right-radius: 0.28571429rem;
 	border-top-left-radius: 0.28571429rem;
-    -webkit-box-shadow: inset 0 0 0 0.1em rgba(219, 211, 48, 0.5);
-            box-shadow: inset 0 0 0 0.1em rgba(219, 211, 48, 0.5);
-    margin-bottom: 1.5625em;
+    -webkit-box-shadow: inset 0 0 0 0.1rem rgba(219, 211, 48, 0.5);
+            box-shadow: inset 0 0 0 0.1rem rgba(219, 211, 48, 0.5);
+    margin-bottom: 1.5625rem;
     background: $background-dark;
 }
 
-.card_body {
-    position: absolute;
-    margin-top: -136%;
-    background: black;
-    z-index: 10000;
-    height: 83.5%;
-    width: 91%;
-}
-
 .card-block {
+    z-index: 1;
     position: absolute;
     top: 0;
     bottom: 0;
     left: 0;
-    right: -1.35em;
+    right: -1.35rem;
     overflow-y: scroll;
-    padding-left: 1em;
-    padding-top: 1em;
-    padding-right: 2em;
+    padding-left: 1rem;
+    padding-top: 1rem;
+    padding-right: 2rem;
     -webkit-overflow-scrolling: touch;
 }
 
@@ -245,18 +236,17 @@ h5 {
 
 .card-img-overlay {
     background: rgba(0, 0, 0, 0.9);
-    margin: 0.1em;
+    margin: 0.1rem;
 }
 
 .card-title {
-    font-size: 1.28571429em;
+    font-size: 1.28571429rem;
     font-weight: 700;
-    line-height: 1.2857em;
 }
 
 .card-text {
     clear: both;
-    margin-top: 0.5em;
+    margin-top: 0.5rem;
     opacity: 0.85;
     color: $default-color;
     -webkit-hyphens: auto;
@@ -265,21 +255,21 @@ h5 {
     text-align: justify;
     display: table-cell;
     vertical-align: middle;
-    font-size: 0.8em;
-    line-height: 1.7;
+    font-size: 0.8rem;
+    line-height: 2;
 }
 
 .card-footer {
-    font-size: 0.8em;
+    font-size: 0.8rem;
     position: absolute;
-    bottom: -0.1em;
-    left: -0.1em;
-    right: 0.1em;
-    padding: 0.75em 2em;
-    border-top: 0.0625em solid rgba(0, 0, 0, 0.05) !important;
+    bottom: -0.1rem;
+    left: -0.1rem;
+    right: 0.1rem;
+    border-top: 0.0625rem solid rgba(0, 0, 0, 0.05) !important;
     background: #706E40;
-    margin-top: -1.25em;
+    margin-top: -1.25rem;
     width: 101%;
+    z-index: 9;
 }
 
 .text-bold {
@@ -321,8 +311,8 @@ h5 {
 //Card Gallery end
 
 // Small devices (landscape phones, 34em and up)
-@media(max-width: 35.9375em) {
-    .card-img-overlay button{
+@media(max-width: 35.9375rem) {
+    .card-img-overlay .btn{
         display: none;
     }
     .card-footer .btn-ger,.card-footer .btn-more {
@@ -331,10 +321,11 @@ h5 {
         display: initial;
     }
     .box p {
-        font-size: 1.2em;
+        font-size: 1.2rem;
     }
     .card-text{
-        font-size: 1em;
+        font-size: 1rem;
+        line-height: 1.7rem;
     }
     .card-footer{
         margin-top: 0;
@@ -353,19 +344,18 @@ h5 {
 }
 
 // Small devices 576 (landscape phones, 34em and up)
-@media (min-width: 36em) and (max-width: 47.938em) {
+@media (min-width: 36rem) and (max-width: 47.938rem) {
 
     .container {
         max-width: 85% !important;
     }
     .card-text{
-        font-size: 0.6em;
-        line-height: 1.5em;
+        font-size: 0.6rem;
     }
 }
 
 // Medium devices 768 (tablets, 48em and up)
-@media (min-width: 48em) and (max-width: 61.938em){
+@media (min-width: 48rem) and (max-width: 61.938rem){
 
    
     .movies.col-md-4 .card-img-top {
@@ -379,18 +369,17 @@ h5 {
 
     }
     .card-footer{
-        font-size: 0.6em;
+        font-size: 0.6rem;
     }
     .card-text{
-        font-size: 0.6em;
-        line-height: 1.5em;
+        font-size: 0.6rem;
     }
 }
 
 
 
 // Large devices 992px (desktops, 62em and up)
-@media (min-width: 62em) and (max-width: 74.938em){
+@media (min-width: 62rem) and (max-width: 74.938rem){
     .movies.col-lg-4 .card-img-top {
         width: 18.125em !important;
         height: 27.188em !important;
@@ -398,10 +387,10 @@ h5 {
 }
 
 // Extra large devices 1200px (large desktops, 75em and up)
-@media (min-width: 75em) {
+@media (min-width: 75rem) {
     .card-text {
-        font-size: 0.8em;
-        line-height: 1.7;
+        font-size: 0.8rem;
+        line-height: 1rem;
     }
     .movies.col-xl-3 .card-img-top {
         width: 15.938em !important;

@@ -2,29 +2,29 @@
     <app-search></app-search>
 </div>
 
-<div class="row movie_row">
+<div class="row">
   <div *ngFor="let movie of movies$ | async | paginate: { itemsPerPage: 1, currentPage: p, totalItems: totalPages} ; let i = index;"
     class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-3 mt-4">
 
 
     <div class="card card-inverse card-info">
-      <img *ngIf="movie.media_type !='person'" (mouseover)="sichtbar[i] =!sichtbar[i]" (click)="sichtbar[i] =!sichtbar[i]" class="card-img-top"
+      <img *ngIf="movie.media_type !='person'" (click)="sichtbar[i] =true" class="card-img-top"
         [src]="'https://image.tmdb.org/t/p/w500'+ movie.poster_path" onError="this.src='/assets/img/movies/no-found.jpg'">
-      <img *ngIf="movie.media_type ==='person'" (mouseover)="sichtbar[i] =!sichtbar[i]" (click)="sichtbar[i] =!sichtbar[i]" class="card-img-top"
+      <img *ngIf="movie.media_type ==='person'" (click)="sichtbar[i] =true" class="card-img-top"
         [src]="'https://image.tmdb.org/t/p/w500'+ movie.profile_path" onError="this.src='/assets/img/movies/no-found.jpg'">
-      <div (mouseleave)="sichtbar[i] =!sichtbar[i]"  [hidden]="!sichtbar[i]" class="card-img-overlay">
-        <div class="card-block">
+      <div   [hidden]="!sichtbar[i]" class="card-img-overlay">
+        <div (click)="sichtbar[i] =false" class="card-block">
           <h4 *ngIf="movie.name" class="card-title">{{movie?.name}}
             <button *ngIf="movie.media_type !='person'" (click)="getOverviewInGerman(movie.id)" class="btn btn_reverse btn-info btn-sm ">GER</button>
           </h4>
           <h4 *ngIf="movie.title" class="card-title">{{movie?.title}}
-            <button (click)="getOverviewInGerman(movie.id)" class="btn btn_reverse btn-info btn-sm ">GER</button>
+            <button (click)="getOverviewInGerman(movie.id, i)" class="btn btn_reverse btn-info btn-sm ">GER</button>
           </h4>
-          <div *ngIf="language_id !== movie.id" (click)="sichtbar[i] =!sichtbar[i]" class="card-text">
+          <div *ngIf="language_id !== movie.id"  class="card-text">
             {{movie.overview}}
-            <button *ngIf="movie.media_type ==='person'" (click)="searchPersonMovie(movie.id, 1)" class="btn btn-info btn-sm ">Search for movies with this actor</button>
+            <button *ngIf="movie.media_type ==='person'" (click)="searchPersonMovie(movie.id, 1)" class="btn btn-info btn-sm btn_person">Search for movies with this actor</button>
           </div>
-          <div *ngIf="language_id === movie.id" (click)="sichtbar[i] =!sichtbar[i]" class="card-text">
+          <div *ngIf="language_id === movie.id" class="card-text">
             {{overview}}
           </div>
         </div>

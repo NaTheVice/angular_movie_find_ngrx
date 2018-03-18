@@ -51,6 +51,8 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   public selectMovie(movie: Movie): void {
     if (movie.media_type !== 'person') {
+      this.query = movie.title || movie.name;
+      this.store.dispatch(new moviesActions.SearchMovies(this.query, 1));
       this.store.dispatch(new moviesActions.SelectMovie(movie));
     } else {
       this.query = '';

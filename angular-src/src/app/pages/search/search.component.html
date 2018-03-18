@@ -1,8 +1,8 @@
 <div class="search_box">
 <div id="morphsearch" class="morphsearch" (click)="open=!open" (blur)="onBlur()" (mouseleave)="onBlur()" [ngClass]="{'open': open}">
     <form class="morphsearch-form">
-        <input  name="search_input" [(ngModel)]="query" autocomplete="off" (keydown)="goToSearch()" (keyup)="queryChanged()" (focus)="onFocus()" (blur)="onBlur()"  class="morphsearch-input search" type="search" placeholder="&#xF002; Search..."/>
-        <button class="morphsearch-submit" (click)="open=!open" type="submit"><i style="color: white; opacity: 0.6;"class="fas fa-times-circle fa-2x"></i>
+        <input  name="search_input" [(ngModel)]="query" autocomplete="off" (keyup.enter)="open=false" (keydown)="goToSearch()" (keyup)="queryChanged()" (focus)="onFocus()" (blur)="onBlur()"  class="morphsearch-input search" type="search" placeholder="&#xF002; Search..."/>
+        <button class="morphsearch-submit" (click)="open=!open" type="submit"><i (click)="open=false" style="color: white; opacity: 0.6;"class="fas fa-times-circle fa-2x"></i>
 
         </button>
     </form>

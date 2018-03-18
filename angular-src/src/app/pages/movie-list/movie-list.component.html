@@ -2,12 +2,12 @@
   <div *ngFor="let movie of movies$ | async | paginate: { itemsPerPage: 1, currentPage: p, totalItems: totalPages} ; let i = index;"
     class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-3 mt-4">
     <div class="card card-inverse card-info">
-      <img class="img-fluid" (click)="sichtbar[i] =!sichtbar[i]" (mouseover)="sichtbar[i] =!sichtbar[i]" class="card-img-top" [src]="'https://image.tmdb.org/t/p/w342'+ movie.poster_path"
+      <img class="img-fluid" (click)="sichtbar[i] =true" class="card-img-top" [src]="'https://image.tmdb.org/t/p/w342'+ movie.poster_path"
         onError="this.src='/assets/img/movies/no-found.jpg'">
-      <div (mouseleave)="sichtbar[i] =!sichtbar[i]"  [hidden]="!sichtbar[i]" class="card-img-overlay">
-        <div class="card-block">
+      <div  [hidden]="!sichtbar[i]" class="card-img-overlay">
+        <div (click)="sichtbar[i] =false" class="card-block">
           <h4 class="card-title">{{movie.title}}       
-            <button (click)="getOverviewInGerman(movie.id)" class="btn btn_reverse btn-info btn-sm">GER</button>
+            <button (click)="getOverviewInGerman(movie.id,i)" class="btn btn_reverse btn-info btn-sm">GER</button>
           </h4>
    
           <div *ngIf="language_id !== movie.id" (click)="sichtbar[i] =!sichtbar[i]" class="card-text">

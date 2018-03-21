@@ -35,7 +35,30 @@ const typeDefs = [`
     id: ID!
     name: String,
     photo: String
-    movies(limit: Int): [Movie]
+  }
+
+  type Series{
+    total_pages: String
+    page: Int
+    results: [Serie]
+  }
+
+  type Serie {
+    id: ID!
+    credit_id: Int
+    first_air_date: String
+    last_air_date: String
+    name: String!
+    poster_path: String
+    overview: String
+    genre_ids: [Int]
+    seasons: [Season]
+  }
+
+  type Season{
+    id: ID!
+    air_date: String
+    season_number: Int
   }
 
   type Query {
@@ -43,7 +66,9 @@ const typeDefs = [`
     cinemas: [Cinema]
     cinema(id: ID!): Cinema
     movies(page: Int): Movies
-    movie(id: ID!): Movie,
+    movie(id: ID!): Movie
+    serie(id: ID!): Serie
+    topSeries(page: Int) : Series 
     actor(id: ID!): Actor
   }
 

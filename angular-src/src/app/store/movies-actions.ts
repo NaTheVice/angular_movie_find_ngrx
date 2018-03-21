@@ -22,7 +22,7 @@ export const LOADING_FAILS_SERIE = 'LOADING_FAILS_SERIE';
 export const SEARCHING_SUCCESS = 'SEARCHING_SUCCESS';
 export const SEARCHING_FAILS = 'SEARCHING_FAILS';
 export const READY_TO_SET_MOVIES = 'READY_TO_SET_MOVIES';
-export const SET_TOTAL_PAGES_NEWS = 'SET_TOTAL_PAGES_NEWS';
+export const SET_TOTAL_PAGES_MOVIES = 'SET_TOTAL_PAGES_MOVIES';
 export const SET_TOTAL_PAGES_SERIE = 'SET_TOTAL_PAGES_SERIE';
 export const SET_TOTAL_PAGES_SEARCH = 'SET_TOTAL_PAGES_SEARCH';
 export const CLEAR_QUERY = 'CLEAR_QUERY';
@@ -38,8 +38,8 @@ export class ClearQuery implements Action {
   constructor() {}
 }
 
-export class SetTotalPagesNews implements Action {
-  readonly type = SET_TOTAL_PAGES_NEWS;
+export class SetTotalPagesMovies implements Action {
+  readonly type = SET_TOTAL_PAGES_MOVIES;
   constructor(public payload: number) {}
 }
 
@@ -118,12 +118,12 @@ export class SelectGenre implements Action {
 
 export class LoadingSuccess implements Action {
   readonly type = LOADING_SUCCESS;
-  constructor(public payload: Movie[]) {}
+  constructor(public payload: any) {}
 }
 
 export class LoadingSuccessSerie implements Action {
   readonly type = LOADING_SUCCESS_SERIE;
-  constructor(public payload: Serie[]) {}
+  constructor(public payload: any) {}
 }
 
 export class LoadingFails implements Action {
@@ -170,7 +170,7 @@ export type Actions =
   | SearchingFails
   | SetMovieCredits
   | LoadMovieCredits
-  | SetTotalPagesNews
+  | SetTotalPagesMovies
   | SetTotalPagesSerie
   | SetTotalPagesSearch
   | ClearQuery

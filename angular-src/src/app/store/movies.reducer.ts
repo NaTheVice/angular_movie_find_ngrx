@@ -75,7 +75,7 @@ export function reducer(
       };
     }
 
-    case moviesActions.SET_TOTAL_PAGES_NEWS: {
+    case moviesActions.SET_TOTAL_PAGES_MOVIES: {
       return {
         ...state,
         totalPages: action.payload
@@ -105,7 +105,8 @@ export function reducer(
         ...state,
         loaded: true,
         loading: false,
-        movies: [...action.payload]
+        totalPages: action.payload.total_pages,
+        movies: [...action.payload.results]
       };
     }
     case moviesActions.LOADING_SUCCESS_SERIE: {
@@ -113,7 +114,8 @@ export function reducer(
         ...state,
         loaded: true,
         loading: false,
-        serie: [...action.payload]
+        totalPagesSerie: action.payload.total_pages,
+        serie: [...action.payload.results]
       };
     }
 

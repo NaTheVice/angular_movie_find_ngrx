@@ -12,7 +12,7 @@ module.exports = {
   },
   get(id) {
     return axios.get(`https://api.themoviedb.org/3/movie/${id}?api_key=f81bd9740a1f947cd670b275ccd1596c&language=de&append_to_response=credits`)
-      .then(body  => body.data)
+      .then(body  => console.log("get movie"))
       .catch(error => {
         console.log(error);
       });

@@ -58,6 +58,7 @@ export class SerieComponent implements OnInit {
   }
 
   public loadSeriePage(page: number) {
+    console.log("page: " ,page);
     this.store.dispatch(new moviesActions.LoadSerie(page));
   }
 

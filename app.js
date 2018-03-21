@@ -31,7 +31,7 @@ app.use(helmet());
 const users = require('./routes/users');
 
 // Port Number
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 8070;
 
 // CORS Middleware (allows req from diffrent domainanme, anstatt allow heder origin (*))
 app.use(cors());

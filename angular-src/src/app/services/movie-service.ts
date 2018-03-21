@@ -94,7 +94,7 @@ export class MoviesService {
   }
 
   public getNewestMoviesFromGraphql(page) {
-    this.apollo
+    return this.apollo
       .query({
         query: gql`{
           movies(page: ${page}) {
@@ -113,14 +113,6 @@ export class MoviesService {
             }
           }
         }`
-      })
-      .subscribe((results: any) => {
-        const total = results.data.movies.total_pages;
-        this.store.dispatch(new moviesActions.SetTotalPagesNews(total));
-        this.store.dispatch({
-          type: 'LOADING_SUCCESS',
-          payload: results.data.movies.results
-        });
       });
   }
 
@@ -135,7 +127,7 @@ export class MoviesService {
       )
       .map(movies => {
         const total = movies.total_pages;
-        this.store.dispatch(new moviesActions.SetTotalPagesNews(total));
+        this.store.dispatch(new moviesActions.SetTotalPagesMovies(total));
         return movies.results;
       });
   }
@@ -153,6 +145,30 @@ export class MoviesService {
         const total = serie.total_pages;
         this.store.dispatch(new moviesActions.SetTotalPagesSerie(total));
         return serie.results;
+      });
+  }
+
+  public getNewestSeriesFromGraphql(page) {
+    return this.apollo
+      .query({
+        query: gql`{
+          topSeries(page: ${page}) {
+            total_pages
+            page
+            results {
+              id
+              first_air_date
+              poster_path
+              overview
+              genre_ids
+              name
+              seasons{
+                season_number
+                air_date
+              }
+            }
+          }
+        }`
       });
   }
 

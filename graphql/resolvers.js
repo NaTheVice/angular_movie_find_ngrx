@@ -1,4 +1,5 @@
 const movies = require('./api/movies')
+const series = require('./api/series')
 const credits = require('./api/credits')
 const { take, pick } = require('lodash')
 
@@ -10,9 +11,20 @@ const resolveFunctions = {
     },
     movie(root, args) {
       return movies.get(args.id)
+    },
+    topSeries(root, args){
+      return series.getList(args.page)
+    },
+    serie(root, args){
+      return series.get(args.id)
     }
   },
   Movies:{
+    page(root){
+      return root.page
+    }
+  },
+  Series:{
     page(root){
       return root.page
     }
@@ -28,6 +40,15 @@ const resolveFunctions = {
         })
     }
   },
+  Serie: {
+    seasons(root, args) {
+      return series.get(root.id)
+      .then(({ seasons }) => {
+          return seasons
+        
+      })
+    }
+  },
   Cast: {
     id(root) {
       return root.credit_id
@@ -39,16 +60,6 @@ const resolveFunctions = {
   Actor: {
     photo(root) {
       return `https://image.tmdb.org/t/p/w500${root.profile_path}`
-    },
-    movies(root, args) {
-      console.log("root id", root.id)
-      return movies.getActorMovies(root.id)
-        .then((movies) => {
-          if (args.limit) {
-            return take(movies, args.limit)
-          }
-          return movies
-        })
     }
   }
 }

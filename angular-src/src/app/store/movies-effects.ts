@@ -24,6 +24,7 @@ import { Serie } from '../models/serie.model';
 import * as moviesActions from './movies-actions';
 import { map, switchMap } from 'rxjs/operators';
 import { catchError } from 'rxjs/operators/catchError';
+import { combineAll } from 'rxjs/operators/combineAll';
 
 @Injectable()
 export class MoviesEffects {
@@ -32,33 +33,31 @@ export class MoviesEffects {
   @Effect()
   loadMovies$: Observable<Action> = this.actions$
     .ofType(moviesActions.LOAD_MOVIES)
-    .switchMap((loadMoviesAction: LoadMovies) => {
-      let getMoviesStream: Observable<Movie[]>;
-      if (loadMoviesAction.payload) {
-        const pages = this.moviesService.getNewestMovies(
-          loadMoviesAction.payload
-        );
-        getMoviesStream = pages;
-      }
-      return getMoviesStream
-        .map((movies: Movie[]) => {
-          // this.moviesService.getMoviesWithCredits(movies, true);
-          return new moviesActions.LoadingSuccess(movies);
-        })
-        .catch(error => {
-          console.log('error in get-moviesStream-effect' + error);
-          return of(new moviesActions.LoadingFails(error));
-        });
-    });
+    .switchMap((laodMoviesAction: LoadMovies) => {
+      console.log("hello from load movie");
+      return this.moviesService.getNewestMoviesFromGraphql(laodMoviesAction.payload).map((movies: any) => {
+          return new moviesActions.LoadingSuccess(movies.data.movies);
+        }
+      ).catch(error => {
+        console.log('error in search-serie-effect' + error);
+        return of(new moviesActions.LoadingFails(error));
+      });
+    }
+  );
 
   @Effect()
   loadSerie$: Observable<Action> = this.actions$.ofType(moviesActions.LOAD_SERIE)
-    .pipe(switchMap((laodSerieAction: LoadSerie) => {
-      return this.moviesService.getNewestSerie(laodSerieAction.payload).pipe(
-        map(series => new moviesActions.LoadingSuccessSerie(series)),
-        catchError(error =>  of(new moviesActions.LoadingFailsSerie(error)))
-      );
-    })
+    .switchMap((laodSerieAction: LoadSerie) => {
+      console.log("hello from load serie");
+      return this.moviesService.getNewestSeriesFromGraphql(laodSerieAction.payload).map((series: any) => {
+          console.log("serien: ",series.data.topSeries)
+          return new moviesActions.LoadingSuccessSerie(series.data.topSeries);
+        }
+      ).catch(error => {
+        console.log('error in search-serie-effect' + error);
+        return of(new moviesActions.LoadingFailsSerie(error));
+      });
+    }
   );
 
 

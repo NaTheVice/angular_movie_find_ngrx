@@ -17,8 +17,9 @@ export interface State {
   totalPages: number;
   totalPagesSerie: number;
   totalPagesSearch: number;
-  serie: Serie[];
+  series: Serie[];
   person_id: number;
+  seasons: Array<any>;
 }
 
 const initialState: State = {
@@ -35,8 +36,9 @@ const initialState: State = {
   totalPages: 0,
   totalPagesSerie: 0,
   totalPagesSearch: 0,
-  serie: [],
-  person_id: 0
+  series: [],
+  person_id: 0,
+  seasons: []
 };
 
 export function reducer(
@@ -115,7 +117,7 @@ export function reducer(
         loaded: true,
         loading: false,
         totalPagesSerie: action.payload.total_pages,
-        serie: [...action.payload.results]
+        series: [...action.payload.results]
       };
     }
 
@@ -166,6 +168,22 @@ export function reducer(
       };
     }
 
+    case moviesActions.SET_SEASONS: {
+      return {
+        ...state,
+        loaded: true,
+        loading: false,
+        seasons: action.payload
+      };
+    }
+
+    case moviesActions.GET_SEASONS: {
+      return {
+        ...state,
+        loading: true
+      };
+    }
+
     case moviesActions.SELECT_MOVIE: {
       const newMoviesArray = state.movies.map((movie: Movie) => {
         return {
@@ -206,9 +224,13 @@ export const getMoviesListState = createSelector(
   getMoviesState,
   (state: State) => state.movies
 );
-export const getSerieListState = createSelector(
+export const getSeriesListState = createSelector(
   getMoviesState,
-  (state: State) => state.serie
+  (state: State) => state.series
+);
+export const getSeasonsState = createSelector(
+  getMoviesState,
+  (state: State) => state.seasons
 );
 export const getSearchMoviesListState = createSelector(
   getMoviesState,

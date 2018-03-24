@@ -93,6 +93,22 @@ export class MoviesService {
     );
   }
 
+  public getSeasons(id) {
+    return this.apollo
+      .query({
+        query: gql`{
+          detailSerie(id: ${id}) {
+            last_air_date
+            number_of_seasons
+            seasons {
+              season_number
+              air_date
+            }
+          }
+        }`
+      });
+  }
+
   public getNewestMoviesFromGraphql(page) {
     return this.apollo
       .query({
@@ -104,17 +120,41 @@ export class MoviesService {
               title
               poster_path
               overview
+              genre_ids
+              release_date
               cast(limit: 5) {
                 id
                 actor{id name photo}
               }
-              genre_ids
-              release_date
             }
           }
         }`
       });
   }
+  public getNewestSeriesFromGraphql(page) {
+    return this.apollo
+      .query({
+        query: gql`{
+          topSeries(page: ${page}) {
+            total_pages
+            page
+            results {
+              id
+              first_air_date
+              poster_path
+              overview
+              genre_ids
+              name
+              cast(limit: 5) {
+                id
+                actor{id name photo}
+              }
+            }
+          }
+        }`
+      });
+  }
+
 
   public getNewestMovies(pageNumber: number): Observable<Movie[]> {
     return this.httpClient
@@ -145,30 +185,6 @@ export class MoviesService {
         const total = serie.total_pages;
         this.store.dispatch(new moviesActions.SetTotalPagesSerie(total));
         return serie.results;
-      });
-  }
-
-  public getNewestSeriesFromGraphql(page) {
-    return this.apollo
-      .query({
-        query: gql`{
-          topSeries(page: ${page}) {
-            total_pages
-            page
-            results {
-              id
-              first_air_date
-              poster_path
-              overview
-              genre_ids
-              name
-              seasons{
-                season_number
-                air_date
-              }
-            }
-          }
-        }`
       });
   }
 

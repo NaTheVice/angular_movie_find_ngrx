@@ -1,5 +1,5 @@
 <div class="row movie_rowzz">
-  <div *ngFor="let movie of movies$ | async | paginate: { itemsPerPage: 1, currentPage: p, totalItems: totalPages} ; let i = index;"
+  <div *ngFor="let movie of $series | async | paginate: { itemsPerPage: 1, currentPage: p, totalItems: totalPages} ; let i = index;"
     class="movies col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-3 mt-4">
     <div  class="card card-inverse card-info">
       <img (click)="sichtbar[i] = true" class="card-img-top" [src]="'https://image.tmdb.org/t/p/w500'+ movie.poster_path"

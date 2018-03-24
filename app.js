@@ -22,13 +22,22 @@ mongoose.connection.on('connected', () => {
 mongoose.connection.on('error', (err) => {
   console.log('Database error: '+err);
 });
+
+// verzeichnis für alle /users...Anfragen
+const users = require('./routes/users');
+
+// Passport Middleware (benötigt um requests zu authentifizieren zu können)
+app.use(passport.initialize());
+app.use(passport.session());
+
+require('./config/passport')(passport);
+
+//benutze users verzeichnis bei /users Anfragen
+app.use('/users', users);
 */
 const app = express();
 app.use(compression())
 app.use(helmet());
-
-// verzeichnis für alle /users...Anfragen
-const users = require('./routes/users');
 
 // Port Number
 const port = process.env.PORT || 8070;
@@ -43,25 +52,34 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true })); 
 
-// Passport Middleware (benötigt um requests zu authentifizieren zu können)
-app.use(passport.initialize());
-app.use(passport.session());
-
-require('./config/passport')(passport);
-
-//benutze users verzeichnis bei /users Anfragen
-app.use('/users', users);
-
-/* Index Route
+//Index Route
 app.get('/', (req, res) => {
   res.send('Invalid Endpoint');
 });
-
+/*
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'public/index.html'));
 });
 */
+app.get('/movies', function (req, res) {
+  res.sendFile(path.join(__dirname, 'public/index.html'));
+});
 
+app.get('/search', function (req, res) {
+  res.sendFile(path.join(__dirname, 'public/index.html'));
+});
+
+app.get('/login', function (req, res) {
+  res.sendFile(path.join(__dirname, 'public/index.html'));
+});
+
+app.get('/register', function (req, res) {
+  res.sendFile(path.join(__dirname, 'public/index.html'));
+});
+
+app.get('/serie', function (req, res) {
+  res.sendFile(path.join(__dirname, 'public/index.html'));
+});
 // Start Server
 app.listen(port, () => {
   console.log('Server started on port '+port);

@@ -106,14 +106,31 @@ h2 {
     margin-top: 0.1875rem;
 }
 
-.detail_cover_img {
-    max-height: 97.5%
+.detail_overview{
+    margin-bottom: 1.2rem;
 }
+
+.detail_seasons{
+    font-size: 0.7rem;
+}
+.seasons_row{
+    font-size: 0.7em;
+    margin-top: -1.875rem;
+    padding-left: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+.detail_cover_img {
+    max-height: 97.5%;
+    margin-right: 1.250rem;
+}
+
+[hidden]{display:none!important;}
 
 .video_link {
     color: $default-color;
     text-decoration: none;
-    margin-left: 0.3125rem;
+    margin-left: 0.625rem;
+    margin-top: 0.625rem;
     font-size: 1.2rem;
     background: black;
     padding: 0.3125rem;

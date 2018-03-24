@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs/Subscription';
+import { Observable } from 'rxjs/Observable';
 
 import * as moviesReducers from '../../store/movies.reducer';
 import { Movie } from '../../models/movie.model';
@@ -26,12 +27,15 @@ export class MovieDetailsComponent implements OnInit {
   public video_url;
   public video_embeded = '';
   public year = '';
+  public bstoLink;
+  public seasons$: Observable<Movie[]>;
 
   constructor(private store: Store<moviesReducers.State>,
               private router: Router,
               private tubeService: YoutubeService,
               private movieService: MoviesService) {
     this.posterUrl = POSTER_URL;
+    this.seasons$ = store.select(moviesReducers.getSeasonsState);
   }
 
   public ngOnInit() {
@@ -45,6 +49,8 @@ export class MovieDetailsComponent implements OnInit {
           this.year = new Date().getFullYear().toString();
           const query = movie.name + ' ' + this.year + ' german';
           this.searchVideos(query);
+          this.getBsLink(movie.name);
+          this.getSeasons(movie.id);
         } else {
           this.year = this.movie.release_date.slice(0, 5);
           const query = movie.title + this.year + 'trailer german';
@@ -67,6 +73,10 @@ export class MovieDetailsComponent implements OnInit {
     this.video_url = '';
   }
 
+  public getSeasons(id): void {
+    this.store.dispatch(new moviesActions.GetSeasons(id));
+  }
+
   public searchVideos(query) {
     if (query !== '') {
         this.tubeService.searchYouTube(query);
@@ -76,5 +86,9 @@ export class MovieDetailsComponent implements OnInit {
     this.video = this.tubeService.videos[0];
     this.video_url = 'https://youtu.be/' + this.video.id.videoId;
     this.video_embeded = 'https://www.youtube.com/embed/' + this.video.id.videoId + '/';
+  }
+  getBsLink(serie: string) {
+    const name = serie.replace(/ /g, '-');
+    this.bstoLink = 'https://bs.to/serie/' + name;
   }
 }

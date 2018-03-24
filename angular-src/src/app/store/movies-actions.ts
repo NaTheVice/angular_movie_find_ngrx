@@ -27,10 +27,22 @@ export const SET_TOTAL_PAGES_SERIE = 'SET_TOTAL_PAGES_SERIE';
 export const SET_TOTAL_PAGES_SEARCH = 'SET_TOTAL_PAGES_SEARCH';
 export const CLEAR_QUERY = 'CLEAR_QUERY';
 export const SET_PERSON_ID = 'SET_PERSON_ID';
+export const GET_SEASONS = 'GET_SEASONS';
+export const SET_SEASONS = 'SET_SEASONS';
 
 export class GetMovie implements Action {
   readonly type = GET_MOVIE;
   constructor(public payload: string) {}
+}
+
+export class GetSeasons implements Action {
+  readonly type = GET_SEASONS;
+  constructor(public payload: number) {}
+}
+
+export class SetSeasons implements Action {
+  readonly type = SET_SEASONS;
+  constructor(public payload: any) {}
 }
 
 export class ClearQuery implements Action {
@@ -175,4 +187,6 @@ export type Actions =
   | SetTotalPagesSearch
   | ClearQuery
   | SetPersonId
+  | SetSeasons
+  | GetSeasons
   | ReadyToSetMovies;

@@ -43,6 +43,12 @@ const typeDefs = [`
     results: [Serie]
   }
 
+  type SeriesDetails{
+    seasons: [Season]
+    last_air_date: String
+    number_of_seasons: Int
+  }
+
   type Serie {
     id: ID!
     credit_id: Int
@@ -53,6 +59,7 @@ const typeDefs = [`
     overview: String
     genre_ids: [Int]
     seasons: [Season]
+    cast(limit: Int): [Cast]!
   }
 
   type Season{
@@ -69,6 +76,7 @@ const typeDefs = [`
     movie(id: ID!): Movie
     serie(id: ID!): Serie
     topSeries(page: Int) : Series 
+    detailSerie(id: ID!) : SeriesDetails
     actor(id: ID!): Actor
   }
 

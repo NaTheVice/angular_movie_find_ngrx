@@ -34,7 +34,6 @@ export class MoviesEffects {
   loadMovies$: Observable<Action> = this.actions$
     .ofType(moviesActions.LOAD_MOVIES)
     .switchMap((laodMoviesAction: LoadMovies) => {
-      console.log("hello from load movie");
       return this.moviesService.getNewestMoviesFromGraphql(laodMoviesAction.payload).map((movies: any) => {
           return new moviesActions.LoadingSuccess(movies.data.movies);
         }
@@ -46,11 +45,23 @@ export class MoviesEffects {
   );
 
   @Effect()
-  loadSerie$: Observable<Action> = this.actions$.ofType(moviesActions.LOAD_SERIE)
+  getSeasons$: Observable<Action> = this.actions$
+    .ofType(moviesActions.GET_SEASONS)
+    .switchMap((seasonsAction: moviesActions.GetSeasons) => {
+      return this.moviesService.getSeasons(seasonsAction.payload).map((details: any) => {
+          return new moviesActions.SetSeasons(details.data.detailSerie.seasons);
+        }
+      ).catch(error => {
+        console.log('error in search-serie-effect' + error);
+        return of(new moviesActions.LoadingFails(error));
+      });
+    }
+  );
+
+  @Effect()
+  loadSeries$: Observable<Action> = this.actions$.ofType(moviesActions.LOAD_SERIE)
     .switchMap((laodSerieAction: LoadSerie) => {
-      console.log("hello from load serie");
       return this.moviesService.getNewestSeriesFromGraphql(laodSerieAction.payload).map((series: any) => {
-          console.log("serien: ",series.data.topSeries)
           return new moviesActions.LoadingSuccessSerie(series.data.topSeries);
         }
       ).catch(error => {

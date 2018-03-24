@@ -17,7 +17,7 @@ import { genres } from '../../models/all-movie-genres.model';
   styleUrls: ['./serie.component.scss']
 })
 export class SerieComponent implements OnInit {
-  public movies$: Observable<Serie[]>;
+  public $series: Observable<any>;
   private pagesSubscription: Subscription;
   public p = 1;
   public totalPages;
@@ -32,9 +32,10 @@ export class SerieComponent implements OnInit {
     private store: Store<moviesReducers.State>,
     public movieService: MoviesService
   ) {
-    this.movies$ = store.select(moviesReducers.getSerieListState);
+    this.$series = store.select(moviesReducers.getSeriesListState);
     this.loadSeriePage(1);
   }
+
 
   ngOnInit() {
     this.pagesSubscription = this.store
@@ -58,7 +59,6 @@ export class SerieComponent implements OnInit {
   }
 
   public loadSeriePage(page: number) {
-    console.log("page: " ,page);
     this.store.dispatch(new moviesActions.LoadSerie(page));
   }
 

@@ -11,7 +11,6 @@ import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
-import { NewsComponent } from './pages/news/news.component';
 import { SearchComponent } from './pages/search/search.component';
 import { FormsModule} from '@angular/forms';
 import { MovieListComponent } from './pages/movie-list/movie-list.component';
@@ -30,10 +29,12 @@ import { LoginComponent } from './pages/login/login.component';
 import { PaginationModule } from 'ngx-pagination-bootstrap';
 import { RegisterComponent } from './pages/register/register.component';
 
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
+
 @NgModule({
   declarations: [
     AppComponent,
-    NewsComponent,
     SearchComponent,
     MovieListComponent,
     MovieDetailsComponent,
@@ -47,6 +48,7 @@ import { RegisterComponent } from './pages/register/register.component';
   imports: [
     StoreModule.forRoot({ movies: reducer }),
     EffectsModule.forRoot([MoviesEffects]),
+    ServiceWorkerModule.register('/ngsw-worker.js', {enabled: environment.production}),
     CommonModule,
     NgxPaginationModule,
     FormsModule,
@@ -67,10 +69,6 @@ import { RegisterComponent } from './pages/register/register.component';
       {
         path: 'details',
         component: MovieDetailsComponent
-      },
-      {
-        path: 'profile',
-        component: NewsComponent
       },
       {
         path: 'search',

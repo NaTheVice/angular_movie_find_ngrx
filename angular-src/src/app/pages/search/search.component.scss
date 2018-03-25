@@ -229,8 +229,11 @@ input[type="search"] {
     opacity: 1;
 }
 
-input.search::placeholder{ font-family:"Font Awesome 5 Free", "Open Sans"; font-weight: 900; }
-
+//input.search::placeholder{ font-family:"Font Awesome 5 Free", "Open Sans"; font-weight: 900; }
+input.search::placeholder{
+    background: url("https://imgplaceholder.com/25x25/transparent/ddd/fa-search") no-repeat left center;
+    margin-left: 0.3rem;
+}
 
 
 @media screen and (max-width: 53.125rem) {
@@ -256,7 +259,7 @@ input.search::placeholder{ font-family:"Font Awesome 5 Free", "Open Sans"; font-
         width: 50vw;
     }
     .morphsearch-input{
-        padding-left: 0.6rem;
+        padding-left: 0.2rem;
     }
    
  
@@ -280,9 +283,7 @@ input.search::placeholder{ font-family:"Font Awesome 5 Free", "Open Sans"; font-
         top: 1.5625rem;
         width: 10vw;
     }
-    .morphsearch-input {
-        font-size: 1rem;
-    }
+ 
 }
 @media (max-width: 48rem) {
     .morphsearch {

@@ -1,0 +1,25 @@
+{
+    "dir" : "ltr",
+    "lang" : "en",
+    "name" : "Mugies-Movies",
+    "scope": "/",
+    "display": "browser",
+    "start_url" : "https://mugie-movies.herokuapp.com/",
+    "short_name" : "Mugies-Movies",
+    "theme_color" : "transparent",
+    "description" : "",
+    "orientation" : "any",
+    "background_color" : "transparent",
+    "related_applications" : "",
+    "prefer_related_applications" : "false",
+    "icons": [
+        {
+            "src": "https://mugie-movies.herokuapp.com/favicon.ico",
+            "sizes": "16x16 32x32"
+        },
+        {
+            "src": "https://mugie-movies.herokuapp.com/favicon.ico",
+            "sizes": "16x16 32x32"
+        }
+    ]
+}

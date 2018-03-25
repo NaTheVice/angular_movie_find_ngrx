@@ -23,15 +23,6 @@
       "urls": [
         "/assets/styles.scss",
         "/assets/variables.scss",
-        "/assets/fonts/bpicons/bpicons.eot",
-        "/assets/fonts/bpicons/bpicons.svg",
-        "/assets/fonts/bpicons/bpicons.ttf",
-        "/assets/fonts/bpicons/bpicons.woff",
-        "/assets/fonts/bpicons/license.txt",
-        "/assets/fonts/icomoon/icomoon.eot",
-        "/assets/fonts/icomoon/icomoon.svg",
-        "/assets/fonts/icomoon/icomoon.ttf",
-        "/assets/fonts/icomoon/icomoon.woff",
         "/assets/img/loading.svg",
         "/assets/img/magnifier.svg",
         "/assets/img/movies/no-found.jpg"
@@ -46,20 +37,11 @@
     "/main.017844150d854d474d1d.bundle.js": "538268fdc09f6c8272538eafaec8f1c205e36552",
     "/assets/variables.scss": "bfc9c7a2e8ef596123b3f6961c2cbb178f4b5af2",
     "/polyfills.fb8ad884215c65546efb.bundle.js": "5f49131c0c147a20f91b1e77814434e0c77bd3dc",
-    "/assets/fonts/bpicons/bpicons.eot": "48832928d42b1fd23e4147f82a73dc0bbeca0fae",
-    "/styles.fa5a90e0640aed7eac1e.bundle.css": "95b7a35b7cf5784860375696c5634e818266e434",
-    "/assets/fonts/bpicons/bpicons.svg": "5186f09dbd0b22539a3e3647c5c0dcbe2a75caef",
-    "/favicon.ico": "84161b857f5c547e3699ddfbffc6d8d737542e01",
-    "/assets/fonts/bpicons/bpicons.ttf": "1b7e1cec31aa20db6aa05c4d1641ce9c290b1331",
-    "/index.html": "cc1fff2ec0f8d03bec90457bb97afd3b0ec34a0b",
-    "/assets/fonts/bpicons/bpicons.woff": "970846fae8b876546cfbd4ab51bd34fc10e9cd50",
-    "/assets/fonts/bpicons/license.txt": "d3d34d2a512acf27557ea82ac82a51058df43091",
-    "/assets/fonts/icomoon/icomoon.eot": "faec2c750574b8203b57f3fe3969f3101d155c8b",
-    "/assets/fonts/icomoon/icomoon.svg": "8efd57c0dabfae6ff38eb77eac34d38e85117470",
-    "/assets/fonts/icomoon/icomoon.ttf": "2dc6284d766fb7ced8690502292913912fea1a2f",
-    "/assets/fonts/icomoon/icomoon.woff": "50a2ed9dbeb1b72ecc8efa36a6a6ce95f3b682a3",
     "/assets/img/loading.svg": "caadea9a029dab94a3df5c2fc9096a34b3da0656",
+    "/styles.fa5a90e0640aed7eac1e.bundle.css": "95b7a35b7cf5784860375696c5634e818266e434",
     "/assets/img/magnifier.svg": "356bb3bafdbe214a950b12e1cf109010a6308f52",
-    "/assets/img/movies/no-found.jpg": "258045d3901d42f2a92a3a5a9858f35d00e3b932"
+    "/favicon.ico": "84161b857f5c547e3699ddfbffc6d8d737542e01",
+    "/assets/img/movies/no-found.jpg": "258045d3901d42f2a92a3a5a9858f35d00e3b932",
+    "/index.html": "72ee5bb55c4ee6f3080af6d0574d5964ae9f6d33"
   }
 }
